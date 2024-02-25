@@ -1,22 +1,29 @@
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 
 function BottomNav() {
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const [activePath, setActivePath] = useState(location.pathname);
 
-  const handleHome = () => {
-    navigate("/");
+  // Mettre à jour le chemin actif lorsque l'emplacement change
+  useEffect(() => {
+    setActivePath(location.pathname);
+  }, [location]);
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    setActivePath(path); // Mettre à jour le chemin actif lors du clic
   };
-
-  const handlePlaning = () => {
-    navigate("/planing");
-  };
-
 
   return (
     <>
       <div className="btm-nav">
-        <button className="bg-red-200 text-pink-600" onClick={handleHome}>
+
+
+        <button className={`bg-red-200 text-pink-600 ${activePath === "/" ? "active" : ""}`} onClick={() => handleNavigation("/")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -33,7 +40,9 @@ function BottomNav() {
           </svg>
           <span className="btm-nav-label">Home</span>
         </button>
-        <button className="active bg-blue-200 text-blue-600 border-blue-600" onClick={handlePlaning}>
+
+
+        <button className={`bg-blue-200 text-blue-600 border-blue-600 ${activePath === "/planing" ? "active" : ""}`}  onClick={() => handleNavigation("/planing")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -50,7 +59,9 @@ function BottomNav() {
           </svg>
           <span className="btm-nav-label">Planing</span>
         </button>
-        <button className="bg-teal-200 text-teal-600">
+
+
+        <button className={`bg-teal-200 text-teal-600 ${activePath === "/clients" ? "active" : ""}`}  onClick={() => handleNavigation("/clients")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -66,7 +77,9 @@ function BottomNav() {
             />
           </svg>
           <span className="btm-nav-label">Clients</span>
-        </button><button className="bg-orange-300 text-teal-600">
+        </button>
+        
+        <button className={`bg-orance text-teal-600 ${activePath === "/articles" ? "active" : ""}`}  onClick={() => handleNavigation("/articles")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
