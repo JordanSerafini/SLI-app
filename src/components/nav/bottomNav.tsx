@@ -13,9 +13,9 @@ function BottomNav() {
     setActivePath(location.pathname);
   }, [location]);
 
-  const handleNavigation = (path) => {
+  const handleNavigation = (path: string) => {
     navigate(path);
-    setActivePath(path); // Mettre à jour le chemin actif lors du clic
+    setActivePath(path); 
   };
 
   return (
