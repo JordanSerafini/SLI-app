@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.regular {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+}
+
+.medium {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+}
+
+.semibold {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+ 
+ .bold {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+ 
+.extrabold {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+}
+  

@@ -58,12 +58,13 @@ export default {
         'marron': '#955149',
         'text': '#050315',
         'bgMain': '#FBFBFE',
+        "secondary-light": "#eeedff",
+        "secondary-light-2": "#ebeaff",
+        "secondary-dark": "#c7c6e5",
       },
 
       fontFamily: {
-        'lato': ['Lato', 'sans-serif'],
         'playfair': ['Playfair Display', 'serif'],
-        'Dancing': ['Dancing Script', 'cursive'],
       },
     },
   },

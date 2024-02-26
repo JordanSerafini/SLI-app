@@ -103,7 +103,7 @@ const EventOfTheDay = () => {
       <div className="flex flex-col gap-4 overflow-auto mb-20">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event: Event) => (
-            <div className="collapse collapse-arrow bg-base-200" key={event.id}>
+            <div className="collapse collapse-arrow bg-secondary-light-2 " key={event.id}>
               <input
                 type="radio"
                 name="my-accordion"
