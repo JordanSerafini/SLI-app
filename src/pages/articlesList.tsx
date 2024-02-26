@@ -5,7 +5,7 @@ import Card from "../components/card";
 
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
-
+  const [cardSelected, setCardSelected] = useState({}); 
   // -------------------------------------------------------------------------------- Pagination -----------------------------------------------------------------------------------
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 30;
@@ -43,24 +43,41 @@ function ArticlesList() {
       (number >= currentPage - 3 && number <= currentPage + 3)
   );
 
-  // ---------------------------------------------------------------------- Fonctions ----------------------------------------------------------------------
+  // ---------------------------------------------------------------------- Card detail ----------------------------------------------------------------------
   const handleDetailClick = (id: number) => {
-    console.log("ID de la carte sélectionnée :", id);
+    setCardSelected(id);
+    
   };
+
+  const selectedCard = itemList.find((card) => card.id === cardSelected);
 
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
 
   return (
     <>
-      <div className="h-screen w-9.5/10 flex flex-col self-center">
-        <div className="h-6/10">détail de larticle</div>
+      <div className="h-screen w-9.5/10 flex flex-col self-center justify-start">
+        {/* Zone pour afficher des détails de l'article sélectionné */}
+        {selectedCard? (
+        <div className="h-5/10">
+            {/* Affiche les détails de la carte ici */}
+            <h2>{selectedCard.caption}</h2>
+            <img className="h-20" src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt={selectedCard.caption} />
+            <p>{selectedCard.descComClear}</p>
+            {/* Ajoute d'autres détails que tu souhaites montrer */}
+          </div>
+        ) : (
+          <div className="h-5/10">
+            <h2>Selectionnez un article pour voir les détails</h2>
+          </div>
+        )
+      }
 
         {/* Carousel */}
-        <div className="gap-8 carousel rounded-box">
+        <div className="h-3/10 gap-8 carousel rounded-box ">
           {currentItems.map((card) => (
             <Card
               id={card.id}
-              css="carousel-item w-8/10"
+              css="carousel-item w-8/10 h-10/10"
               key={card.id}
               caption={card.caption}
               img="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -70,7 +87,7 @@ function ArticlesList() {
         </div>
 
         {/* Pagination */}
-        <div className="pagination flex justify-center space-x-2 mt-4">
+        <div className="h-1/10 pagination flex justify-center space-x-2 mt-4">
           {pageNumbers.map((number) => (
             <button
               key={number}
