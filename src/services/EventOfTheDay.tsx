@@ -54,17 +54,27 @@ const EventOfTheDay = () => {
           onChange={(e) => setSelectedDate(new Date(e.target.value))}
         />
       </div>
-      {filteredEvents.length > 0 &&
-        filteredEvents.map((event: Event) => (
-          <div key={event.id}>
-            <h2>{event.caption}</h2>
-            <p>Début: {formatDate(event.startdatetime)}</p>
-            <p>Fin: {formatDate(event.enddatetime)}</p>
-            <p>{event.notesclear}</p>
+      {filteredEvents.length > 0 ? (
+        filteredEvents.map((event: Event, index: number) => (
+          <div className="collapse collapse-arrow bg-base-200" key={event.id}>
+            <input type="radio" name="my-accordion" id={`event-${event.id}`} className="peer" defaultChecked={index === 0} />
+            <div className="collapse-title text-xl font-medium peer-checked:bg-secondary peer-checked:text-secondary-content">
+              <label htmlFor={`event-${event.id}`}>{event.caption}</label>
+            </div>
+            <div className="collapse-content peer-checked:bg-base-100 peer-checked:text-base-content"> 
+              <p>Début: {formatDate(event.startdatetime)}</p>
+              <p>Fin: {formatDate(event.enddatetime)}</p>
+              <p>{event.notesclear}</p>
+            </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <p>Pas d'événements pour cette date.</p>
+      )}
     </div>
   );
+
+  
 };
 
 export default EventOfTheDay;
