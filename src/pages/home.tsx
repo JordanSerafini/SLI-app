@@ -9,7 +9,6 @@ import CircleLoader from "../components/loader/circleLoader";
 
 function Home() {
 
-  const { eventList } = useContext(dataContext);
 
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
