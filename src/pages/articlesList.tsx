@@ -1,14 +1,22 @@
 import { useState, useContext, ChangeEvent, useEffect, useCallback } from "react";
+import { IsDataFetched } from "../hooks/isDataFetched"; 
 
 import dataContext from "../context/dataContext";
 import Card from "../components/card";
 import debounce from "../services/debounce";
+import CircleLoader from "../components/loader/circleLoader";
 
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
   const [cardSelected, setCardSelected] = useState({}); 
 
   const [searchTerm, setSearchTerm] = useState("");
+
+  const isLoading = IsDataFetched();
+
+
+
+
 
   // -------------------------------------------------------------------------------- Pagination -----------------------------------------------------------------------------------
   const [currentPage, setCurrentPage] = useState(1);
@@ -78,6 +86,10 @@ useEffect(() => {
 }, [debouncedSetSearchTerm]);
 
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
+
+  if (isLoading) {
+    return <CircleLoader />;
+  }
 
   return (
     <>

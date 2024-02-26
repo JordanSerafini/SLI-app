@@ -1,31 +1,39 @@
-import { useContext, useEffect, useCallback } from "react"
-import dataContext from "../context/dataContext"
-import axios from "axios"
+import {  useEffect, useState, useContext } from "react";
 
-import url from "../axios/url"
+import dataContext from "../context/dataContext";
+import fetchData from "../function/fetchData";
+import Toast from "../components/toast/toastTop"; 
+
+
 
 function Home() {
+  const { itemList, setItemList, clientList, setClientList, eventList, setEventList } = useContext(dataContext);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
-  const { setItemList } = useContext(dataContext)  
+  // ----------------------------------------------- TOAST ----------------------------------------------- //
+  useEffect(() => {
+    let toastTimeout: number | undefined;
+    if (showToast) {
+      toastTimeout = setTimeout(() => setShowToast(false), 3000);
+    }
+    return () => clearTimeout(toastTimeout); 
+  }, [showToast]);
 
-  const fetchData = useCallback(async () => {
-    try {
-      const itemResponse = await axios.get(`${url.heroku}/articlePG`);
-      setItemList(itemResponse.data.rows);
-    }
-    catch (error) {
-      console.error(error)
-    }
-  }, [setItemList]) 
+  // ----------------------------------------------- FETCH DATA ----------------------------------------------- //
 
   useEffect(() => {
-    fetchData()
-  }, [setItemList, fetchData])
+    fetchData(setItemList, setClientList, setEventList);
+  }, [setItemList, setClientList, setEventList]);
 
+  
 
   return (
-    <div>Home</div>
-  )
+    <div>
+      Home
+      {showToast && <Toast message={toastMessage} />}
+    </div>
+  );
 }
 
-export default Home
+export default Home;
