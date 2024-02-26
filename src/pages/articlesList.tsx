@@ -57,7 +57,7 @@ function ArticlesList() {
               key={card.id} 
               caption={card.caption}
               desComClear={card.descComClear}
-              salePriceVatIncluded={card.salePriceVatIncluded}
+              salepricevatincluded={card.salepricevatincluded}
               img="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
             />
           ))}
@@ -69,7 +69,7 @@ function ArticlesList() {
             <button
               key={number}
               onClick={() => paginate(number)}
-              className={`page-item ${currentPage === number ? "bg-blue-500 text-white" : "bg-gray-200 text-black"} rounded-full w-10 h-10`}
+              className={`page-item ${currentPage === number ? "bg-blue-500 text-white" : "bg-gray-200 text-black"} rounded-full w-10 h-10 border-2 border-gray-300`}
             >
               {number}
             </button>

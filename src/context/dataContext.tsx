@@ -3,8 +3,8 @@ import { createContext, Dispatch, SetStateAction } from "react";
 interface Article {
   id: number;
   caption: string;
-  salePriceVatExcluded: number;
-  salePriceVatIncluded: string;
+  salepriceVatExcluded: number;
+  salepricevatincluded: string;
   realStock: number;
   descComClear: string;
 }
