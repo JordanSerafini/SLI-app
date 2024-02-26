@@ -3,7 +3,7 @@ import dataContext, { DataContextType } from "../context/dataContext";
 
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
-import calendarGif from "../assets/calendarGif.gif";
+import calendarLogo from "../assets/calendarLogo.png";
 
 interface Event {
   id: number;
@@ -72,7 +72,7 @@ const EventOfTheDay = () => {
             className="bg-white p-4 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] mb-2 w-full"
           />
           <img
-            src={calendarGif}
+            src={calendarLogo}
             alt=""
             onClick={() => setShowCalendar(!showCalendar)}
             className="cursor-pointer w-10 h-10 ml-auto"
