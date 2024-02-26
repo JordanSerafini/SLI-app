@@ -1,4 +1,4 @@
-import { useState, useContext, ChangeEvent } from "react";
+import { useState, useContext, ChangeEvent, useEffect, useCallback } from "react";
 
 import dataContext from "../context/dataContext";
 import Card from "../components/card";
@@ -51,7 +51,6 @@ const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
   // ---------------------------------------------------------------------- Card detail ----------------------------------------------------------------------
   const handleDetailClick = (id: number) => {
     setCardSelected(id);
-    
   };
   const selectedCard = itemList.find((card) => card.id === cardSelected);
 
@@ -59,13 +58,27 @@ const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
   // ---------------------------------------------------------------------- Input recherche ----------------------------------------------------------------------
 
 
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-    setCurrentPage(1); // Réinitialise la pagination à la première page pour une nouvelle recherche
+// Créez un gestionnaire de recherche debounced
+const debouncedSetSearchTerm = useCallback(
+  debounce((newSearchTerm: string) => {
+    setSearchTerm(newSearchTerm);
+    setCurrentPage(1); // Réinitialiser la pagination à la première page pour une nouvelle recherche
+  }, 50),
+  [] // Les dépendances vides signifient que la fonction est recréée seulement quand le composant est monté
+);
+
+// Mettez à jour le gestionnaire de changement de recherche pour utiliser debouncedSetSearchTerm
+const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+  debouncedSetSearchTerm(event.target.value);
+};
+
+// Ajoutez un effet pour annuler le debounced lors du démontage
+useEffect(() => {
+  return () => {
+    debouncedSetSearchTerm.cancel(); // Cette méthode doit être définie dans votre service de debounce
   };
+}, [debouncedSetSearchTerm]);
 
-
-  
 
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
 
@@ -92,11 +105,11 @@ const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
         {/* Carousel */}
         <div className="gap-8 carousel rounded-box ">
-          {currentItems.map((card) => (
+          {currentItems.map((card, index) => (
             <Card
               id={card.id}
               css="carousel-item w-8/10"
-              key={card.id}
+              key={`${index}_${card.id}`}
               caption={card.caption}
               img="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
               onDetailClick={handleDetailClick}
