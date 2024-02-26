@@ -57,28 +57,25 @@ const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
   // ---------------------------------------------------------------------- Input recherche ----------------------------------------------------------------------
 
-
 // Créez un gestionnaire de recherche debounced
 const debouncedSetSearchTerm = useCallback(
-  debounce((newSearchTerm: string) => {
+  debounce((...args: unknown[]) => {
+    const newSearchTerm = args[0] as string;
     setSearchTerm(newSearchTerm);
-    setCurrentPage(1); // Réinitialiser la pagination à la première page pour une nouvelle recherche
+    setCurrentPage(1); 
   }, 50),
-  [] // Les dépendances vides signifient que la fonction est recréée seulement quand le composant est monté
+  [setSearchTerm, setCurrentPage] 
 );
 
-// Mettez à jour le gestionnaire de changement de recherche pour utiliser debouncedSetSearchTerm
-const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+const handleSearchChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
   debouncedSetSearchTerm(event.target.value);
-};
-
-// Ajoutez un effet pour annuler le debounced lors du démontage
-useEffect(() => {
-  return () => {
-    debouncedSetSearchTerm.cancel(); // Cette méthode doit être définie dans votre service de debounce
-  };
 }, [debouncedSetSearchTerm]);
 
+useEffect(() => {
+  return () => {
+    debouncedSetSearchTerm.cancel(); 
+  };
+}, [debouncedSetSearchTerm]);
 
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
 
@@ -138,7 +135,7 @@ useEffect(() => {
           placeholder="Rechercher..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="mt-4 p-2 border-2 border-gray-300 rounded-lg w-full"
+          className="mt-4 input input-bordered w-full max-w-xs"
         />
       </div>
     </>
