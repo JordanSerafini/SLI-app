@@ -90,7 +90,7 @@ const EventOfTheDay = () => {
             className="p-2 m-2 border-2 border-secondary rounded-md "
           />
           <img
-            src={calendarGif}
+            src={calendarLogo}
             alt=""
             onClick={() => setShowCalendar(!showCalendar)}
             className="cursor-pointer  h-10 "
