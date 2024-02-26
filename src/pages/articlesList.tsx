@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { useContext } from "react"
+
+import dataContext from "../context/dataContext"
+
 import Card from '../components/card';
 
 interface Card {
@@ -55,6 +59,9 @@ function articlesList() {
     },
   ]);
 
+  const { itemList } = useContext(dataContext)
+
+  console.log(itemList)
 
 
   return (

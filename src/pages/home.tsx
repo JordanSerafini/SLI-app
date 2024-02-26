@@ -5,7 +5,7 @@ import axios from "axios"
 import url from "../axios/url"
 
 function Home() {
-  
+
   const { setItemList } = useContext(dataContext)  
 
   const fetchData = useCallback(async () => {
