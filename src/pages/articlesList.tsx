@@ -14,7 +14,7 @@ function ArticlesList() {
 
   const isLoading = IsDataFetched();
 
-
+console.log("itemList", itemList[0].image_url);
 
 
 
