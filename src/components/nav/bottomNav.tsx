@@ -23,7 +23,7 @@ function BottomNav() {
       <div className="btm-nav">
 
 
-        <button className={`bg-secondary text-text ${activePath === "/" ? "active bg-primary text-bgMain" : ""}`} onClick={() => handleNavigation("/")}>
+        <button className={`bg-secondary text- ${activePath === "/" ? "active bg-primary text-bgMain" : ""}`} onClick={() => handleNavigation("/")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
