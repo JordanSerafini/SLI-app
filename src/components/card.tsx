@@ -3,7 +3,7 @@ function card({id, caption, img, css, onDetailClick }: {id: number, caption: str
 
   return (
    
-      <div className={`card glass ${css}`}>
+      <div className={`card ${css}`}>
         <figure className="">
           <img
             src={img}

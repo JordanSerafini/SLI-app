@@ -115,7 +115,7 @@ useEffect(() => {
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
-              css="carousel-item w-8/10 bg-secondary text-text"
+              css="carousel-item w-8/10 bg-white text-text border-2 border-secondary "
               key={`${index}_${card.id}`}
               caption={card.caption}
               img={card.image_url}

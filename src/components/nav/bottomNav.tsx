@@ -42,7 +42,7 @@ function BottomNav() {
         </button>
 
 
-        <button className={`bg-secondary text-text border-blue-600 ${activePath === "/planing" ? "active bg-primary text-bgMain" : ""}`}  onClick={() => handleNavigation("/planing")}>
+        <button className={`bg-secondary text-orange-600 border-blue-600 ${activePath === "/planing" ? "active bg-primary text-bgMain" : ""}`}  onClick={() => handleNavigation("/planing")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
