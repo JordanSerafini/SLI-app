@@ -1,17 +1,15 @@
-import {  useEffect, useState, useContext } from "react";
+import {  useEffect, useState } from "react";
 import { IsDataFetched } from "../hooks/isDataFetched"; 
 
 
-import dataContext from "../context/dataContext";
 import Toast from "../components/toast/toastTop"; 
 import CircleLoader from "../components/loader/circleLoader";
 
 
 
 function Home() {
-  const { itemList, setItemList, clientList, setClientList, eventList, setEventList } = useContext(dataContext);
   const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
+  const [toastMessage] = useState('');
 
   const isLoading = IsDataFetched();
 
