@@ -1,8 +1,10 @@
 import {  useEffect, useState, useContext } from "react";
+import { IsDataFetched } from "../hooks/isDataFetched"; 
+
 
 import dataContext from "../context/dataContext";
-import fetchData from "../function/fetchData";
 import Toast from "../components/toast/toastTop"; 
+import CircleLoader from "../components/loader/circleLoader";
 
 
 
@@ -10,6 +12,8 @@ function Home() {
   const { itemList, setItemList, clientList, setClientList, eventList, setEventList } = useContext(dataContext);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+
+  const isLoading = IsDataFetched();
 
   // ----------------------------------------------- TOAST ----------------------------------------------- //
   useEffect(() => {
@@ -20,11 +24,10 @@ function Home() {
     return () => clearTimeout(toastTimeout); 
   }, [showToast]);
 
-  // ----------------------------------------------- FETCH DATA ----------------------------------------------- //
 
-  useEffect(() => {
-    fetchData(setItemList, setClientList, setEventList);
-  }, [setItemList, setClientList, setEventList]);
+  if (isLoading) {
+    return <CircleLoader />; 
+  }
 
   
 
