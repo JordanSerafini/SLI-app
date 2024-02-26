@@ -1,9 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import dataContext, { DataContextType } from "../context/dataContext";
 
-import { MouseEvent } from 'react';
-import  Value  from 'react-calendar';
-
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
 import calendarGif from "../assets/calendarGif.gif";
