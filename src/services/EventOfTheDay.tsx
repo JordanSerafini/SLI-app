@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import dataContext, { DataContextType } from "../context/dataContext";
 
 import "react-calendar/dist/Calendar.css";
