@@ -7,7 +7,7 @@ function card({id, caption, img, css, onDetailClick }: {id: number, caption: str
         <figure className="">
           <img
             src={img}
-            alt="car!"
+            alt="Image manquante"
             className="w-full object-cover rounded-t-lg"
           />
         </figure>
