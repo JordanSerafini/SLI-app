@@ -23,7 +23,7 @@ function BottomNav() {
       <div className="btm-nav">
 
 
-        <button className={`bg-red-200 text-pink-600 ${activePath === "/" ? "active" : ""}`} onClick={() => handleNavigation("/")}>
+        <button className={`bg-secondary text-text ${activePath === "/" ? "active bg-primary text-bgMain" : ""}`} onClick={() => handleNavigation("/")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -42,7 +42,7 @@ function BottomNav() {
         </button>
 
 
-        <button className={`bg-blue-200 text-blue-600 border-blue-600 ${activePath === "/planing" ? "active" : ""}`}  onClick={() => handleNavigation("/planing")}>
+        <button className={`bg-secondary text-text border-blue-600 ${activePath === "/planing" ? "active bg-primary text-bgMain" : ""}`}  onClick={() => handleNavigation("/planing")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -61,7 +61,7 @@ function BottomNav() {
         </button>
 
 
-        <button className={`bg-teal-200 text-teal-600 ${activePath === "/clients" ? "active" : ""}`}  onClick={() => handleNavigation("/clients")}>
+        <button className={`bg-secondary text-blue-500  ${activePath === "/clients" ? "active bg-primary text-bgMain" : ""}`}  onClick={() => handleNavigation("/clients")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -79,7 +79,7 @@ function BottomNav() {
           <span className="btm-nav-label">Clients</span>
         </button>
         
-        <button className={`bg-orance text-teal-600 ${activePath === "/articles" ? "active" : ""}`}  onClick={() => handleNavigation("/articles")}>
+        <button className={`bg-secondary text-green-600 ${activePath === "/articles" ? "active bg-primary text-bgMain" : ""}`}  onClick={() => handleNavigation("/articles")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
