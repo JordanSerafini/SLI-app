@@ -1,5 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import dataContext, { DataContextType } from "../context/dataContext";
+
+import { MouseEvent } from 'react';
+import  Value  from 'react-calendar';
 
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
@@ -51,10 +54,14 @@ const EventOfTheDay = () => {
   };
 
   // Gérer le changement de date du calendrier
-  const handleDateChange = (value: Date | Date[]) => {
-    const newDate = Array.isArray(value) ? value[0] : value;
-    setSelectedDate(newDate instanceof Date ? newDate : new Date(newDate));
-  };
+  const handleDateChange = (value: unknown) => {
+    if (value instanceof Date) {
+        setSelectedDate(value);
+    } else if (Array.isArray(value) && value.length > 0 && value[0] instanceof Date) {
+        setSelectedDate(value[0]);
+    }
+};
+
 
   return (
     <div className="flex flex-col gap-2 items-center">
