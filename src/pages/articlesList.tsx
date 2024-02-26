@@ -110,6 +110,7 @@ useEffect(() => {
         )
       }
 
+
         {/* Carousel de CARDS*/}
         <div className="gap-8 carousel rounded-box ">
           {currentItems.map((card, index) => (
