@@ -26,39 +26,45 @@ function ArticlesList() {
   // Générer les numéros de page pour la pagination
   let pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
-    if (i === 1 || i === totalPages || (i >= currentPage - 3 && i <= currentPage + 3)) {
+    if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentPage - 3 && i <= currentPage + 3)
+    ) {
       pageNumbers.push(i);
     }
   }
 
   // Optimisation pour afficher les numéros de page (les 3 précédents et les 3 suivants)
-  pageNumbers = pageNumbers.filter((number) =>
-    number === 1 ||
-    number === totalPages ||
-    (number >= currentPage - 3 && number <= currentPage + 3)
+  pageNumbers = pageNumbers.filter(
+    (number) =>
+      number === 1 ||
+      number === totalPages ||
+      (number >= currentPage - 3 && number <= currentPage + 3)
   );
 
+  // ---------------------------------------------------------------------- Fonctions ----------------------------------------------------------------------
+  const handleDetailClick = (id: number) => {
+    console.log("ID de la carte sélectionnée :", id);
+  };
 
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
 
   return (
     <>
       <div className="h-screen w-9.5/10 flex flex-col self-center">
-
-      <div className="h-1/10">
-        détail de larticle
-      </div>
+        <div className="h-6/10">détail de larticle</div>
 
         {/* Carousel */}
         <div className="gap-8 carousel rounded-box">
           {currentItems.map((card) => (
             <Card
+              id={card.id}
               css="carousel-item w-8/10"
-              key={card.id} 
+              key={card.id}
               caption={card.caption}
-              desComClear={card.descComClear}
-              salepricevatincluded={card.salepricevatincluded}
               img="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+              onDetailClick={handleDetailClick}
             />
           ))}
         </div>
@@ -69,7 +75,11 @@ function ArticlesList() {
             <button
               key={number}
               onClick={() => paginate(number)}
-              className={`page-item ${currentPage === number ? "bg-blue-500 text-white" : "bg-gray-200 text-black"} rounded-full w-10 h-10 border-2 border-gray-300`}
+              className={`page-item ${
+                currentPage === number
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-black"
+              } rounded-full w-10 h-10 border-2 border-gray-300`}
             >
               {number}
             </button>
