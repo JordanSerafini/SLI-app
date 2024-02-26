@@ -7,7 +7,6 @@ import ArticlesList from "./pages/articlesList";
 import ClientsList from "./pages/clientsList";
 
 
-
 function App() {
 
   return (
