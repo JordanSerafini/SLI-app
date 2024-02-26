@@ -70,22 +70,24 @@ const EventOfTheDay = () => {
             src={calendarGif}
             alt=""
             onClick={() => setShowCalendar(!showCalendar)}
+            className="cursor-pointer w-10 h-10 ml-auto"
           />
         </div>
       ) : (
-        <div>
-          <label htmlFor="selectedDateInput">vos événements du</label>
+        <div className="flex flex-row items-center gap-2">
           <input
             id="selectedDateInput"
             type="date"
             value={selectedDate.toISOString().split("T")[0]}
             onChange={(e) => setSelectedDate(new Date(e.target.value))}
-            className="p-2 m-2 border-2 border-secondary rounded-md"
+            className="p-2 m-2 border-2 border-secondary rounded-md "
           />
           <img
             src={calendarGif}
             alt=""
             onClick={() => setShowCalendar(!showCalendar)}
+            className="cursor-pointer  h-10 "
+
           />
         </div>
       )}
