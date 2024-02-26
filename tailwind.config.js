@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+
+      borderWidth: {
+        '0.5': '0.5px',
+        '1': '1px',
+      },
+
       backgroundColor: ['active'],
 
       width: {

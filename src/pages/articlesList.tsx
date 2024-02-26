@@ -24,17 +24,17 @@ function ArticlesList() {
   item.caption.toLowerCase().includes(searchTerm.toLowerCase())
 );
 
-// Calculer les indices des premiers et derniers éléments de la page actuelle pour les éléments filtrés
+//----------------------------------------------------------- Calculer les indices des premiers et derniers éléments de la page actuelle pour les éléments filtrés
 const indexOfLastItem = currentPage * itemsPerPage;
 const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
 const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
 
-  // Changer la page
+  // --------------------------------------------------------------------------------Changer la page --------------------------------------------------------------------------------
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  // Générer les numéros de page pour la pagination
+  // -------------------------------------------------------------------------------- Générer les numéros de page pour la pagination --------------------------------------------------------------------------------
   let pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     if (
@@ -46,7 +46,7 @@ const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
     }
   }
 
-  // Optimisation pour afficher les numéros de page (les 3 précédents et les 3 suivants)
+  //---------------------------------------------------------- Optimisation pour afficher les numéros de page (les 3 précédents et les 3 suivants)
   pageNumbers = pageNumbers.filter(
     (number) =>
       number === 1 ||
@@ -110,12 +110,12 @@ useEffect(() => {
         )
       }
 
-        {/* Carousel */}
+        {/* Carousel de CARDS*/}
         <div className="gap-8 carousel rounded-box ">
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
-              css="carousel-item w-8/10"
+              css="carousel-item w-8/10 bg-secondary text-text"
               key={`${index}_${card.id}`}
               caption={card.caption}
               img={card.image_url}
@@ -134,7 +134,7 @@ useEffect(() => {
                 currentPage === number
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-black"
-              } rounded-full w-10 h-10 border-2 border-gray-300`}
+              } rounded-full w-10 h-10 border-1 border-primary `}
             >
               {number}
             </button>
