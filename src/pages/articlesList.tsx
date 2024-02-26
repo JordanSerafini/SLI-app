@@ -120,7 +120,7 @@ useEffect(() => {
               css="carousel-item w-8/10"
               key={`${index}_${card.id}`}
               caption={card.caption}
-              img="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+              img={card.image_url}
               onDetailClick={handleDetailClick}
             />
           ))}

@@ -7,6 +7,8 @@ interface Article {
   salepricevatincluded: string;
   realStock: number;
   descComClear: string;
+  image_url: string; 
+
 }
 
 interface Client {
@@ -29,7 +31,7 @@ interface Event {
   notesclear: string;
   caption: string;
   startdatetime: string;
-  enddatetime: string;  
+  enddatetime: string; 
 }
 
 // Définis un type pour le contexte qui utilisera les interfaces Article et Client.
