@@ -14,6 +14,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     eventList,
     setEventList,
   };
+  
 
   return (
     <dataContext.Provider value={contextValue}>

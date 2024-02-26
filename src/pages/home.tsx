@@ -1,15 +1,18 @@
-import {  useEffect, useState } from "react";
+import {  useEffect, useState, useContext } from "react";
 import { IsDataFetched } from "../hooks/isDataFetched"; 
+import dataContext from "../context/dataContext";
 
-
-import Toast from "../components/toast/toastTop"; 
+import TopToast from "../components/toast/toastTop"; 
 import CircleLoader from "../components/loader/circleLoader";
 
 
 
 function Home() {
+
+  const { eventList } = useContext(dataContext);
+
   const [showToast, setShowToast] = useState(false);
-  const [toastMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
 
   const isLoading = IsDataFetched();
 
@@ -22,7 +25,18 @@ function Home() {
     return () => clearTimeout(toastTimeout); 
   }, [showToast]);
 
+  const testToast = () => {
+    setToastMessage('Le fichier a été envoyé avec succès !');
+    setShowToast(true);
+  };
 
+
+  // ----------------------------------------------- Gestion evenement ----------------------------------------------- //
+
+ 
+
+  
+  // ----------------------------------------------- Return Ternaire loader ----------------------------------------------- // 
   if (isLoading) {
     return <CircleLoader />; 
   }
@@ -30,9 +44,9 @@ function Home() {
   
 
   return (
-    <div>
+    <div onClick={testToast}>
       Home
-      {showToast && <Toast message={toastMessage} />}
+      {showToast && <TopToast message={toastMessage} />}
     </div>
   );
 }
