@@ -1,6 +1,5 @@
-import {  useEffect, useState, useContext } from "react";
+import {  useEffect, useState } from "react";
 import { IsDataFetched } from "../hooks/isDataFetched"; 
-import dataContext from "../context/dataContext";
 
 import TopToast from "../components/toast/toastTop"; 
 import CircleLoader from "../components/loader/circleLoader";
