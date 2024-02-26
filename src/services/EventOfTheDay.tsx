@@ -62,6 +62,7 @@ const EventOfTheDay = () => {
 
   return (
     <div className="flex flex-col gap-2 items-center">
+        {/*-------------------------------------------------------  Calendar -----------------------------------------------------------------------*/}
       {showCalendar ? (
         <div className="w-9/10 mt-4 h-4/5">
           <Calendar
@@ -79,6 +80,8 @@ const EventOfTheDay = () => {
         </div>
       ) : (
         <div className="flex flex-row items-center gap-2">
+                    {/*-------------------------------------------------------  Input date -----------------------------------------------------------------------*/}
+
           <input
             id="selectedDateInput"
             type="date"
@@ -95,6 +98,8 @@ const EventOfTheDay = () => {
           />
         </div>
       )}
+              {/*-------------------------------------------------------  Map des events -----------------------------------------------------------------------*/}
+
       <div className="flex flex-col gap-4 overflow-auto mb-20">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event: Event) => (
