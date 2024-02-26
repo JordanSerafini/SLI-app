@@ -1,9 +1,10 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 
 interface Article {
+  id: number;
   caption: string;
   salePriceVatExcluded: number;
-  salePriceVatIncluded: number;
+  salePriceVatIncluded: string;
   realStock: number;
   descComClear: string;
 }
