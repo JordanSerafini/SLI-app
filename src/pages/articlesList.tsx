@@ -88,7 +88,7 @@ useEffect(() => {
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
 
   if (isLoading) {
-    return <CircleLoader />;
+    return <CircleLoader />; // Ou le nom de votre composant de chargement
   }
 
   return (

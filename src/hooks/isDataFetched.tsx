@@ -17,7 +17,7 @@ export function IsDataFetched() {
 
       setLoading(true);
       try {
-        await fetchData(setClientList, setEventList, setItemList);
+        await fetchData({ itemList, clientList, eventList, setClientList, setEventList, setItemList });
       } catch (error) {
         console.error('Error fetching data: ', error);
         navigate('/error');
