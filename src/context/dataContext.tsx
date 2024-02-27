@@ -33,6 +33,7 @@ export interface Client {
   notesclear: string;
   accounts_account: string;
   name: string;
+  maindeliverycontact_cellphone: string;
 }
 
 interface Event {
