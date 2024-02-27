@@ -17,6 +17,7 @@ import euroLogo from "../assets/euroLogo.png";
 import warningBlueLogo from "../assets/warningBlueLogo.png";
 import descriptionLogo from "../assets/descriptionLogo.png";
 import TopToast from "../components/toast/toastTop";
+import warningLogo from "../assets/warningLogo.png";
 
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
@@ -131,7 +132,7 @@ function ArticlesList() {
   
   const toastCss = selectedCard && selectedCard.realstock == 0
   ? `bg-warning text-white` // Pour realstock == 0
-  : `bg-orange-500 text-white`; // Pour realstock > 0 et <= 5
+  : `bg-info text-white`; // Pour realstock > 0 et <= 5
 
 
 
@@ -149,7 +150,7 @@ function ArticlesList() {
           <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-">
             {/* Affiche les détails de la carte ici */}
             {selectedCard.caption && (
-              <h2 className="text-center bold border-b-1 border-secondary h-3/10 ">
+              <h2 className="text-center bold border-b-1 border-secondary h-3/10 libre-baskerville-italic tracking-wider">
                 {selectedCard.caption}
               </h2>
             )}
@@ -199,14 +200,15 @@ function ArticlesList() {
                         : "badge-orange-500"
                     }`}
                   >
-                    En stock !{" "}
+                    En stock :{" "}
                     <span className="bold">{selectedCard.realstock}</span>
                   </div>
                 )}
               {selectedCard.realstock &&
                 Number(selectedCard.realstock) === 0 && (
                   <div className="badge badge-warning badge-outline flex flex-row gap-2 items-center">
-                    Pas de stock
+                    <img src={warningLogo} alt="!" className="h-4" />
+                    <p>Pas de stock</p>
                   </div>
                 )}
             </div>
@@ -220,7 +222,7 @@ function ArticlesList() {
         )}
 
         {/*  ---------------------------------------------------------------------- Carousel de CARDS  ---------------------------------------------------------------------- */}
-        <div className="gap-8 carousel rounded-box pb-4">
+        <div className="gap-8 carousel rounded-box pb-4 libre-baskerville-regular tracking-wide">
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
