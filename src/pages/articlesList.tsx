@@ -132,7 +132,7 @@ function ArticlesList() {
   
   const toastCss = selectedCard && selectedCard.realstock == 0
   ? `bg-warning text-white` // Pour realstock == 0
-  : `bg-info text-white`; // Pour realstock > 0 et <= 5
+  : `bg-orange-500 text-white`; // Pour realstock > 0 et <= 5
 
 
 
@@ -222,7 +222,7 @@ function ArticlesList() {
         )}
 
         {/*  ---------------------------------------------------------------------- Carousel de CARDS  ---------------------------------------------------------------------- */}
-        <div className="gap-8 carousel rounded-box pb-4 libre-baskerville-regular tracking-wide">
+        <div className="gap-8 carousel rounded-box pb-4 regular tracking-wider">
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
