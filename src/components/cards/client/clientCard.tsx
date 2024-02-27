@@ -1,4 +1,3 @@
-import React from 'react';
 import telLogo from '../../../assets/telLogo.png';
 
 function ClientCard({
