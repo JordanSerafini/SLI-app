@@ -10,7 +10,7 @@ interface DetailClientProps {
 const clientDetailCard: React.FC<DetailClientProps> = ({ selectedClient }) => {
   console.log(selectedClient);
 
-  const adress = `${selectedClient.maininvoicingaddress_address1} ${selectedClient.maininvoicingaddress_address2} ${selectedClient.maininvoicingaddress_address3} ${selectedClient.maininvoicingaddress_zipCode} ${selectedClient.maininvoicingaddress_city} ${selectedClient.maininvoicingaddress_state}`;
+  //const adress = `${selectedClient.maininvoicingaddress_address1} ${selectedClient.maininvoicingaddress_address2} ${selectedClient.maininvoicingaddress_address3} ${selectedClient.maininvoicingaddress_zipCode} ${selectedClient.maininvoicingaddress_city} ${selectedClient.maininvoicingaddress_state}`;
   const Name = `${selectedClient.maininvoicingcontact_name} ${selectedClient.maininvoicingcontact_firstname}`;
 
   return (
