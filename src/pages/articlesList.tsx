@@ -133,12 +133,19 @@ function ArticlesList() {
                   </span>
                 </div>
               )}
-              {selectedCard.realstock !== undefined && ( // Vérifiez si realstock est défini
-                <div className="badge badge-neutral badge-outline flex flex-row gap-2 items-center">
-                  En stock !{" "}
-                  <span className="bold">{selectedCard.realstock}</span>
-                </div>
-              )}
+              {selectedCard.realstock !== undefined &&
+                selectedCard.realstock !== 0 && (
+                  <div className="badge badge-neutral badge-outline flex flex-row gap-2 items-center">
+                    En stock !{" "}
+                    <span className="bold">{selectedCard.realstock}</span>
+                  </div>
+                )}
+              {selectedCard.realstock !== undefined &&
+                selectedCard.realstock === 0 && (
+                  <div className="badge badge-warning badge-outline flex flex-row gap-2 items-center">
+                    Pas de stock
+                  </div>
+                )}
             </div>
             {selectedCard.familyid && <p>Famille: {selectedCard.familyid}</p>}
             {selectedCard.itemtype && <p>Type: {selectedCard.itemtype}</p>}
