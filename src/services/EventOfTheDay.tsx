@@ -61,46 +61,11 @@ const EventOfTheDay = () => {
 
 
   return (
-    <div className="flex flex-col gap-2 items-center h-screen bg-secondary-light">
-        {/*-------------------------------------------------------  Calendar -----------------------------------------------------------------------*/}
-      {showCalendar ? (
-        <div className="w-9/10 mt-4 h-4/5">
-          <Calendar
-            onChange={handleDateChange}
-            value={selectedDate}
-            locale="fr-FR"
-            className="bg-white p-4 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] mb-2 w-full"
-          />
-          <img
-            src={calendarLogo}
-            alt=""
-            onClick={() => setShowCalendar(!showCalendar)}
-            className="cursor-pointer w-10 h-10 ml-auto"
-          />
-        </div>
-      ) : (
-        <div className="flex flex-row items-center gap-2">
-                    {/*-------------------------------------------------------  Input date -----------------------------------------------------------------------*/}
+    <div className={`pt-4 flex flex-col gap-2 items-center justify-between h-screen bg-secondary-light ${showCalendar ? '' : ''} `}>
 
-          <input
-            id="selectedDateInput"
-            type="date"
-            value={selectedDate.toISOString().split("T")[0]}
-            onChange={(e) => setSelectedDate(new Date(e.target.value))}
-            className="p-2 m-2 border-2 border-secondary rounded-md "
-          />
-          <img
-            src={calendarLogo}
-            alt=""
-            onClick={() => setShowCalendar(!showCalendar)}
-            className="cursor-pointer  h-10 "
+   {/*-------------------------------------------------------  Map des events -----------------------------------------------------------------------*/}
 
-          />
-        </div>
-      )}
-              {/*-------------------------------------------------------  Map des events -----------------------------------------------------------------------*/}
-
-      <div className="flex flex-col gap-4 overflow-auto mb-20 items-center">
+   <div className={`flex flex-col gap-4 overflow-auto items-center ${showCalendar ? 'h-4/10' : ''} `}>
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event: Event) => (
             <div className="collapse collapse-arrow bg-secondary w-9/10 " key={event.id}>
@@ -124,6 +89,45 @@ const EventOfTheDay = () => {
           <p>Pas d'événements pour cette date.</p>
         )}
       </div>
+
+        {/*-------------------------------------------------------  Calendar -----------------------------------------------------------------------*/}
+      {showCalendar ? (
+        <div className="w-9/10 h-5/10 mb-24 mt-4">
+          <Calendar
+            onChange={handleDateChange}
+            value={selectedDate}
+            locale="fr-FR"
+            className="bg-white p-4 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] mb-2 w-full"
+          />
+          <img
+            src={calendarLogo}
+            alt=""
+            onClick={() => setShowCalendar(!showCalendar)}
+            className="cursor-pointer w-10 h-10 ml-auto"
+          />
+        </div>
+      ) : (
+        
+        <div className="flex flex-row items-center gap-2 mb-24">
+        {/*-------------------------------------------------------  Input date -----------------------------------------------------------------------*/}
+
+          <input
+            id="selectedDateInput"
+            type="date"
+            value={selectedDate.toISOString().split("T")[0]}
+            onChange={(e) => setSelectedDate(new Date(e.target.value))}
+            className="p-2 m-2 border-2 border-secondary rounded-md "
+          />
+          <img
+            src={calendarLogo}
+            alt=""
+            onClick={() => setShowCalendar(!showCalendar)}
+            className="cursor-pointer  h-10 "
+
+          />
+        </div>
+      )}
+           
     </div>
   );
 };

@@ -1,5 +1,5 @@
 
-function card({id, caption, img, css, onDetailClick }: {id: number, caption: string, img: string, css: string,onDetailClick : (id: number) => void}) {
+function card({id, caption, img, css, onDetailClick }: {id: string, caption: string, img: string, css: string,onDetailClick : (id: string) => void}) {
 
   return (
    

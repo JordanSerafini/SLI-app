@@ -55,7 +55,7 @@ const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
   );
 
   // ---------------------------------------------------------------------- Card detail ----------------------------------------------------------------------
-  const handleDetailClick = (id: number) => {
+  const handleDetailClick = (id: string) => {
     setCardSelected(id);
   };
   const selectedCard = itemList.find((card) => card.id === cardSelected);
@@ -91,10 +91,10 @@ useEffect(() => {
 
   return (
     <>
-      <div className="h-screen w-9.5/10 flex flex-col self-center justify-start mb-20">
+      <div className="h-screen w-9.5/10 flex flex-col self-center justify-start mb-20 bg-secondary-light">
       
 
-        {/* Zone pour afficher des détails de l'article sélectionné */}
+        {/*  ---------------------------------------------------------------------- Zone pour afficher des détails de l'article sélectionné  ----------------------------------------------------------------------*/}
         {selectedCard? (
         <div className="h-6/10">
             {/* Affiche les détails de la carte ici */}
@@ -111,21 +111,21 @@ useEffect(() => {
       }
 
 
-        {/* Carousel de CARDS*/}
+        {/*  ---------------------------------------------------------------------- Carousel de CARDS  ---------------------------------------------------------------------- */}
         <div className="gap-8 carousel rounded-box ">
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
-              css="carousel-item w-8/10 bg-white text-text border-2 border-secondary "
+              css="carousel-item w-8/10 bg-bgMain text-text border-2 border-secondary "
               key={`${index}_${card.id}`}
               caption={card.caption}
               img={card.image_url}
-              onDetailClick={handleDetailClick}
+              onDetailClick={(id: string) => handleDetailClick((id))}
             />
           ))}
         </div>
 
-        {/* Pagination */}
+        {/* ----------------------------------------------------------------------  Pagination  ---------------------------------------------------------------------- */}
         <div className="pagination flex justify-center space-x-2 mt-4">
           {pageNumbers.map((number) => (
             <button
@@ -134,7 +134,7 @@ useEffect(() => {
               className={`page-item ${
                 currentPage === number
                   ? "bg-blue-500 text-white"
-                  : "bg-gray-200 text-black"
+                  : "bg-bgMain text-accent"
               } rounded-full w-10 h-10 border-1 border-primary `}
             >
               {number}

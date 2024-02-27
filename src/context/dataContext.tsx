@@ -1,14 +1,22 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 
 interface Article {
-  id: number;
+  id: string;
   caption: string;
   salepriceVatExcluded: number;
   salepricevatincluded: string;
   realStock: number;
   descComClear: string;
   image_url: string; 
-
+  realstock: number;
+  uniqueid: string;
+  familyid: string;
+  notesclear: string;
+  supplierid: string;
+  itemtype: string;
+  itemimage: string;
+  unitid: string;
+  
 }
 
 interface Client {
