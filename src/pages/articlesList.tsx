@@ -97,19 +97,19 @@ function ArticlesList() {
 
   return (
     <>
-      <div className="h-full w-9/10 flex flex-col gap-2  self-center  ">
+      <div className="h-full w-9/10 flex flex-col  self-center  ">
         {/*  ---------------------------------------------------------------------- Zone pour afficher des détails de l'article sélectionné  ----------------------------------------------------------------------*/}
         {selectedCard ? (
-          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col gap-2">
+          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-2">
             {/* Affiche les détails de la carte ici */}
             {selectedCard.caption && (
-              <h2 className="text-center bold border-b-1 border-secondary h-2/10 ">
+              <h2 className="text-center bold border-b-1 border-secondary h-3/10 ">
                 {selectedCard.caption}
               </h2>
             )}
 
             {/* ---------------------------------- Description et note ------------------------------------------ */}
-            <div>
+            <div className="flex flex-col gap-2 h-/10">
               {!selectedCard.descComClear ? (
                 <p>Pas de description</p>
               ) : (
@@ -157,13 +157,10 @@ function ArticlesList() {
 
                         {/* ----------------------------------  ------------------------------------------ */}
 
-            {selectedCard.familyid && <p>Famille: {selectedCard.familyid}</p>}
-            {selectedCard.itemtype && <p>Type: {selectedCard.itemtype}</p>}
-            {selectedCard.unitid && <p>Unité: {selectedCard.unitid}</p>}
-            {selectedCard.itemimage && <p>{selectedCard.itemimage}</p>}
+            
           </div>
         ) : (
-          <div className="h-5/10">
+          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col gap-2">
             <h2>Selectionnez un article pour voir les détails</h2>
           </div>
         )}
