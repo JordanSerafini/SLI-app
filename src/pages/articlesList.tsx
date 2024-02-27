@@ -185,7 +185,7 @@ function ArticlesList() {
           placeholder="Rechercher..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="self-center mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus: mb-20"
+          className="self-center mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus: mb-24"
         />
       </div>
     </>

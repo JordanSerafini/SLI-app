@@ -14,7 +14,7 @@ function card({id, caption, img, css, onDetailClick }: {id: string, caption: str
         </figure>
         }
         <div className="card-body overflow-auto">
-          <h2 className=" card-title text-base">{caption}</h2>
+          <h2 className=" card-title text-sm">{caption}</h2>
           <div className="card-actions justify-end">
           </div>
         </div>

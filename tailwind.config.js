@@ -67,6 +67,8 @@ export default {
         "bg-2": '#E6F0F7',
         "bg-3": '#F2F7FA',
         "green": "#008000",
+        "gray-1": "#d8e2dc",
+        "gray": "#e7e7e7",
       },
 
       fontFamily: {
