@@ -123,7 +123,7 @@ function ArticlesList() {
               {selectedCard.notesclear !== null && (
                 <div className="flex flex-row gap-4 items-center ">
                   <img src={warningBlueLogo} alt="!" className="h-7" />
-                  <div className="max-h-9.5/10 overflow-auto">
+                  <div className="max-h-10 overflow-auto">
                     {selectedCard.notesclear}
                   </div>
                 </div>
