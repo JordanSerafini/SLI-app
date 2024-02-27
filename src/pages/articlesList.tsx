@@ -131,7 +131,7 @@ function ArticlesList() {
   
   const toastCss = selectedCard && selectedCard.realstock == 0
   ? `bg-warning text-white` // Pour realstock == 0
-  : `bg-info text-white`; // Pour realstock > 0 et <= 5
+  : `bg-orange-500 text-white`; // Pour realstock > 0 et <= 5
 
 
 
@@ -196,7 +196,7 @@ function ArticlesList() {
                       Number(selectedCard.realstock) >= 1 &&
                       Number(selectedCard.realstock) <= 5
                         ? "badge-info"
-                        : "badge-neutral"
+                        : "badge-orange-500"
                     }`}
                   >
                     En stock !{" "}
