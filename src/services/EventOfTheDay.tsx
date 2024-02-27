@@ -68,7 +68,7 @@ const EventOfTheDay = () => {
    <div className={`flex flex-col gap-4 overflow-auto items-center ${showCalendar ? 'h-4/10' : ''} `}>
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event: Event) => (
-            <div className="collapse collapse-arrow bg-bgMain border-1 border-secondary w-9/10 " key={event.id}>
+            <div className="collapse collapse-arrow bg-bgMain border-1 border-secondary w-9/10  overflow-scroll" key={event.id}>
               <input
                 type="radio"
                 name="my-accordion"
