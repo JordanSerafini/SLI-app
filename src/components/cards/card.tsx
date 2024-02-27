@@ -3,13 +3,13 @@ function card({ id, caption, img, css, familyid, onDetailClick }: { id: string, 
 
   switch (familyid) {
     case "MAT":
-      familyBadge = <div className="badge badge-secondary text-xs">Matériel</div>;
+      familyBadge = <div className="badge badge-neutral text-bgMain text-xs p-3">Matériel</div>;
       break;
     case "PREST":
-      familyBadge = <div className="badge badge-primary text-xs">Prestation</div>;
+      familyBadge = <div className="badge badge-primary text-xs p-3">Prestation</div>;
       break;
     case "ADMIN":
-      familyBadge = <div className="badge badge-secondary text-xs">ADMIN</div>;
+      familyBadge = <div className="badge badge-secondary text-xs p-3">ADMIN</div>;
       break;
     default:
       familyBadge = <div className=""></div>;
@@ -30,7 +30,6 @@ function card({ id, caption, img, css, familyid, onDetailClick }: { id: string, 
       <div className="card-body overflow-auto">
         <h2 className="card-title text-sm">{caption}</h2>
         <div className="card-actions justify-end"></div>
-        {/* Alignement à droite du badge en utilisant Tailwind CSS */}
         <div className="flex justify-end">{familyBadge}</div>
       </div>
     </div>
