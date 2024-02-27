@@ -30,8 +30,21 @@ function ClientCard({
   }) {
 
     const FullName = `${maininvoicingcontact_firstname} ${maininvoicingcontact_name}`;
-    const adress = `${maininvoicingaddress_address1} ${maininvoicingaddress_address2} ${maininvoicingaddress_address3} ${maininvoicingaddress_zipCode} ${maininvoicingaddress_city} ${maininvoicingaddress_state}`;
+    const buildAddress = () => {
+      const parts = [
+        maininvoicingaddress_address1,
+        maininvoicingaddress_address2,
+        maininvoicingaddress_address3,
+        maininvoicingaddress_zipCode,
+        maininvoicingaddress_city,
+        maininvoicingaddress_state,
+      ];
+      return parts.filter(part => part).join(' ');
+    };
   
+    const address = buildAddress();  
+
+
     return (
       <div className={`card ${css}`} onClick={() => onDetailClick(id)}>
         
@@ -39,7 +52,7 @@ function ClientCard({
           <p>{name}</p>
           <h2 className="card-title text-sm">{FullName}</h2>
             <div className="flex justify-end">{maininvoicingcontact_phone}</div>
-          <div className="flex justify-end">{adress}</div>
+          <div className="flex justify-end">{address}</div>
         </div>
       </div>
     );

@@ -44,7 +44,7 @@ function ClientsList() {
   }
 
   return (
-    <div className="h-screen w-9/10 flex flex-col self-center">
+    <div className="h-screen w-9/10 flex flex-col self-center ">
       {/* Detail Client */}
       {selectedClient ? (
         <ClientDetailCard  selectedClient={selectedClient} />
