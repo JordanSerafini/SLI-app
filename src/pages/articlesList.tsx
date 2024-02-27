@@ -1,35 +1,39 @@
-import { useState, useContext, ChangeEvent, useEffect, useCallback } from "react";
-import { IsDataFetched } from "../hooks/isDataFetched"; 
+import {
+  useState,
+  useContext,
+  ChangeEvent,
+  useEffect,
+  useCallback,
+} from "react";
+import { IsDataFetched } from "../hooks/isDataFetched";
 
 import dataContext from "../context/dataContext";
 import Card from "../components/card";
 import debounce from "../services/debounce";
 import CircleLoader from "../components/loader/circleLoader";
+import euroLogo from "../assets/euroLogo.png";
 
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
-  const [cardSelected, setCardSelected] = useState({}); 
+  const [cardSelected, setCardSelected] = useState({});
 
   const [searchTerm, setSearchTerm] = useState("");
 
   const isLoading = IsDataFetched();
-
-
 
   // -------------------------------------------------------------------------------- Pagination -----------------------------------------------------------------------------------
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 30;
 
   const filteredItems = itemList.filter((item) =>
-  item.caption.toLowerCase().includes(searchTerm.toLowerCase())
-);
+    item.caption.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-//----------------------------------------------------------- Calculer les indices des premiers et derniers éléments de la page actuelle pour les éléments filtrés
-const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
-const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-
+  //----------------------------------------------------------- Calculer les indices des premiers et derniers éléments de la page actuelle pour les éléments filtrés
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
   // --------------------------------------------------------------------------------Changer la page --------------------------------------------------------------------------------
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
@@ -46,7 +50,7 @@ const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
     }
   }
 
-  //---------------------------------------------------------- Optimisation pour afficher les numéros de page (les 3 précédents et les 3 suivants)  ---------------------------------------------------------- 
+  //---------------------------------------------------------- Optimisation pour afficher les numéros de page (les 3 précédents et les 3 suivants)  ----------------------------------------------------------
   pageNumbers = pageNumbers.filter(
     (number) =>
       number === 1 ||
@@ -60,67 +64,103 @@ const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
   };
   const selectedCard = itemList.find((card) => card.id === cardSelected);
 
-
   // ---------------------------------------------------------------------- Input recherche ----------------------------------------------------------------------
 
-// Créez un gestionnaire de recherche debounced
-const debouncedSetSearchTerm = useCallback(
-  debounce((...args: unknown[]) => {
-    const newSearchTerm = args[0] as string;
-    setSearchTerm(newSearchTerm);
-    setCurrentPage(1); 
-  }, 50),
-  [setSearchTerm, setCurrentPage] 
-);
+  // Créez un gestionnaire de recherche debounced
+  const debouncedSetSearchTerm = useCallback(
+    debounce((...args: unknown[]) => {
+      const newSearchTerm = args[0] as string;
+      setSearchTerm(newSearchTerm);
+      setCurrentPage(1);
+    }, 50),
+    [setSearchTerm, setCurrentPage]
+  );
 
-const handleSearchChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-  debouncedSetSearchTerm(event.target.value);
-}, [debouncedSetSearchTerm]);
+  const handleSearchChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      debouncedSetSearchTerm(event.target.value);
+    },
+    [debouncedSetSearchTerm]
+  );
 
-useEffect(() => {
-  return () => {
-    debouncedSetSearchTerm.cancel(); 
-  };
-}, [debouncedSetSearchTerm]);
+  useEffect(() => {
+    return () => {
+      debouncedSetSearchTerm.cancel();
+    };
+  }, [debouncedSetSearchTerm]);
 
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
 
   if (isLoading) {
-    return <CircleLoader />; 
+    return <CircleLoader />;
   }
 
   return (
     <>
-      <div className="h-screen w-9.5/10 flex flex-col self-center justify-start mb-20 bg-secondary-light">
-      
-
+      <div className="h-screen w-9/10 flex flex-col  self-center ">
         {/*  ---------------------------------------------------------------------- Zone pour afficher des détails de l'article sélectionné  ----------------------------------------------------------------------*/}
-        {selectedCard? (
-        <div className="h-6/10">
+        {selectedCard ? (
+          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2">
             {/* Affiche les détails de la carte ici */}
-            <h2>{selectedCard.caption}</h2>
-            <img className="h-20" src={selectedCard.image_url} alt={selectedCard.caption} />
-            <p>{selectedCard.descComClear}</p>
-            <p>Prix: {selectedCard.salepricevatincluded}</p>
+            {selectedCard.caption && (
+              <h2 className="text-center bold p-2 border-b-1 border-secondary pb-4">
+                {selectedCard.caption}
+              </h2>
+            )}
+            {selectedCard.image_url && (
+              <img
+                className="h-20"
+                src={selectedCard.image_url}
+                alt={selectedCard.caption}
+              />
+            )}
+            {!selectedCard.descComClear ? (
+              <p>Pas de description</p>
+            ) : (
+              <p>{selectedCard.descComClear}</p>
+            )}
+            {!selectedCard.notesclear ? (
+              <p>Pas de notes</p>
+            ) : (
+              <p>notes: {selectedCard.notesclear}</p>
+            )}
+            <div className="flex flex-row justify-between p-2">
+              {selectedCard.salepricevatincluded && (
+                <div className="flex flex-row items-center gap-2">
+                  <img src={euroLogo} alt="Prix" className="h-4" />
+                  <span className="bold text-accent">
+                    {selectedCard.salepricevatincluded}
+                  </span>
+                </div>
+              )}
+              {selectedCard.realstock !== undefined && ( // Vérifiez si realstock est défini
+                <div className="badge badge-neutral badge-outline flex flex-row gap-2 items-center">
+                  En stock !{" "}
+                  <span className="bold">{selectedCard.realstock}</span>
+                </div>
+              )}
+            </div>
+            {selectedCard.familyid && <p>Famille: {selectedCard.familyid}</p>}
+            {selectedCard.itemtype && <p>Type: {selectedCard.itemtype}</p>}
+            {selectedCard.unitid && <p>Unité: {selectedCard.unitid}</p>}
+            {selectedCard.itemimage && <p>{selectedCard.itemimage}</p>}
           </div>
         ) : (
           <div className="h-5/10">
             <h2>Selectionnez un article pour voir les détails</h2>
           </div>
-        )
-      }
-
+        )}
 
         {/*  ---------------------------------------------------------------------- Carousel de CARDS  ---------------------------------------------------------------------- */}
         <div className="gap-8 carousel rounded-box ">
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
-              css="carousel-item w-8/10 bg-bgMain text-text border-2 border-secondary "
+              css="carousel-item w-8/10 bg-bgMain text-text border-1 border-primary "
               key={`${index}_${card.id}`}
               caption={card.caption}
               img={card.image_url}
-              onDetailClick={(id: string) => handleDetailClick((id))}
+              onDetailClick={(id: string) => handleDetailClick(id)}
             />
           ))}
         </div>
@@ -146,7 +186,7 @@ useEffect(() => {
           placeholder="Rechercher..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="mt-4 input input-bordered w-full max-w-xs"
+          className="mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus: mb-20"
         />
       </div>
     </>

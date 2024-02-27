@@ -66,6 +66,7 @@ export default {
         "bg-1": '#7A8990',
         "bg-2": '#E6F0F7',
         "bg-3": '#F2F7FA',
+        "green": "#008000",
       },
 
       fontFamily: {
@@ -83,8 +84,8 @@ export default {
           "secondary": "#DEDCFF",
 
           "accent": "#433BFF",
-
-          "neutral": "#ff00ff",
+          
+          "neutral": "#008000", // Green
 
           "base-100": "#DEDCFF",
 
@@ -95,6 +96,7 @@ export default {
           "warning": "#00ff00",
 
           "error": "#ff0000",
+          "custom-color": "#008000"
         },
       },
     ],
