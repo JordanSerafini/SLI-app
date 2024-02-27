@@ -77,13 +77,13 @@ const ClientDetailCard: React.FC<DetailClientProps> = ({ selectedClient }) => {
           </div>
 
           {/* Bouton pour afficher la carte */}
-          <img src={mapLogo} alt="Montrer la carte" onClick={handleMapClick} className="h-8 w-8 cursor-pointer" />
+          <img src={mapLogo} alt="Montrer la carte" onClick={handleMapClick} className="h-8 w-8 cursor-pointer ml-auto" />
         </>
       ) : (
         <div className="">
           {/* Carte */}
           <LeafletMap address={address} />
-          <img src={mapLogo} alt="Retour aux détails" onClick={handleMapClick} className="z-50 h-8 w-8 cursor-pointer" />
+          <img src={mapLogo} alt="Retour aux détails" onClick={handleMapClick} className="float-right z-50 h-8 w-8 cursor-pointer" />
 
         </div>
       )}

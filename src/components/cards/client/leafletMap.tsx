@@ -58,9 +58,9 @@ function LeafletMap({ address }: { address: string }) {
   }, [address]);
 
   return addressFound ? (
-    <div ref={mapContainerRef} style={{ height: '400px', width: '100%' }}></div>
+    <div className="rounded-lg" ref={mapContainerRef} style={{ height: '285px', width: '100%' }}></div>
   ) : (
-    <div style={{ height: '400px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{  height: '200px', width: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       Adresse non trouvée.
     </div>
   );
