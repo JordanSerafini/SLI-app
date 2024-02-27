@@ -97,27 +97,40 @@ function ArticlesList() {
 
   return (
     <>
-      <div className="h-screen w-9/10 flex flex-col gap-2  self-center ">
+      <div className="h-full w-9/10 flex flex-col gap-2  self-center  ">
         {/*  ---------------------------------------------------------------------- Zone pour afficher des détails de l'article sélectionné  ----------------------------------------------------------------------*/}
         {selectedCard ? (
-          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2">
+          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col gap-2">
             {/* Affiche les détails de la carte ici */}
             {selectedCard.caption && (
-              <h2 className="text-center bold p-2 border-b-1 border-secondary pb-4">
+              <h2 className="text-center bold border-b-1 border-secondary h-2/10 ">
                 {selectedCard.caption}
               </h2>
             )}
-            
-            {!selectedCard.descComClear ? (
-              <p>Pas de description</p>
-            ) : (
-              <p>{selectedCard.descComClear}</p>
-            )}
-            {!selectedCard.notesclear ? (
-              <p>Pas de notes</p>
-            ) : (
-              <p>notes: {selectedCard.notesclear}</p>
-            )}
+
+            {/* ---------------------------------- Description et note ------------------------------------------ */}
+            <div>
+              {!selectedCard.descComClear ? (
+                <p>Pas de description</p>
+              ) : (
+                <p className="max-h-10 overflow-hidden">
+                  {selectedCard.descComClear}
+                </p>
+              )}
+              {!selectedCard.notesclear ? (
+                <p>Pas de notes</p>
+              ) : (
+                <div className="flex flex-row gap-2">
+                  <h3>notes: </h3>
+                  <div className="max-h-10 overflow-auto">
+                    {selectedCard.notesclear}
+                  </div>
+                </div>
+              )}
+            </div>
+
+                        {/* ---------------------------------- Prix et stock ------------------------------------------ */}
+
             <div className="flex flex-row justify-between p-2">
               {selectedCard.salepricevatincluded && (
                 <div className="flex flex-row items-center gap-2">
@@ -127,18 +140,23 @@ function ArticlesList() {
                   </span>
                 </div>
               )}
-              {selectedCard.realstock && String(selectedCard.realstock) !== "0" && (
-                <div className="badge badge-neutral badge-outline flex flex-row gap-2 items-center">
-                  En stock !{" "}
-                  <span className="bold">{selectedCard.realstock}</span>
-                </div>
-              )}
-              {selectedCard.realstock && Number(selectedCard.realstock) === 0 && (
-                <div className="badge badge-warning badge-outline flex flex-row gap-2 items-center">
-                  Pas de stock
-                </div>
-              )}
+              {selectedCard.realstock &&
+                String(selectedCard.realstock) !== "0" && (
+                  <div className="badge badge-neutral badge-outline flex flex-row gap-2 items-center">
+                    En stock !{" "}
+                    <span className="bold">{selectedCard.realstock}</span>
+                  </div>
+                )}
+              {selectedCard.realstock &&
+                Number(selectedCard.realstock) === 0 && (
+                  <div className="badge badge-warning badge-outline flex flex-row gap-2 items-center">
+                    Pas de stock
+                  </div>
+                )}
             </div>
+
+                        {/* ----------------------------------  ------------------------------------------ */}
+
             {selectedCard.familyid && <p>Famille: {selectedCard.familyid}</p>}
             {selectedCard.itemtype && <p>Type: {selectedCard.itemtype}</p>}
             {selectedCard.unitid && <p>Unité: {selectedCard.unitid}</p>}
