@@ -6,8 +6,8 @@ export interface Article {
   salepriceVatExcluded: number;
   salepricevatincluded: string;
   realStock: string;
-  descomclear : string;
-  image_url: string; 
+  descomclear: string;
+  image_url: string;
   realstock: number;
   uniqueid: string;
   familyid: string;
@@ -16,21 +16,23 @@ export interface Article {
   itemtype: string;
   itemimage: string;
   unitid: string;
-  
 }
 
-interface Client {
-    maininvoicingaddress_address1: string;
-    maininvoicingaddress_address2: string;
-    maininvoicingaddress_address3: string;
-    maininvoicingaddress_zipCode: string;
-    maininvoicingaddress_city: string;
-    maininvoicingaddress_state: string;
-    maininvoicingcontact_name: string;
-    maininvoicingcontact_firstname: string;
-    maininvoicingcontact_phone: string;
-    maininvoicingcontact_email: string;
-    notesclear: string;
+export interface Client {
+  id: string;
+  maininvoicingaddress_address1: string;
+  maininvoicingaddress_address2: string;
+  maininvoicingaddress_address3: string;
+  maininvoicingaddress_zipCode: string;
+  maininvoicingaddress_city: string;
+  maininvoicingaddress_state: string;
+  maininvoicingcontact_name: string;
+  maininvoicingcontact_firstname: string;
+  maininvoicingcontact_phone: string;
+  maininvoicingcontact_email: string;
+  notesclear: string;
+  accounts_account: string;
+  name: string;
 }
 
 interface Event {
@@ -39,7 +41,7 @@ interface Event {
   notesclear: string;
   caption: string;
   startdatetime: string;
-  enddatetime: string; 
+  enddatetime: string;
 }
 
 // Définis un type pour le contexte qui utilisera les interfaces Article et Client.
