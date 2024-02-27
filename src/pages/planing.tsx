@@ -9,7 +9,7 @@ function planing() {
     return <CircleLoader />; 
   }
   return (
-    <div>
+    <div className="">
       <EventOfTheDay />
     </div>
   )

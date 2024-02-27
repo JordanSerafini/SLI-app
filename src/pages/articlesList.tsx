@@ -7,7 +7,6 @@ import {
 } from "react";
 import { IsDataFetched } from "../hooks/isDataFetched";
 
-
 import dataContext from "../context/dataContext";
 import Card from "../components/cards/card";
 import DetailCard from "../components/cards/detailCard";
@@ -26,8 +25,6 @@ function ArticlesList() {
 
   const isLoading = IsDataFetched();
 
-
-  
   // -------------------------------------------------------------------------------- Pagination -----------------------------------------------------------------------------------
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 30;
@@ -100,16 +97,17 @@ function ArticlesList() {
 
   useEffect(() => {
     let toastTimeout: number | undefined;
-  
+
     // Affiche un message d'alerte si le stock est faible
     if (selectedCard && selectedCard.realstock <= 5) {
-      const message = selectedCard.realstock == 0
-        ? "Plus de stock pour cet article !"
-        : `Attention, il ne reste que ${selectedCard.realstock} exemplaire(s)!`;
-      
+      const message =
+        selectedCard.realstock == 0
+          ? "Plus de stock pour cet article !"
+          : `Attention, il ne reste que ${selectedCard.realstock} exemplaire(s)!`;
+
       setToastMessage(message);
       setShowToast(true);
-  
+
       // Démarrer le timer pour masquer le toast après 3 secondes
       toastTimeout = setTimeout(() => {
         setShowToast(false);
@@ -118,20 +116,17 @@ function ArticlesList() {
       // Si le stock est suffisant, masquer le toast sans démarrer un timer
       setShowToast(false);
     }
-  
+
     return () => {
       // Nettoyage : arrêter le timer lorsque le composant est démonté ou avant que l'effet ne s'exécute à nouveau
       if (toastTimeout) clearTimeout(toastTimeout);
     };
   }, [selectedCard]); // Retirer showToast des dépendances
-  
-  
-  
-  const toastCss = selectedCard && selectedCard.realstock == 0
-  ? `bg-warning text-white` // Pour realstock == 0
-  : `bg-orange-500 text-white`; // Pour realstock > 0 et <= 5
 
-
+  const toastCss =
+    selectedCard && selectedCard.realstock == 0
+      ? `bg-warning text-white` // Pour realstock == 0
+      : `bg-orange-500 text-white`; // Pour realstock > 0 et <= 5
 
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
 
@@ -143,8 +138,14 @@ function ArticlesList() {
     <>
       <div className="h-full w-9/10 flex flex-col self-center ">
         {/*  ---------------------------------------------------------------------- Zone pour afficher des détails de l'article sélectionné  ----------------------------------------------------------------------*/}
-        
-        <DetailCard selectedCard={selectedCard} />
+
+        {selectedCard ? (
+          <DetailCard selectedCard={selectedCard} />
+        ) : (
+          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col gap-2">
+            <h2>Sélectionnez un article pour voir les détails</h2>
+          </div>
+        )}
 
         {/*  ---------------------------------------------------------------------- Carousel de CARDS  ---------------------------------------------------------------------- */}
         <div className="gap-8 carousel rounded-box pb-4 regular tracking-wider">
@@ -156,6 +157,7 @@ function ArticlesList() {
               caption={card.caption}
               img={card.image_url}
               onDetailClick={(id: string) => handleDetailClick(id)}
+              familyid={card.familyid}
             />
           ))}
         </div>
@@ -184,8 +186,14 @@ function ArticlesList() {
           className="self-center mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus: mb-24"
         />
       </div>
-      {showToast && <TopToast message={toastMessage} css={`${toastCss} `}/>}
-
+      {showToast && (
+        <TopToast
+          message={toastMessage}
+          css={`
+            ${toastCss}
+          `}
+        />
+      )}
     </>
   );
 }

@@ -61,24 +61,24 @@ const EventOfTheDay = () => {
 
 
   return (
-    <div className={`pt-4 flex flex-col gap-2 items-center justify-between h-screen bg-secondary-light ${showCalendar ? '' : ''} `}>
+    <div className={`pt-4 flex flex-col gap-2 items-center justify-between h-screen  ${showCalendar ? '' : ''} `}>
 
    {/*-------------------------------------------------------  Map des events -----------------------------------------------------------------------*/}
 
    <div className={`flex flex-col gap-4 overflow-auto items-center ${showCalendar ? 'h-4/10' : ''} `}>
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event: Event) => (
-            <div className="collapse collapse-arrow bg-secondary w-9/10 " key={event.id}>
+            <div className="collapse collapse-arrow bg-bgMain border-1 border-secondary w-9/10 " key={event.id}>
               <input
                 type="radio"
                 name="my-accordion"
                 id={`event-${event.id}`}
                 className="peer"
               />
-              <div className="collapse-title text-xl font-medium">
+              <div className="collapse-title libre-baskerville-regular-italic">
                 <label htmlFor={`event-${event.id}`}>{event.caption}</label>
               </div>
-              <div className="collapse-content">
+              <div className="collapse-content libre-baskerville-regular text-xs">
                 <p>Début: {formatDate(event.startdatetime)}</p>
                 <p>Fin: {formatDate(event.enddatetime)}</p>
                 <p>{event.notesclear}</p>

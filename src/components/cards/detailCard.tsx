@@ -11,14 +11,17 @@ interface DetailCardProps {
 
 
 const DetailCard: React.FC<DetailCardProps> = ({ selectedCard }) => {
+
+ 
+  
+
     return (
     <>
-        {selectedCard ? (
           <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-">
             {/* Affiche les détails de la carte ici */}
             {selectedCard.caption && (
               <h2 className="text-center bold border-b-1 border-secondary h-3/10 libre-baskerville-italic tracking-wider">
-                {selectedCard.caption}
+                {selectedCard.caption} 
               </h2>
             )}
 
@@ -82,11 +85,6 @@ const DetailCard: React.FC<DetailCardProps> = ({ selectedCard }) => {
 
             {/* ----------------------------------  ------------------------------------------ */}
           </div>
-        ) : (
-          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col gap-2">
-            <h2>Selectionnez un article pour voir les détails</h2>
-          </div>
-        )}
     </>
   )
 }
