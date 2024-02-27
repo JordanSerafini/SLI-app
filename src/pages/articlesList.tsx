@@ -10,13 +10,13 @@ import { IsDataFetched } from "../hooks/isDataFetched";
 
 import dataContext from "../context/dataContext";
 import Card from "../components/card";
-import TopToast from "../components/toast/toastTop";
 
 import debounce from "../services/debounce";
 import CircleLoader from "../components/loader/circleLoader";
 import euroLogo from "../assets/euroLogo.png";
 import warningBlueLogo from "../assets/warningBlueLogo.png";
 import descriptionLogo from "../assets/descriptionLogo.png";
+import TopToast from "../components/toast/toastTop";
 
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
@@ -28,6 +28,8 @@ function ArticlesList() {
 
   const isLoading = IsDataFetched();
 
+
+  
   // -------------------------------------------------------------------------------- Pagination -----------------------------------------------------------------------------------
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 30;
@@ -103,9 +105,9 @@ function ArticlesList() {
   
     // Affiche un message d'alerte si le stock est faible
     if (selectedCard && selectedCard.realstock <= 5) {
-      const message = selectedCard.realstock === 0
-        ? "Attention, il n'y a plus de stock pour cet article !"
-        : `Attention, il ne reste que ${selectedCard.realstock} exemplaire(s) en stock pour cet article !`;
+      const message = selectedCard.realstock == 0
+        ? "Plus de stock pour cet article !"
+        : `Attention, il ne reste que ${selectedCard.realstock} exemplaire(s)!`;
       
       setToastMessage(message);
       setShowToast(true);
@@ -127,7 +129,11 @@ function ArticlesList() {
   
   
   
-  
+  const toastCss = selectedCard && selectedCard.realstock == 0
+  ? `bg-warning text-white` // Pour realstock == 0
+  : `bg-info text-white`; // Pour realstock > 0 et <= 5
+
+
 
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
 
@@ -251,7 +257,7 @@ function ArticlesList() {
           className="self-center mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus: mb-24"
         />
       </div>
-      {showToast && <TopToast message={toastMessage} />}
+      {showToast && <TopToast message={toastMessage} css={`${toastCss} `}/>}
 
     </>
   );

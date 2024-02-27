@@ -98,7 +98,6 @@ export default {
           "warning": "#bf0603",
 
           "error": "#ff0000",
-          "custom-color": "#008000"
         },
       },
     ],
