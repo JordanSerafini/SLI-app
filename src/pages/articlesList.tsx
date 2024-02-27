@@ -99,10 +99,10 @@ function ArticlesList() {
 
   return (
     <>
-      <div className="h-full w-9/10 flex flex-col self-center  ">
+      <div className="h-full w-9/10 flex flex-col self-center ">
         {/*  ---------------------------------------------------------------------- Zone pour afficher des détails de l'article sélectionné  ----------------------------------------------------------------------*/}
         {selectedCard ? (
-          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-2">
+          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-">
             {/* Affiche les détails de la carte ici */}
             {selectedCard.caption && (
               <h2 className="text-center bold border-b-1 border-secondary h-3/10 ">
@@ -111,11 +111,11 @@ function ArticlesList() {
             )}
 
             {/* ---------------------------------- Description et note ------------------------------------------ */}
-            <div className="flex flex-col gap-2 h-2/5">
+            <div className="flex flex-col gap-2 pt-2">
               {selectedCard.descomclear && (
-                <div className="flex flex-row gap-4 items-center ">
+                <div className="flex flex-row gap-4 items-center border-b-1 border-secondary pb-4">
                 <img src={descriptionLogo} alt="description" className="h-7" />
-                  <p className="max-h-20 overflow-auto">
+                  <p className="max-h-16 overflow-auto">
                     {selectedCard.descomclear}
                   </p>
                 </div>
@@ -123,7 +123,7 @@ function ArticlesList() {
               {selectedCard.notesclear !== null && (
                 <div className="flex flex-row gap-4 items-center ">
                   <img src={warningBlueLogo} alt="!" className="h-7" />
-                  <div className="max-h-20 overflow-auto">
+                  <div className="max-h-16 overflow-auto">
                     {selectedCard.notesclear}
                   </div>
                 </div>
@@ -132,11 +132,11 @@ function ArticlesList() {
 
             {/* ---------------------------------- Prix et stock ------------------------------------------ */}
 
-            <div className="flex flex-row justify-between p-2">
+            <div className="flex flex-row justify-between items-center p-2 mt-8">
               {selectedCard.salepricevatincluded && (
                 <div className="flex flex-row items-center gap-2">
                   <img src={euroLogo} alt="Prix" className="h-4" />
-                  <span className="bold text-accent">
+                  <span className="bold text-secondary-dark">
                     {selectedCard.salepricevatincluded}
                   </span>
                 </div>
