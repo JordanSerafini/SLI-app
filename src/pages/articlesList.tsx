@@ -13,6 +13,7 @@ import debounce from "../services/debounce";
 import CircleLoader from "../components/loader/circleLoader";
 import euroLogo from "../assets/euroLogo.png";
 import warningBlueLogo from "../assets/warningBlueLogo.png";
+import descriptionLogo from "../assets/descriptionLogo.png";
 
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
@@ -110,23 +111,26 @@ function ArticlesList() {
             )}
 
             {/* ---------------------------------- Description et note ------------------------------------------ */}
-            <div className="flex flex-col gap-2 h-/10">
-              {!selectedCard.descomclear  &&
-                <p className="max-h-10 overflow-hidden">
-                  {selectedCard.descomclear }
-                </p>
-              }
-              {selectedCard.notesclear !== null &&
-                <div className="flex flex-row gap-4 items-center " >
+            <div className="flex flex-col gap-2 h-2/5">
+              {selectedCard.descomclear && (
+                <div className="flex flex-row gap-4 items-center ">
+                <img src={descriptionLogo} alt="description" className="h-7" />
+                  <p className="max-h-10 overflow-auto">
+                    {selectedCard.descomclear}
+                  </p>
+                </div>
+              )}
+              {selectedCard.notesclear !== null && (
+                <div className="flex flex-row gap-4 items-center ">
                   <img src={warningBlueLogo} alt="!" className="h-7" />
                   <div className="max-h-9.5/10 overflow-auto">
                     {selectedCard.notesclear}
                   </div>
                 </div>
-              }
+              )}
             </div>
 
-                        {/* ---------------------------------- Prix et stock ------------------------------------------ */}
+            {/* ---------------------------------- Prix et stock ------------------------------------------ */}
 
             <div className="flex flex-row justify-between p-2">
               {selectedCard.salepricevatincluded && (
@@ -152,9 +156,7 @@ function ArticlesList() {
                 )}
             </div>
 
-                        {/* ----------------------------------  ------------------------------------------ */}
-
-            
+            {/* ----------------------------------  ------------------------------------------ */}
           </div>
         ) : (
           <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col gap-2">
