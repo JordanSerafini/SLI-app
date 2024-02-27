@@ -61,6 +61,11 @@ export default {
         "secondary-light": "#eeedff",
         "secondary-light-2": "#ebeaff",
         "secondary-dark": "#c7c6e5",
+        "bg-lightgray": "#EAEEEF",
+        "bg-gray": "#9EABB3",
+        "bg-1": '#7A8990',
+        "bg-2": '#E6F0F7',
+        "bg-3": '#F2F7FA',
       },
 
       fontFamily: {

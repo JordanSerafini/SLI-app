@@ -46,7 +46,7 @@ const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
     }
   }
 
-  //---------------------------------------------------------- Optimisation pour afficher les numéros de page (les 3 précédents et les 3 suivants)
+  //---------------------------------------------------------- Optimisation pour afficher les numéros de page (les 3 précédents et les 3 suivants)  ---------------------------------------------------------- 
   pageNumbers = pageNumbers.filter(
     (number) =>
       number === 1 ||

@@ -61,7 +61,7 @@ const EventOfTheDay = () => {
 
 
   return (
-    <div className="flex flex-col gap-2 items-center">
+    <div className="flex flex-col gap-2 items-center h-screen bg-orange-100">
         {/*-------------------------------------------------------  Calendar -----------------------------------------------------------------------*/}
       {showCalendar ? (
         <div className="w-9/10 mt-4 h-4/5">
