@@ -66,14 +66,8 @@ function ClientsList() {
             maininvoicingcontact_name={client.maininvoicingcontact_name}
             maininvoicingcontact_firstname={client.maininvoicingcontact_firstname}
             maininvoicingcontact_phone={client.maininvoicingcontact_phone}
-            maininvoicingaddress_address1={client.maininvoicingaddress_address1}
-            maininvoicingaddress_address2={client.maininvoicingaddress_address2}
-            maininvoicingaddress_address3={client.maininvoicingaddress_address3}
-            maininvoicingaddress_zipCode={client.maininvoicingaddress_zipCode}
-            maininvoicingaddress_city={client.maininvoicingaddress_city}
-            maininvoicingaddress_state={client.maininvoicingaddress_state}
-            onDetailClick={() => setClientSelected(client.id)}
-          />
+            maindeliverycontact_cellphone={client.maindeliverycontact_cellphone}
+            onDetailClick={() => setClientSelected(client.id)} maininvoicingaddress_address1={""} maininvoicingaddress_address2={""} maininvoicingaddress_address3={""} maininvoicingaddress_zipCode={""} maininvoicingaddress_city={""} maininvoicingaddress_state={""}          />
         ))}
       </div>
 
