@@ -115,7 +115,7 @@ function ArticlesList() {
               {selectedCard.descomclear && (
                 <div className="flex flex-row gap-4 items-center ">
                 <img src={descriptionLogo} alt="description" className="h-7" />
-                  <p className="max-h-10 overflow-auto">
+                  <p className="max-h-20 overflow-auto">
                     {selectedCard.descomclear}
                   </p>
                 </div>
@@ -123,7 +123,7 @@ function ArticlesList() {
               {selectedCard.notesclear !== null && (
                 <div className="flex flex-row gap-4 items-center ">
                   <img src={warningBlueLogo} alt="!" className="h-7" />
-                  <div className="max-h-10 overflow-auto">
+                  <div className="max-h-20 overflow-auto">
                     {selectedCard.notesclear}
                   </div>
                 </div>
