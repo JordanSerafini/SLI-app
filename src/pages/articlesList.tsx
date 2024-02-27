@@ -115,7 +115,7 @@ function ArticlesList() {
       // Démarrer le timer pour masquer le toast après 3 secondes
       toastTimeout = setTimeout(() => {
         setShowToast(false);
-      }, 3000);
+      }, 1500);
     } else {
       // Si le stock est suffisant, masquer le toast sans démarrer un timer
       setShowToast(false);
