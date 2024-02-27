@@ -66,7 +66,7 @@ export default {
         "bg-1": '#7A8990',
         "bg-2": '#E6F0F7',
         "bg-3": '#F2F7FA',
-        "green": "#008000",
+        "green": "#2a9134",
         "gray-1": "#f2f2f2",
         "gray": "#e7e7e7",
       },

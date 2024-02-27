@@ -12,6 +12,7 @@ import Card from "../components/card";
 import debounce from "../services/debounce";
 import CircleLoader from "../components/loader/circleLoader";
 import euroLogo from "../assets/euroLogo.png";
+import warningBlueLogo from "../assets/warningBlueLogo.png";
 
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
@@ -97,7 +98,7 @@ function ArticlesList() {
 
   return (
     <>
-      <div className="h-full w-9/10 flex flex-col  self-center  ">
+      <div className="h-full w-9/10 flex flex-col self-center  ">
         {/*  ---------------------------------------------------------------------- Zone pour afficher des détails de l'article sélectionné  ----------------------------------------------------------------------*/}
         {selectedCard ? (
           <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-2">
@@ -110,23 +111,19 @@ function ArticlesList() {
 
             {/* ---------------------------------- Description et note ------------------------------------------ */}
             <div className="flex flex-col gap-2 h-/10">
-              {!selectedCard.descComClear ? (
-                <p>Pas de description</p>
-              ) : (
+              {!selectedCard.descomclear  &&
                 <p className="max-h-10 overflow-hidden">
-                  {selectedCard.descComClear}
+                  {selectedCard.descomclear }
                 </p>
-              )}
-              {!selectedCard.notesclear ? (
-                <p>Pas de notes</p>
-              ) : (
-                <div className="flex flex-row gap-2">
-                  <h3>notes: </h3>
-                  <div className="max-h-10 overflow-auto">
+              }
+              {selectedCard.notesclear !== null &&
+                <div className="flex flex-row gap-4 items-center " >
+                  <img src={warningBlueLogo} alt="!" className="h-7" />
+                  <div className="max-h-9.5/10 overflow-auto">
                     {selectedCard.notesclear}
                   </div>
                 </div>
-              )}
+              }
             </div>
 
                         {/* ---------------------------------- Prix et stock ------------------------------------------ */}
