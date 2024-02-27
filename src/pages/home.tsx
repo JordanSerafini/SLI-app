@@ -44,7 +44,7 @@ function Home() {
   return (
     <div onClick={testToast}>
       Home
-      {showToast && <TopToast message={toastMessage} />}
+      {showToast && <TopToast message={toastMessage} css="" />}
     </div>
   );
 }
