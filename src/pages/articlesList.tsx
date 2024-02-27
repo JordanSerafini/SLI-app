@@ -97,7 +97,7 @@ function ArticlesList() {
 
   return (
     <>
-      <div className="h-screen w-9/10 flex flex-col  self-center ">
+      <div className="h-screen w-9/10 flex flex-col gap-2  self-center ">
         {/*  ---------------------------------------------------------------------- Zone pour afficher des détails de l'article sélectionné  ----------------------------------------------------------------------*/}
         {selectedCard ? (
           <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2">
@@ -107,13 +107,7 @@ function ArticlesList() {
                 {selectedCard.caption}
               </h2>
             )}
-            {selectedCard.image_url && (
-              <img
-                className="h-20"
-                src={selectedCard.image_url}
-                alt={selectedCard.caption}
-              />
-            )}
+            
             {!selectedCard.descComClear ? (
               <p>Pas de description</p>
             ) : (
@@ -157,11 +151,11 @@ function ArticlesList() {
         )}
 
         {/*  ---------------------------------------------------------------------- Carousel de CARDS  ---------------------------------------------------------------------- */}
-        <div className="gap-8 carousel rounded-box ">
+        <div className="gap-8 carousel rounded-box pb-4">
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
-              css="carousel-item w-8/10 bg-bgMain text-text border-1 border-primary "
+              css="carousel-item w-8/10 md:w-3/10 bg-bgMain text-text shadow-effect "
               key={`${index}_${card.id}`}
               caption={card.caption}
               img={card.image_url}
@@ -191,7 +185,7 @@ function ArticlesList() {
           placeholder="Rechercher..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus: mb-20"
+          className="self-center mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus: mb-20"
         />
       </div>
     </>

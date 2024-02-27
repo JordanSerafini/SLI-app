@@ -3,18 +3,19 @@ function card({id, caption, img, css, onDetailClick }: {id: string, caption: str
 
   return (
    
-      <div className={`card ${css}`}>
-        <figure className="">
+      <div className={`card ${css} `}  onClick={() => onDetailClick(id)}>
+        { img &&
+        <figure className="h-4/10">
           <img
             src={img}
             alt="Image manquante"
             className="w-full object-cover rounded-t-lg"
           />
         </figure>
-        <div className="card-body ">
+        }
+        <div className="card-body overflow-auto">
           <h2 className=" card-title text-base">{caption}</h2>
           <div className="card-actions justify-end">
-          <button className="btn btn-primary" onClick={() => onDetailClick(id)}>Détail</button>
           </div>
         </div>
       </div>
