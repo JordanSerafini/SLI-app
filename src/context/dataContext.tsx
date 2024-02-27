@@ -5,7 +5,7 @@ interface Article {
   caption: string;
   salepriceVatExcluded: number;
   salepricevatincluded: string;
-  realStock: number;
+  realStock: string;
   descComClear: string;
   image_url: string; 
   realstock: number;
