@@ -91,7 +91,7 @@ export default {
 
           "base-100": "#DEDCFF",
 
-          "info": "#0000ff",
+          "info": "#ca5310", //orange
 
           "success": "#00ff00",
 

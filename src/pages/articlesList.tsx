@@ -7,8 +7,11 @@ import {
 } from "react";
 import { IsDataFetched } from "../hooks/isDataFetched";
 
+
 import dataContext from "../context/dataContext";
 import Card from "../components/card";
+import TopToast from "../components/toast/toastTop";
+
 import debounce from "../services/debounce";
 import CircleLoader from "../components/loader/circleLoader";
 import euroLogo from "../assets/euroLogo.png";
@@ -18,6 +21,8 @@ import descriptionLogo from "../assets/descriptionLogo.png";
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
   const [cardSelected, setCardSelected] = useState({});
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -91,6 +96,39 @@ function ArticlesList() {
     };
   }, [debouncedSetSearchTerm]);
 
+  // ---------------------------------------------------------------------- Toast ----------------------------------------------------------------------
+
+  useEffect(() => {
+    let toastTimeout: number | undefined;
+  
+    // Affiche un message d'alerte si le stock est faible
+    if (selectedCard && selectedCard.realstock <= 5) {
+      const message = selectedCard.realstock === 0
+        ? "Attention, il n'y a plus de stock pour cet article !"
+        : `Attention, il ne reste que ${selectedCard.realstock} exemplaire(s) en stock pour cet article !`;
+      
+      setToastMessage(message);
+      setShowToast(true);
+  
+      // Démarrer le timer pour masquer le toast après 3 secondes
+      toastTimeout = setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+    } else {
+      // Si le stock est suffisant, masquer le toast sans démarrer un timer
+      setShowToast(false);
+    }
+  
+    return () => {
+      // Nettoyage : arrêter le timer lorsque le composant est démonté ou avant que l'effet ne s'exécute à nouveau
+      if (toastTimeout) clearTimeout(toastTimeout);
+    };
+  }, [selectedCard]); // Retirer showToast des dépendances
+  
+  
+  
+  
+
   // ---------------------------------------------------------------------- Affichage ----------------------------------------------------------------------
 
   if (isLoading) {
@@ -114,7 +152,11 @@ function ArticlesList() {
             <div className="flex flex-col gap-2 pt-2">
               {selectedCard.descomclear && (
                 <div className="flex flex-row gap-4 items-center border-b-1 border-secondary pb-4">
-                <img src={descriptionLogo} alt="description" className="h-7" />
+                  <img
+                    src={descriptionLogo}
+                    alt="description"
+                    className="h-7"
+                  />
                   <p className="max-h-16 overflow-auto">
                     {selectedCard.descomclear}
                   </p>
@@ -143,7 +185,14 @@ function ArticlesList() {
               )}
               {selectedCard.realstock &&
                 String(selectedCard.realstock) !== "0" && (
-                  <div className="badge badge-neutral badge-outline flex flex-row gap-2 items-center">
+                  <div
+                    className={`badge badge-neutral badge-outline flex flex-row gap-2 items-center ${
+                      Number(selectedCard.realstock) >= 1 &&
+                      Number(selectedCard.realstock) <= 5
+                        ? "badge-info"
+                        : "badge-neutral"
+                    }`}
+                  >
                     En stock !{" "}
                     <span className="bold">{selectedCard.realstock}</span>
                   </div>
@@ -202,6 +251,8 @@ function ArticlesList() {
           className="self-center mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus: mb-24"
         />
       </div>
+      {showToast && <TopToast message={toastMessage} />}
+
     </>
   );
 }
