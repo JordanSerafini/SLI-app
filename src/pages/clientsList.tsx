@@ -44,8 +44,8 @@ function ClientsList() {
   }
 
   return (
-    <div className="h-screen w-9/10 flex flex-col self-center ">
-      {/* Detail Client */}
+    <div className="h-9/10 w-9/10 flex flex-col self-center ">
+      {/* ---------------------------------------------------------- Detail Client ----------------------------------------------------------*/}
       {selectedClient ? (
         <ClientDetailCard  selectedClient={selectedClient} />
       ) : (
@@ -54,7 +54,7 @@ function ClientsList() {
         </div>
       )}
 
-      {/* Carrousel client */}
+      {/* ---------------------------------------------------------- Carrousel client ----------------------------------------------------------*/}
       <div className="flex gap-8 overflow-x-auto pb-4">
         {currentItems.map((client) => (
           <ClientCard
@@ -77,7 +77,7 @@ function ClientsList() {
         ))}
       </div>
 
-      {/* Pagination */}
+      {/*---------------------------------------------------------- Pagination ----------------------------------------------------------*/}
       <div className="pagination flex justify-center space-x-2 mt-4">
         {pageNumbers.map(number => (
           <button
@@ -90,7 +90,7 @@ function ClientsList() {
         ))}
       </div>
 
-      {/* Recherche */}
+      {/*---------------------------------------------------------- Recherche ----------------------------------------------------------*/}
       <input
         type="text"
         placeholder="Rechercher..."
