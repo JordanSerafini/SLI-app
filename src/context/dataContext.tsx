@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 
-interface Article {
+export interface Article {
   id: string;
   caption: string;
   salepriceVatExcluded: number;

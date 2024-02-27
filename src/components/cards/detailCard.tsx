@@ -3,8 +3,15 @@ import warningBlueLogo from "../../assets/warningBlueLogo.png";
 import euroLogo from "../../assets/euroLogo.png";
 import warningLogo from "../../assets/warningLogo.png";
 
-function DetailCard({selectedCard} ) {
-  return (
+import {Article} from "../../context/dataContext";
+
+interface DetailCardProps {
+    selectedCard: Article; 
+  }
+
+
+const DetailCard: React.FC<DetailCardProps> = ({ selectedCard }) => {
+    return (
     <>
         {selectedCard ? (
           <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-">
