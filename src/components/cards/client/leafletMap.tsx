@@ -4,27 +4,16 @@ import 'leaflet/dist/leaflet.css';
 
 function LeafletMap({ address }: { address: string }) {
   const [addressFound, setAddressFound] = useState(true);
-  const mapRef = useRef<L.Map | null>(null); // Utilisation de useRef pour conserver l'état de la carte
+  const mapRef = useRef<L.Map | null>(null);
+  const mapContainerRef = useRef<HTMLDivElement | null>(null); // Conteneur de la carte référencé
 
   useEffect(() => {
-    const initMap = () => {
-      if (mapRef.current) return; // Ne pas réinitialiser la carte si elle existe déjà
-      const mapContainer = L.DomUtil.create('div', 'map-container', document.body);
-      mapContainer.id = 'map-' + Math.random(); // Assure un ID unique pour chaque conteneur
-      mapContainer.style.height = '400px';
-      mapContainer.style.width = '100%';
-      mapRef.current = L.map(mapContainer).setView([0, 0], 13);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(mapRef.current);
-    };
-
     if (!address) {
       setAddressFound(false);
       return;
     }
 
+    // Géocodage de l'adresse
     fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
       .then(response => response.json())
       .then(data => {
@@ -32,7 +21,17 @@ function LeafletMap({ address }: { address: string }) {
           setAddressFound(true);
           const lat = parseFloat(data[0].lat);
           const lon = parseFloat(data[0].lon);
-          initMap();
+
+          if (!mapRef.current && mapContainerRef.current) {
+            // Initialise la carte une seule fois et lie-la au `div` référencé
+            mapRef.current = L.map(mapContainerRef.current).setView([lat, lon], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 19,
+              attribution: '© OpenStreetMap contributors'
+            }).addTo(mapRef.current);
+          }
+
+          // Centre la carte sur les coordonnées
           if (mapRef.current) {
             mapRef.current.setView([lat, lon], 13);
             L.marker([lat, lon]).addTo(mapRef.current).bindPopup(address).openPopup();
@@ -49,6 +48,7 @@ function LeafletMap({ address }: { address: string }) {
         setAddressFound(false);
       });
 
+    // Nettoyage
     return () => {
       if (mapRef.current) {
         mapRef.current.remove();
@@ -58,7 +58,7 @@ function LeafletMap({ address }: { address: string }) {
   }, [address]);
 
   return addressFound ? (
-    <div id={`map-${Math.random()}`} style={{ height: '400px', width: '100%' }}></div>
+    <div ref={mapContainerRef} style={{ height: '400px', width: '100%' }}></div>
   ) : (
     <div style={{ height: '400px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       Adresse non trouvée.

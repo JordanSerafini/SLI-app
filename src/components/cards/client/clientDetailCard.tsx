@@ -83,8 +83,8 @@ const ClientDetailCard: React.FC<DetailClientProps> = ({ selectedClient }) => {
         <div className="">
           {/* Carte */}
           <LeafletMap address={address} />
+          <img src={mapLogo} alt="Retour aux détails" onClick={handleMapClick} className="z-50 h-8 w-8 cursor-pointer" />
 
-          <img src={mapLogo} alt="Retour aux détails" onClick={handleMapClick} className="h-8 w-8 cursor-pointer" />
         </div>
       )}
     </div>
