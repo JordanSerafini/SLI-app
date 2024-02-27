@@ -60,14 +60,14 @@ function ClientsList() {
           <ClientCard
             key={client.id}
             id={client.id}
-            accounts_account={client.accounts_account}
             name={client.name}
             css="carousel-item w-8/10 md:w-4.5/10 bg-bgMain text-text shadow-effect"
             maininvoicingcontact_name={client.maininvoicingcontact_name}
             maininvoicingcontact_firstname={client.maininvoicingcontact_firstname}
             maininvoicingcontact_phone={client.maininvoicingcontact_phone}
             maindeliverycontact_cellphone={client.maindeliverycontact_cellphone}
-            onDetailClick={() => setClientSelected(client.id)} maininvoicingaddress_address1={""} maininvoicingaddress_address2={""} maininvoicingaddress_address3={""} maininvoicingaddress_zipCode={""} maininvoicingaddress_city={""} maininvoicingaddress_state={""}          />
+            onDetailClick={() => setClientSelected(client.id)} 
+             />
         ))}
       </div>
 
