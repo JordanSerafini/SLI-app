@@ -55,6 +55,7 @@ function ClientsList() {
 
   return (
     <div className="h-10/10 w-9/10 flex flex-col item self-center ">
+      {/* ---------------------------------------------------------- Detail Client ----------------------------------------------------------*/}
       <div className="bg-blue-300 h-6/10">
         {/* ---------------------------------------------------------- Detail Client ----------------------------------------------------------*/}
         {selectedClient ? (
@@ -66,8 +67,8 @@ function ClientsList() {
         )}
       </div>
 
-      <div className="h-4/10 bg-red-500">
         {/* ---------------------------------------------------------- Carrousel client ----------------------------------------------------------*/}
+      <div className="h-4/10 bg-red-500">
         <div className="flex gap-8 overflow-x-auto pb-4 h-6/10">
           {currentItems.map((client) => (
             <ClientCard
@@ -89,7 +90,7 @@ function ClientsList() {
         </div>
 
         {/*---------------------------------------------------------- Pagination ----------------------------------------------------------*/}
-        <div className="pagination flex justify-center space-x-2 mt-4">
+        <div className="pagination flex justify-center space-x-2 ">
           {pageNumbers.map((number) => (
             <button
               key={number}
@@ -98,7 +99,7 @@ function ClientsList() {
                 currentPage === number
                   ? "bg-blue-500 text-white"
                   : "bg-white text-black"
-              } rounded-full w-10 h-10`}
+              } rounded-full w-7 h-7`}
             >
               {number}
             </button>
