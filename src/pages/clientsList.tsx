@@ -17,15 +17,16 @@ function ClientsList() {
   const itemsPerPage = 30;
 
   // ---------------------------------------------------------- fitre client ----------------------------------------------------------
-  const filteredClients = clientList.filter(
-    (client) =>
-      (client.maininvoicingcontact_name || "")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      (client.maininvoicingcontact_firstname || "")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase())
-  );
+  const searchTermCleaned = searchTerm.toLowerCase().trim();
+  const searchTermRegex = new RegExp([...searchTermCleaned].join('.*'), 'i');
+  
+  const filteredClients = clientList.filter(client => {
+    const name = (client.maininvoicingcontact_name || "").toLowerCase();
+    const firstName = (client.maininvoicingcontact_firstname || "").toLowerCase();
+  
+    return searchTermRegex.test(name) || searchTermRegex.test(firstName);
+  });
+  
 
   // ---------------------------------------------------------- Pagination ----------------------------------------------------------
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -83,9 +84,9 @@ function ClientsList() {
       {/* ---------------------------------------------------------- Carrousel client ----------------------------------------------------------*/}
       <div className="h-4/10 flex flex-col justify-start">
         <div className="flex gap-8 overflow-x-auto pb-4 h-6/10">
-          {currentItems.map((client) => (
+          {currentItems.map((client, index) => (
             <ClientCard
-              key={client.id}
+              key={client.id + "-" + index}
               id={client.id}
               name={client.name}
               css="carousel-item w-7/10 md:w-4.5/10 bg-bgMain text-text shadow-effect"
