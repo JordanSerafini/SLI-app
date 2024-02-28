@@ -1,4 +1,7 @@
 import {  useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
+
 import { IsDataFetched } from "../hooks/isDataFetched"; 
 
 import TopToast from "../components/toast/toastTop"; 
@@ -13,6 +16,13 @@ function Home() {
   const [toastMessage, setToastMessage] = useState('');
 
   const isLoading = IsDataFetched();
+
+// ----------------------------------------------- NAVIGATION ----------------------------------------------- //
+
+const navigate = useNavigate();
+const handleDevisClick = () => {
+  navigate('/devis');
+}
 
   // ----------------------------------------------- TOAST ----------------------------------------------- //
   useEffect(() => {
@@ -43,7 +53,10 @@ function Home() {
 
   return (
     <div onClick={testToast}>
-      Home
+      <div onClick={handleDevisClick}>
+        Accéder Devis page
+      </div>
+
       {showToast && <TopToast message={toastMessage} css="" />}
     </div>
   );

@@ -47,6 +47,12 @@ interface Event {
   enddatetime: string;
 }
 
+interface Devis {
+  articles: Article[];
+}
+
+
+
 // Définis un type pour le contexte qui utilisera les interfaces Article et Client.
 export type DataContextType = {
   itemList: Article[];
@@ -55,7 +61,13 @@ export type DataContextType = {
   setClientList: Dispatch<SetStateAction<Client[]>>;
   eventList: Event[];
   setEventList: Dispatch<SetStateAction<Event[]>>;
+  devis: Devis[];
+  setDevis: Dispatch<SetStateAction<Devis[]>>;
+  devisList: Devis[];
+  setDevisList: Dispatch<SetStateAction<Devis[]>>;
 };
+
+
 
 // Exporte le contexte avec la valeur initiale correspondant au type ci-dessus.
 const dataContext = createContext<DataContextType>({
@@ -65,6 +77,10 @@ const dataContext = createContext<DataContextType>({
   setClientList: () => {},
   eventList: [],
   setEventList: () => {},
+  devis: [],
+  setDevis: () => {},
+  devisList: [],
+  setDevisList: () => {},
 });
 
 export default dataContext;
