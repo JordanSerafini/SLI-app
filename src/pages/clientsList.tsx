@@ -16,6 +16,7 @@ function ClientsList() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 30;
 
+  // ---------------------------------------------------------- fitre client ----------------------------------------------------------
   const filteredClients = clientList.filter(
     (client) =>
       (client.maininvoicingcontact_name || "")
@@ -26,6 +27,7 @@ function ClientsList() {
         .includes(searchTerm.toLowerCase())
   );
 
+  // ---------------------------------------------------------- Pagination ----------------------------------------------------------
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredClients.slice(indexOfFirstItem, indexOfLastItem);
@@ -42,15 +44,23 @@ function ClientsList() {
     }
   }
 
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // ---------------------------------------------------------- Recherche ----------------------------------------------------------
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
+  // -------------------------------------------------- Selection détail client ----------------------------------------------------------
   const selectedClient = clientList.find(
     (client) => client.id === ClientSelected
   );
+
+  //------------------------------------
+  const isSearchVisible = () => {
+    setShowInput(!showInput);
+    console.log(showInput);
+  };
 
   if (isLoading) {
     return <CircleLoader />;
@@ -71,7 +81,7 @@ function ClientsList() {
       </div>
 
       {/* ---------------------------------------------------------- Carrousel client ----------------------------------------------------------*/}
-      <div className="h-4/10 bg-red-500">
+      <div className="h-4/10 bg-red-500 flex flex-col justify-start">
         <div className="flex gap-8 overflow-x-auto pb-4 h-6/10">
           {currentItems.map((client) => (
             <ClientCard
@@ -93,35 +103,48 @@ function ClientsList() {
         </div>
 
         {/*---------------------------------------------------------- Pagination ----------------------------------------------------------*/}
-        <div className="flex flex-row items-center justify-center">
-          <div className="pagination flex justify-center space-x-2 ">
-            {pageNumbers.map((number) => (
-              <button
-                key={number}
-                onClick={() => paginate(number)}
-                className={`page-item ${
-                  currentPage === number
-                    ? "bg-blue-500 text-white"
-                    : "bg-white text-black"
-                } rounded-full w-7 h-7`}
-              >
-                {number}
-              </button>
-            ))}
+        {showInput ? (
+          <div className="flex flex-row items-center justify-center">
+            <div className="pagination flex justify-center space-x-2 ">
+              {pageNumbers.map((number) => (
+                <button
+                  key={number}
+                  onClick={() => paginate(number)}
+                  className={`page-item ${
+                    currentPage === number
+                      ? "bg-blue-500 text-white"
+                      : "bg-white text-black"
+                  } rounded-full w-7 h-7`}
+                >
+                  {number}
+                </button>
+              ))}
+            </div>
+            <img
+              src={searchLogo}
+              alt="search"
+              className="h-8 ml-6"
+              onClick={isSearchVisible}
+            />
           </div>
-          <img src={searchLogo} alt="search" className="h-8 ml-6" />
-        </div>
-
-        {/*---------------------------------------------------------- Recherche ----------------------------------------------------------*/}
-        <div>
-          <input
-            type="text"
-            placeholder="Rechercher..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="mt-4 p-2 border rounded"
-          />
-        </div>
+        ) : (
+          /*---------------------------------------------------------- Recherche ----------------------------------------------------------*/
+          <div className="flex flex-row items-center justify-center ">
+            <input
+              type="text"
+              placeholder="Rechercher..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="mt-4 p-2 border rounded"
+            />
+            <img
+              src={searchLogo}
+              alt="search"
+              className="h-8 ml-6"
+              onClick={isSearchVisible}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
