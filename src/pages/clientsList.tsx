@@ -135,7 +135,7 @@ function ClientsList() {
               placeholder="Rechercher..."
               value={searchTerm}
               onChange={handleSearchChange}
-              className="mt-4 p-2 border rounded"
+              className=" p-2 border rounded"
             />
             <img
               src={searchLogo}
