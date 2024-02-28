@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Client } from "../../../context/dataContext";
 
 import telLogo from "../../../assets/telLogo.png";
@@ -16,7 +17,6 @@ const ClientDetailCard: React.FC<DetailClientProps> = ({ selectedClient }) => {
   const handleMapClick = () => {
     setShowMap(!showMap);
   };
-
   
 
   const buildAddress = () => {
@@ -31,8 +31,37 @@ const ClientDetailCard: React.FC<DetailClientProps> = ({ selectedClient }) => {
     return parts.filter(part => part).join(' ');
   };
 
-  const address = buildAddress();
   const name = `${selectedClient.maininvoicingcontact_name} ${selectedClient.maininvoicingcontact_firstname}`;
+
+  const address = buildAddress();
+
+// Assurez-vous que cette fonction est déclarée comme async pour utiliser await à l'intérieur
+async function geocodeAddressAndSave(selectedClient, address) {
+  if (!selectedClient.longitude || !selectedClient.latitude) {
+    try {
+      const response = await axios.get(`https://nominatim.openstreetmap.org/search`, {
+        params: {
+          format: 'json',
+          q: address
+        }
+      });
+
+      if (response.data && response.data.length > 0) {
+        const lat = parseFloat(response.data[0].lat);
+        const lon = parseFloat(response.data[0].lon);
+
+        // Correction de la syntaxe pour les données envoyées : utilisation de : au lieu de =
+        await axios.post(`/insertCoordinate`, { longitude: lon, latitude: lat, id: selectedClient.id });
+      } else {
+        console.error('Adresse non trouvée');
+      }
+    } catch (error) {
+      // Gestion des erreurs pour la requête axios
+      console.error('Erreur lors du géocodage de l\'adresse ou de l\'envoi des coordonnées', error);
+    }
+  }
+}
+
 
   return (
     <div className="w-full h-9/10 bg-white self-center mt-4 mb-6 rounded-2xl flex flex-col justify-evenly items-center">

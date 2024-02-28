@@ -34,6 +34,8 @@ export interface Client {
   accounts_account: string;
   name: string;
   maindeliverycontact_cellphone: string;
+  longitude: string;
+  latitude: string;
 }
 
 interface Event {
