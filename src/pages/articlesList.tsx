@@ -99,7 +99,7 @@ function ArticlesList() {
     let toastTimeout: number | undefined;
 
     // Affiche un message d'alerte si le stock est faible
-    if (selectedCard && selectedCard.realstock <= 5) {
+    if (selectedCard && selectedCard.realstock < 5) {
       const message =
         selectedCard.realstock == 0
           ? "Plus de stock pour cet article !"
