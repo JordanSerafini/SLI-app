@@ -25,6 +25,14 @@ function ClientCard({
   };
 
   const FullName = getFullName(maininvoicingcontact_firstname, maininvoicingcontact_name);
+let phoneCss="";
+
+   if(maindeliverycontact_cellphone && maininvoicingcontact_phone){
+      phoneCss="flex flex-col items-end"
+    }else if(maindeliverycontact_cellphone || maininvoicingcontact_phone){
+      phoneCss="flex flex-row justify-end"
+    }
+
 
   const PhoneLink = ({ phone }: { phone: string }) => {
     return phone ? (
@@ -39,8 +47,8 @@ function ClientCard({
     <div className={`card ${css}`} onClick={() => onDetailClick(id)}>
       <div className="card-body overflow-auto flex flex-col">
         <p>{name}</p>
-        {FullName && <h2 className="card-title text-sm">{FullName}</h2>}
-        <div className="flex flex-row justify-evenly">
+        {FullName && <h2 className="card-title text-sm ">{FullName}</h2>}
+        <div className={phoneCss}>
           <PhoneLink phone={maindeliverycontact_cellphone} />
           <PhoneLink phone={maininvoicingcontact_phone} />
         </div>
