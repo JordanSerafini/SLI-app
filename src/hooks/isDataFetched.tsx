@@ -6,27 +6,32 @@ import fetchData from '../function/fetchData';
 export function IsDataFetched() {
   const navigate = useNavigate();
   const { itemList, clientList, eventList, setClientList, setEventList, setItemList } = useContext(DataContext);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function checkDataAndFetch() {
-      if (itemList.length > 0 && clientList.length > 0 && eventList.length > 0) {
-        setLoading(false);
-        return;
-      }
+    // Cette fonction vérifie si les données ont déjà été chargées
+    const dataIsLoaded = itemList.length > 0 && clientList.length > 0 && eventList.length > 0;
 
-      setLoading(true);
+    // Si les données sont déjà chargées, nous n'avons pas besoin de les recharger
+    if (dataIsLoaded) {
+      setLoading(false);
+      return;
+    }
+
+    // La fonction pour charger les données
+    async function loadInitialData() {
       try {
         await fetchData({ itemList, clientList, eventList, setClientList, setEventList, setItemList });
       } catch (error) {
         console.error('Error fetching data: ', error);
         navigate('/error');
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
 
-    checkDataAndFetch();
-  }, [itemList, clientList, eventList, navigate, setClientList, setEventList, setItemList]);
+    loadInitialData();
+  }, [navigate, setClientList, setEventList, setItemList]); // Nous ne dépendons que des setters
 
   return isLoading;
 }

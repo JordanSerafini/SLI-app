@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import dataContext from "../../../context/dataContext";
+
 import axios from "axios";
 
+import fetchData from "../../../function/fetchData";
 import url from "../../../axios/url";
 import { Client } from "../../../context/dataContext";
 
@@ -17,6 +20,11 @@ interface DetailClientProps {
 const ClientDetailCard: React.FC<DetailClientProps> = ({ selectedClient }) => {
   const [showMap, setShowMap] = useState(false);
   const [coordsAvailable, setCoordsAvailable] = useState(true);
+  const { setItemList, setClientList, setEventList } = useContext(dataContext);
+
+  useEffect(() => {
+    setShowMap(false);
+  }  , [selectedClient]);
 
 
 const handleMapClick = async () => {
@@ -28,8 +36,6 @@ const handleMapClick = async () => {
   }
   setShowMap(!showMap);
 };
-
-  
 
   const buildAddress = () => {
     const parts = [
@@ -72,9 +78,11 @@ async function geocodeAddressAndSave(selectedClient: Client, address:string) {
       console.error('Erreur lors du géocodage de l\'adresse ou de l\'envoi des coordonnées', error);
       return false;
     }
+    fetchData({ itemList: [], clientList: [], eventList: [] , setItemList, setClientList, setEventList});
     return true;
   }
 }
+
 
 
   return (

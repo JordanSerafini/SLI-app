@@ -65,7 +65,7 @@ const DetailCard: React.FC<DetailCardProps> = ({ selectedCard }) => {
                   <div
                     className={`badge badge-neutral badge-outline flex flex-row gap-2 items-center ${
                       Number(selectedCard.realstock) >= 1 &&
-                      Number(selectedCard.realstock) < 4
+                      Number(selectedCard.realstock) <= 4
                         ? "badge-info"
                         : "badge-orange-500"
                     }`}
