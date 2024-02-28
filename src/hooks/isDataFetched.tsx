@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import DataContext from '../context/dataContext';
 import fetchData from '../function/fetchData';
 
+
+
 export function IsDataFetched() {
   const navigate = useNavigate();
   const { itemList, clientList, eventList, setClientList, setEventList, setItemList } = useContext(DataContext);
@@ -18,10 +20,11 @@ export function IsDataFetched() {
       return;
     }
 
-    // La fonction pour charger les données
+ 
+
     async function loadInitialData() {
       try {
-        await fetchData({ itemList, clientList, eventList, setClientList, setEventList, setItemList });
+        await fetchData({ setClientList, setEventList, setItemList });
       } catch (error) {
         console.error('Error fetching data: ', error);
         navigate('/error');

@@ -1,12 +1,12 @@
 import axios from "axios";
 import url from "../axios/url";
-import { Article, Client } from '../context/dataContext';
+import { Article, Client, appEvent } from '../context/dataContext';
 import { Dispatch, SetStateAction } from "react";
 
 export type FetchDataContextParams = {
   setItemList: Dispatch<SetStateAction<Article[]>>;
   setClientList: Dispatch<SetStateAction<Client[]>>;
-  setEventList: Dispatch<SetStateAction<Event[]>>;
+  setEventList: Dispatch<SetStateAction<appEvent[]>>;
 };
 
 async function fetchData({ setItemList, setClientList, setEventList }: FetchDataContextParams) {

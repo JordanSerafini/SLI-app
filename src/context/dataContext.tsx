@@ -61,8 +61,8 @@ export type DataContextType = {
   setItemList: Dispatch<SetStateAction<Article[]>>;
   clientList: Client[];
   setClientList: Dispatch<SetStateAction<Client[]>>;
-  eventList: Event[];
-  setEventList: Dispatch<SetStateAction<Event[]>>;
+  eventList: appEvent[];
+  setEventList: Dispatch<SetStateAction<appEvent[]>>;
   devis: Devis; // Déjà correct
   setDevis: Dispatch<SetStateAction<Devis>>; 
   devisList: Devis[];
