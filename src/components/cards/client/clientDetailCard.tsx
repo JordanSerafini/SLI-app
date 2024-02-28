@@ -66,7 +66,6 @@ async function geocodeAddressAndSave(selectedClient: Client, address:string) {
       if (response.data && response.data.length > 0) {
         const lat = parseFloat(response.data[0].lat);
         const lon = parseFloat(response.data[0].lon);
-
         // Correction de la syntaxe pour les données envoyées : utilisation de : au lieu de =
         await axios.post(`${url.heroku}/insertCoordinate`, { longitude: lon, latitude: lat, id: selectedClient.id });
       } else {
