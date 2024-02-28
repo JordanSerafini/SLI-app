@@ -77,7 +77,7 @@ async function geocodeAddressAndSave(selectedClient: Client, address:string) {
       console.error('Erreur lors du géocodage de l\'adresse ou de l\'envoi des coordonnées', error);
       return false;
     }
-    fetchData({ itemList: [], clientList: [], eventList: [] , setItemList, setClientList, setEventList});
+    fetchData({ setItemList, setClientList, setEventList});
     return true;
   }
 }

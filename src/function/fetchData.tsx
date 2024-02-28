@@ -1,8 +1,15 @@
 import axios from "axios";
 import url from "../axios/url";
-import { DataContextType } from '../context/dataContext';
+import { Article, Client } from '../context/dataContext';
+import { Dispatch, SetStateAction } from "react";
 
-async function fetchData({ setItemList, setClientList, setEventList }: DataContextType) {
+export type FetchDataContextParams = {
+  setItemList: Dispatch<SetStateAction<Article[]>>;
+  setClientList: Dispatch<SetStateAction<Client[]>>;
+  setEventList: Dispatch<SetStateAction<Event[]>>;
+};
+
+async function fetchData({ setItemList, setClientList, setEventList }: FetchDataContextParams) {
   try {
     const itemResponse = await axios.get(`${url.heroku}/articlePG`);
     setItemList(itemResponse.data.rows);

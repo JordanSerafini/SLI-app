@@ -38,7 +38,7 @@ export interface Client {
   latitude: string;
 }
 
-export interface Event {
+export interface appEvent {
   id: number;
   workingduration_editedduration: number;
   notesclear: string;
