@@ -123,7 +123,7 @@ async function geocodeAddressAndSave(selectedClient: Client, address:string) {
 
           {/* Notes */}
           {selectedClient.notesclear && (
-          <div className="overflow-auto p-2 text-sm h-4/10">
+          <div className="overflow-auto p-2 text-xs h-4/10">
             Notes: {selectedClient.notesclear}
           </div>
           )}
