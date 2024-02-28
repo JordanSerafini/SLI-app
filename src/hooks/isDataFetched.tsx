@@ -34,7 +34,7 @@ export function IsDataFetched() {
     }
 
     loadInitialData();
-  }, [navigate, setClientList, setEventList, setItemList]); 
+  }, [navigate, setClientList, setEventList, setItemList, itemList.length, clientList.length, eventList.length]); 
 
   return isLoading;
 }

@@ -114,7 +114,7 @@ function ClientsList() {
                     currentPage === number
                       ? "bg-blue-500 text-white"
                       : "bg-white text-black"
-                  } rounded-full w-7 h-7`}
+                  } rounded-full w-7 h-7 border-1 border-secondary-dark text-primary`}
                 >
                   {number}
                 </button>

@@ -172,7 +172,7 @@ function ArticlesList() {
                 currentPage === number
                   ? "bg-blue-500 text-white"
                   : "bg-bgMain text-accent"
-              } rounded-full w-10 h-10 border-1 border-primary `}
+              } rounded-full w-10 h-10 border-1 border-secondary-dark text-primary `}
             >
               {number}
             </button>
