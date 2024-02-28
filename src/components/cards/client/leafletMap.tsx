@@ -1,71 +1,52 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-function LeafletMap({ address }: { address: string }) {
-  const [addressFound, setAddressFound] = useState(true);
+interface LeafletMapProps {
+  lon: string | null;
+  lat: string | null;
+  coordsAvailable: boolean;
+}
+
+const LeafletMap: React.FC<LeafletMapProps> = ({ lon, lat, coordsAvailable }) => {
   const mapRef = useRef<L.Map | null>(null);
-  const mapContainerRef = useRef<HTMLDivElement | null>(null); // Conteneur de la carte référencé
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!address) {
-      setAddressFound(false);
-      return;
+    if (coordsAvailable && lon && lat) {
+      const latNum = parseFloat(lat);
+      const lonNum = parseFloat(lon);
+
+      if (!mapRef.current && mapContainerRef.current) {
+        mapRef.current = L.map(mapContainerRef.current).setView([latNum, lonNum], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(mapRef.current);
+
+        L.marker([latNum, lonNum]).addTo(mapRef.current);
+      }
     }
 
-    // Géocodage de l'adresse
-    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.length > 0) {
-          setAddressFound(true);
-          const lat = parseFloat(data[0].lat);
-          const lon = parseFloat(data[0].lon);
-
-          if (!mapRef.current && mapContainerRef.current) {
-            // Initialise la carte une seule fois et lie-la au `div` référencé
-            mapRef.current = L.map(mapContainerRef.current).setView([lat, lon], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              maxZoom: 19,
-              attribution: '© OpenStreetMap contributors'
-            }).addTo(mapRef.current);
-          }
-
-          // Centre la carte sur les coordonnées
-          if (mapRef.current) {
-            mapRef.current.setView([lat, lon], 13);
-            L.marker([lat, lon]).addTo(mapRef.current).bindPopup(address).openPopup();
-          }
-        } else {
-          console.error('Adresse non trouvée');
-          setAddressFound(false);
-          if (mapRef.current) mapRef.current.remove();
-          mapRef.current = null;
-        }
-      })
-      .catch(error => {
-        console.error('Erreur lors du géocodage', error);
-        setAddressFound(false);
-      });
-
-    // Nettoyage
     return () => {
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
       }
     };
-  }, [address]);
+  }, [lon, lat, coordsAvailable]);
 
-  return addressFound ? (
-    <div className='h-10/10 w-10/10 rounded-lg'>
-    <div className="rounded-2xl" ref={mapContainerRef} style={{  height: '100%', width: '100%' }}></div>
-    </div>
-  ) : (
-    <div style={{  height: '200px', width: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      Adresse non trouvée.
+  return (
+    <div className='h-full w-full rounded-lg'>
+      {coordsAvailable ? (
+        <div className="rounded-2xl" ref={mapContainerRef} style={{ height: '100%', width: '100%' }}></div>
+      ) : (
+        <div className="h-full w-full flex items-center justify-center">
+          Adresse non trouvée.
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default LeafletMap;

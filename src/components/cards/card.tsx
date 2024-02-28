@@ -3,7 +3,7 @@ function card({ id, caption, img, css, familyid, onDetailClick }: { id: string, 
 
   switch (familyid) {
     case "MAT":
-      familyBadge = <div className="badge badge-neutral text-bgMain text-xs p-3">Matériel</div>;
+      familyBadge = <div className="badge badge-primary text-bgMain text-xs p-3">Matériel</div>;
       break;
     case "PREST":
       familyBadge = <div className="badge badge-primary text-xs p-3">Prestation</div>;

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+
+import url from "../../../axios/url";
 import { Client } from "../../../context/dataContext";
 
 import telLogo from "../../../assets/telLogo.png";
@@ -11,12 +13,22 @@ interface DetailClientProps {
   selectedClient: Client;
 }
 
+
 const ClientDetailCard: React.FC<DetailClientProps> = ({ selectedClient }) => {
   const [showMap, setShowMap] = useState(false);
+  const [coordsAvailable, setCoordsAvailable] = useState(true);
 
-  const handleMapClick = () => {
-    setShowMap(!showMap);
-  };
+
+const handleMapClick = async () => {
+  if (!selectedClient.longitude || !selectedClient.latitude) {
+    const coordsFound = await geocodeAddressAndSave(selectedClient, address);
+    setCoordsAvailable(coordsFound || false);
+  } else {
+    setCoordsAvailable(true);
+  }
+  setShowMap(!showMap);
+};
+
   
 
   const buildAddress = () => {
@@ -35,8 +47,7 @@ const ClientDetailCard: React.FC<DetailClientProps> = ({ selectedClient }) => {
 
   const address = buildAddress();
 
-// Assurez-vous que cette fonction est déclarée comme async pour utiliser await à l'intérieur
-async function geocodeAddressAndSave(selectedClient, address) {
+async function geocodeAddressAndSave(selectedClient: Client, address:string) {
   if (!selectedClient.longitude || !selectedClient.latitude) {
     try {
       const response = await axios.get(`https://nominatim.openstreetmap.org/search`, {
@@ -51,14 +62,17 @@ async function geocodeAddressAndSave(selectedClient, address) {
         const lon = parseFloat(response.data[0].lon);
 
         // Correction de la syntaxe pour les données envoyées : utilisation de : au lieu de =
-        await axios.post(`/insertCoordinate`, { longitude: lon, latitude: lat, id: selectedClient.id });
+        await axios.post(`${url.heroku}/insertCoordinate`, { longitude: lon, latitude: lat, id: selectedClient.id });
       } else {
         console.error('Adresse non trouvée');
+        return false;
       }
     } catch (error) {
       // Gestion des erreurs pour la requête axios
       console.error('Erreur lors du géocodage de l\'adresse ou de l\'envoi des coordonnées', error);
+      return false;
     }
+    return true;
   }
 }
 
@@ -117,7 +131,7 @@ async function geocodeAddressAndSave(selectedClient, address) {
       ) : (
         <div className="w-10/10 h-10/10 flex flex-col gap-2">
           {/* Carte */}
-          <LeafletMap address={address} />
+          <LeafletMap lon={selectedClient.longitude} lat={selectedClient.latitude} coordsAvailable={coordsAvailable} />
           <img src={mapLogo} alt="Retour aux détails" onClick={handleMapClick} className="self-end z-50 h-8 w-8 cursor-pointer" />
 
         </div>
