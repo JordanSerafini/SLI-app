@@ -55,14 +55,14 @@ const ArticleForm = () => {
         // Afficher une alerte avec le message de succès
         alert("Article ajouté avec succès!");
 
-        return response.data; // Retourner les données de la réponse après la soumission
+        return response.data; 
     } catch (error: unknown) {
         console.error('Erreur lors de l\'ajout de l\'article:', (error as Error).message);
         
         // Afficher une alerte avec le message d'erreur
         alert("Erreur lors de l'ajout de l'article. Veuillez réessayer plus tard.");
 
-        throw error; // Lancer l'erreur pour la gérer à l'endroit où la fonction est appelée
+        throw error; 
     }
 };
 

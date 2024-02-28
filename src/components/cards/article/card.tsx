@@ -6,10 +6,10 @@ function card({ id, caption, img, css, familyid, onDetailClick }: { id: string, 
       familyBadge = <div className="badge badge-primary text-bgMain text-xs p-3">Matériel</div>;
       break;
     case "PREST":
-      familyBadge = <div className="badge badge-primary text-xs p-3">Prestation</div>;
+      familyBadge = <div className="badge badge-info text-bgMain text-xs p-3">Prestation</div>;
       break;
     case "ADMIN":
-      familyBadge = <div className="badge badge-secondary text-xs p-3">ADMIN</div>;
+      familyBadge = <div className="badge badge-neutral text-bgMain text-xs p-3">ADMIN</div>;
       break;
     default:
       familyBadge = <div className=""></div>;
