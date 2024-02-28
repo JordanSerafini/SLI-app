@@ -32,34 +32,40 @@ const ArticleForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${url.heroku}/insertItem`, formData);
+        const response = await axios.post(`${url.heroku}/insertItem`, formData);
+        
+        // Réinitialiser le formulaire après la soumission
+        setFormData({
+            caption: "",
+            salepriceVatExcluded: "",
+            salepricevatincluded: "",
+            realStock: "",
+            descomclear: "",
+            image_url: "",
+            realstock: "",
+            uniqueid: "",
+            familyid: "",
+            notesclear: "",
+            supplierid: "",
+            itemtype: "",
+            itemimage: "",
+            unitid: "",
+        });
 
-      console.log('Article ajouté avec succès', response.data);
-      
-      // Réinitialiser le formulaire après la soumission
-      setFormData({
-        caption: "",
-        salepriceVatExcluded: "",
-        salepricevatincluded: "",
-        realStock: "",
-        descomclear: "",
-        image_url: "",
-        realstock: "",
-        uniqueid: "",
-        familyid: "",
-        notesclear: "",
-        supplierid: "",
-        itemtype: "",
-        itemimage: "",
-        unitid: "",
-      });
+        // Afficher une alerte avec le message de succès
+        alert("Article ajouté avec succès!");
 
-      return response.data; // Retourner les données de la réponse après la soumission
-    } catch (error) {
+        return response.data; // Retourner les données de la réponse après la soumission
+    } catch (error: unknown) {
         console.error('Erreur lors de l\'ajout de l\'article:', (error as Error).message);
+        
+        // Afficher une alerte avec le message d'erreur
+        alert("Erreur lors de l'ajout de l'article. Veuillez réessayer plus tard.");
+
         throw error; // Lancer l'erreur pour la gérer à l'endroit où la fonction est appelée
     }
-  };
+};
+
 
   return (
     <div>
