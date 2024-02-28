@@ -34,13 +34,13 @@ const DetailCard: React.FC<DetailCardProps> = ({ selectedCard }) => {
                     alt="description"
                     className="h-7"
                   />
-                  <p className="max-h-16 overflow-auto">
+                  <p className="max-h-16 overflow-auto text-sm">
                     {selectedCard.descomclear}
                   </p>
                 </div>
               )}
               {selectedCard.notesclear !== null && (
-                <div className="flex flex-row gap-4 items-center ">
+                <div className="flex flex-row gap-4 items-center text-sm">
                   <img src={warningBlueLogo} alt="!" className="h-7" />
                   <div className="max-h-16 overflow-auto">
                     {selectedCard.notesclear}
