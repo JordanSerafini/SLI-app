@@ -38,7 +38,7 @@ export interface Client {
   latitude: string;
 }
 
-interface Event {
+export interface Event {
   id: number;
   workingduration_editedduration: number;
   notesclear: string;
@@ -47,7 +47,9 @@ interface Event {
   enddatetime: string;
 }
 
-interface Devis {
+export interface Devis {
+  id: string;
+  name: string;
   articles: Article[];
 }
 
@@ -61,11 +63,12 @@ export type DataContextType = {
   setClientList: Dispatch<SetStateAction<Client[]>>;
   eventList: Event[];
   setEventList: Dispatch<SetStateAction<Event[]>>;
-  devis: Devis[];
-  setDevis: Dispatch<SetStateAction<Devis[]>>;
+  devis: Devis; // Déjà correct
+  setDevis: Dispatch<SetStateAction<Devis>>; 
   devisList: Devis[];
   setDevisList: Dispatch<SetStateAction<Devis[]>>;
 };
+
 
 
 
@@ -77,7 +80,7 @@ const dataContext = createContext<DataContextType>({
   setClientList: () => {},
   eventList: [],
   setEventList: () => {},
-  devis: [],
+  devis: { id: '', name: '', articles: [] },
   setDevis: () => {},
   devisList: [],
   setDevisList: () => {},
