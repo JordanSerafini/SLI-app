@@ -69,12 +69,12 @@ function ClientsList() {
   return (
     <div className="h-10/10 w-9/10 flex flex-col item self-center ">
       {/* ---------------------------------------------------------- Detail Client ----------------------------------------------------------*/}
-      <div className=" h-6/10">
+      <div className=" h-6/10 flex items-center justify-start flex-col">
         {/* ---------------------------------------------------------- Detail Client ----------------------------------------------------------*/}
         {selectedClient ? (
           <ClientDetailCard selectedClient={selectedClient} />
         ) : (
-          <div className=" w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col gap-2">
+          <div className=" w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col gap-2 ">
             <h2>Sélectionnez un client pour voir les détails</h2>
           </div>
         )}
