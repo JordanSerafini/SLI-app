@@ -116,7 +116,7 @@ const EventOfTheDay = () => {
             type="date"
             value={selectedDate.toISOString().split("T")[0]}
             onChange={(e) => setSelectedDate(new Date(e.target.value))}
-            className="p-2 m-2 border-2 border-secondary rounded-md "
+            className="p-2 m-2 border-2 border-secondary rounded-md bg-white"
           />
           <img
             src={calendarLogo}
