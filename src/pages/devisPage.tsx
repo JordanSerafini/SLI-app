@@ -61,6 +61,11 @@ function DevisPage() {
     }
   };
 
+  const calculateTotal = () => {
+    const total = devis.articles.reduce((acc, article) => acc + parseFloat(article.salepricevatincluded), 0);
+    return total.toFixed(2); 
+  };
+
   return (
     <div className="flex flex-col h-screen w-10/10  items-center p-2">
       {/* -------------------------------------- Entete top nom et validation -----------------------------------*/}
@@ -80,13 +85,13 @@ function DevisPage() {
 
       {/* -------------------------------------- Map des articles du devis -----------------------------------*/}
 
-      {devis.articles && devis.articles.length > 0 ? (
-        <div className="w-9.5/10 h-6/10 bg-white border-1 border-secondary-dark rounded-xl p-2">
+       {/* Map des articles du devis */}
+       {devis.articles && devis.articles.length > 0 ? (
+        <div className="relative w-9.5/10 h-6/10 bg-white border-1 border-secondary-dark rounded-xl p-2 overflow-auto">
           <ul>
             {devis.articles.map((article: Article, index: number) => (
-              <li key={index} className="border-b-1 border-secondary-dark p-2">
-                {article.caption} - Quantité: 1 - Prix HT:{" "}
-                {article.salepricevatincluded}€
+              <li key={index} className="border-b-1 border-secondary-dark p-2 text-xs">
+                {article.caption} - Quantité: 1 - Prix HT: {article.salepricevatincluded}€
                 <span
                   className="ml-2 cursor-pointer text-red-500"
                   onClick={() => removeArticleFromDevis(article.id)}
@@ -96,9 +101,13 @@ function DevisPage() {
               </li>
             ))}
           </ul>
+          <div className="sticky bottom-0 right-0 z-50 p-2 flex flex-row justify-between bg-secondary text-sm w-full ">
+            <p>Total:</p> 
+            <div className="bold">{calculateTotal().toString()}€</div>
+          </div>
         </div>
       ) : (
-        <div className="w-9.5/10 h-6/10 bg-white border-1 border-secondary-dark rounded-xl p-2">
+        <div className="w-9.5/10 h-6/10 bg-white border-1 border-secondary-dark rounded-xl p-2 ">
           <p>Aucun article sélectionné</p>
         </div>
       )}

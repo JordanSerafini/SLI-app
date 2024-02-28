@@ -24,6 +24,10 @@ const handleDevisClick = () => {
   navigate('/devis');
 }
 
+const handleArticleClick = () => {
+  navigate('/addArticle');
+}
+
   // ----------------------------------------------- TOAST ----------------------------------------------- //
   useEffect(() => {
     let toastTimeout: number | undefined;
@@ -55,6 +59,10 @@ const handleDevisClick = () => {
     <div onClick={testToast}>
       <div onClick={handleDevisClick}>
         Accéder Devis page
+      </div>
+      
+      <div onClick={handleArticleClick}>
+        Accéder Article form page
       </div>
 
       {showToast && <TopToast message={toastMessage} css="" />}

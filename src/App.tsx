@@ -10,6 +10,7 @@ import ArticlesList from "./pages/articlesList";
 import ClientsList from "./pages/clientsList";
 import Error from "./pages/error";
 import DevisPage from "./pages/devisPage";
+import ArticleForm from "./pages/articleForm";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/clients" element={<ClientsList />} />
             <Route path="/error" element={<Error />} />
             <Route path="/devis" element={<DevisPage />} />
+            <Route path="/addArticle" element={<ArticleForm />} />
           </Routes>
           <BottomNav />
         </Router>
