@@ -35,7 +35,7 @@ const ClientDetailCard: React.FC<DetailClientProps> = ({ selectedClient }) => {
   const name = `${selectedClient.maininvoicingcontact_name} ${selectedClient.maininvoicingcontact_firstname}`;
 
   return (
-    <div className="min-h-64 h-4/10 w-full bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly">
+    <div className="w-full h-9/10 bg-white self-center mt-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly">
       {!showMap ? (
         <>
           {/* Détails du client */}
