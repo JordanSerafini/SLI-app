@@ -23,13 +23,13 @@ function BottomNav() {
       <div className="btm-nav">
 
 
-        <button className={`bg-secondary text- ${activePath === "/" ? "active bg-primary text-bgMain" : ""}`} onClick={() => handleNavigation("/")}>
+        <button className={`border-r-1 bg-blue-2 text-black ${activePath === "/" ? "active bg-accent text-white border-t-2 border-white" : ""}`} onClick={() => handleNavigation("/")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor"
+            stroke="#0f056b"
           >
             <path
               strokeLinecap="round"
@@ -42,13 +42,13 @@ function BottomNav() {
         </button>
 
 
-        <button className={`bg-secondary text-orange-600 border-blue-600 ${activePath === "/planing" ? "active bg-primary text-bgMain" : ""}`}  onClick={() => handleNavigation("/planing")}>
+        <button className={`border-r-1 bg-blue-2 text-black ${activePath === "/planing" ? "active bg-accent text-white border-t-2 border-white" : ""}`}  onClick={() => handleNavigation("/planing")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor"
+            stroke="#DD3C1B"
           >
             <path
               strokeLinecap="round"
@@ -61,13 +61,13 @@ function BottomNav() {
         </button>
 
 
-        <button className={`bg-secondary text-blue-500  ${activePath === "/clients" ? "active bg-primary text-bgMain" : ""}`}  onClick={() => handleNavigation("/clients")}>
+        <button className={`border-r-1 bg-blue-2 text-black  ${activePath === "/clients" ? "active bg-accent text-white border-t-2 border-white" : ""}`}  onClick={() => handleNavigation("/clients")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor"
+            stroke="#875809"
           >
             <path
               strokeLinecap="round"
@@ -79,13 +79,13 @@ function BottomNav() {
           <span className="btm-nav-label">Clients</span>
         </button>
         
-        <button className={`bg-secondary text-green-600 ${activePath === "/articles" ? "active bg-primary text-bgMain" : ""}`}  onClick={() => handleNavigation("/articles")}>
+        <button className={`border-r-1 bg-blue-2 text-black ${activePath === "/articles" ? "active bg-accent text-white border-t-2 border-white" : ""}`}  onClick={() => handleNavigation("/articles")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor"
+            stroke="#002c1b"
           >
             <path
               strokeLinecap="round"

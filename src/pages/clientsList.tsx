@@ -45,7 +45,7 @@ function ClientsList() {
     }
   }
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   // ---------------------------------------------------------- Recherche ----------------------------------------------------------
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {

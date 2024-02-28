@@ -69,6 +69,8 @@ export default {
         "green": "#2a9134",
         "gray-1": "#f2f2f2",
         "gray": "#e7e7e7",
+        "blue-2": '#7395AE',
+        "blue-1": '#557A95',
       },
 
       fontFamily: {
