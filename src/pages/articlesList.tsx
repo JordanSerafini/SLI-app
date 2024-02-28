@@ -30,8 +30,9 @@ function ArticlesList() {
   const itemsPerPage = 30;
 
   const filteredItems = itemList.filter((item) =>
-    item.caption.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  item.caption ? item.caption.toLowerCase().includes(searchTerm.toLowerCase()) : false
+);
+
 
   //----------------------------------------------------------- Calculer les indices des premiers et derniers éléments de la page actuelle pour les éléments filtrés
   const indexOfLastItem = currentPage * itemsPerPage;

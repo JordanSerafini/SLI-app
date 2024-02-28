@@ -22,8 +22,10 @@ function DevisPage() {
   };
 
   const filteredItems = itemList.filter((article) =>
-    article.caption.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  (article.caption || "").toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+
 
   const handleDevisNameChange = (event: {
     target: { value: SetStateAction<string> };
