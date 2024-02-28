@@ -9,7 +9,6 @@ function DevisPage() {
   const [selectedArticleId, setSelectedArticleId] = useState("");
   const [devisName, setDevisName] = useState("");
 
-
   const handleSelectChange = (event: {
     target: { value: SetStateAction<string> };
   }) => {
@@ -26,15 +25,12 @@ function DevisPage() {
     article.caption.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // --------------------------------------------------------------------  Ajouter un Nom Input au devis actuel  --------------------------------------------------------------------
-
   const handleDevisNameChange = (event: {
     target: { value: SetStateAction<string> };
   }) => {
     setDevisName(event.target.value); // Mettre à jour le nom du devis
   };
 
-  // --------------------------------------------------------------------  Ajouter un article au devis actuel  --------------------------------------------------------------------
   const addArticleToDevis = () => {
     const selectedArticle = itemList.find(
       (article) => article.id === selectedArticleId
@@ -48,7 +44,13 @@ function DevisPage() {
     }
   };
 
-  // Valider et ajouter le devis actuel à devisList
+  const removeArticleFromDevis = (articleId: string) => {
+    setDevis((prevDevis) => ({
+      ...prevDevis,
+      articles: prevDevis.articles.filter((article) => article.id !== articleId),
+    }));
+  };
+
   const validateDevis = () => {
     if (devis.articles.length > 0 && devisName.trim() !== "") {
       const newDevis = { ...devis, id: Date.now().toString(), name: devisName };
@@ -83,6 +85,12 @@ function DevisPage() {
               <li key={index} className="border-b-1 border-secondary-dark p-2">
                 {article.caption} - Quantité: 1 - Prix HT:{" "}
                 {article.salepriceVatExcluded}€
+                <span
+                  className="ml-2 cursor-pointer"
+                  onClick={() => removeArticleFromDevis(article.id)}
+                >
+                  X
+                </span>
               </li>
             ))}
           </ul>
