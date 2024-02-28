@@ -40,7 +40,6 @@ function DevisPage() {
         ...prevDevis,
         articles: [...prevDevis.articles, selectedArticle],
       }));
-      console.log(devis);
     }
   };
 
@@ -64,7 +63,8 @@ function DevisPage() {
 
   return (
     <div className="flex flex-col h-screen w-10/10  items-center p-2">
-      {/* -------------------------------------- Affichage du devis actuel -----------------------------------*/}
+      {/* -------------------------------------- Entete top nom et validation -----------------------------------*/}
+      
       <div className="flex flex-row gap-2">
         <input
           type="text"
@@ -78,15 +78,17 @@ function DevisPage() {
         </button>
       </div>
 
+      {/* -------------------------------------- Map des articles du devis -----------------------------------*/}
+
       {devis.articles && devis.articles.length > 0 ? (
         <div className="w-9.5/10 h-6/10 bg-white border-1 border-secondary-dark rounded-xl p-2">
           <ul>
             {devis.articles.map((article: Article, index: number) => (
               <li key={index} className="border-b-1 border-secondary-dark p-2">
                 {article.caption} - Quantité: 1 - Prix HT:{" "}
-                {article.salepriceVatExcluded}€
+                {article.salepricevatincluded}€
                 <span
-                  className="ml-2 cursor-pointer"
+                  className="ml-2 cursor-pointer text-red-500"
                   onClick={() => removeArticleFromDevis(article.id)}
                 >
                   X
@@ -100,6 +102,9 @@ function DevisPage() {
           <p>Aucun article sélectionné</p>
         </div>
       )}
+
+            {/* -------------------------------------- Input recherche  -----------------------------------*/}
+
       <div className="w-10/10 items-center flex flex-col gap-2 mt-2">
         <input
           type="text"
@@ -117,7 +122,7 @@ function DevisPage() {
           <option value="">--Sélectionnez un article--</option>
           {filteredItems.map((article: Article, index: number) => (
             <option key={index} value={article.id}>
-              {article.caption} - {article.salepriceVatExcluded}€ (HT)
+              {article.caption} - {article.salepricevatincluded}€ (HT)
             </option>
           ))}
         </select>
