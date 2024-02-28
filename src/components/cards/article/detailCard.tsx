@@ -1,9 +1,9 @@
-import descriptionLogo from "../../assets/descriptionLogo.png";
-import warningBlueLogo from "../../assets/warningBlueLogo.png";
-import euroLogo from "../../assets/euroLogo.png";
-import warningLogo from "../../assets/warningLogo.png";
+import descriptionLogo from "../../../assets/descriptionLogo.png";
+import warningBlueLogo from "../../../assets/warningBlueLogo.png";
+import euroLogo from "../../../assets/euroLogo.png";
+import warningLogo from "../../../assets/warningLogo.png";
 
-import {Article} from "../../context/dataContext";
+import {Article} from "../../../context/dataContext";
 
 interface DetailCardProps {
     selectedCard: Article; 

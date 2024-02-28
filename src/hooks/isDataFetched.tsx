@@ -31,7 +31,7 @@ export function IsDataFetched() {
     }
 
     loadInitialData();
-  }, [navigate, setClientList, setEventList, setItemList]); // Nous ne dépendons que des setters
+  }, [navigate, setClientList, setEventList, setItemList]); 
 
   return isLoading;
 }

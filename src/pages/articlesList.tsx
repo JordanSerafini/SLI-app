@@ -8,8 +8,8 @@ import {
 import { IsDataFetched } from "../hooks/isDataFetched";
 
 import dataContext from "../context/dataContext";
-import Card from "../components/cards/card";
-import DetailCard from "../components/cards/detailCard";
+import Card from "../components/cards/article/card";
+import DetailCard from "../components/cards/article/detailCard";
 
 import debounce from "../services/debounce";
 import CircleLoader from "../components/loader/circleLoader";
