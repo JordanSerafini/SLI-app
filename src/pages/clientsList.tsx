@@ -60,7 +60,6 @@ function ClientsList() {
   //------------------------------------
   const isSearchVisible = () => {
     setShowInput(!showInput);
-    console.log(showInput);
   };
 
   if (isLoading) {

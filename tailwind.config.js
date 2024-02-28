@@ -87,7 +87,7 @@ export default {
 
           "accent": "#433BFF",
           
-          "neutral": "#00ff00", // Green
+          "neutral": "#028a0f", // Green
 
           "base-100": "#DEDCFF",
 
