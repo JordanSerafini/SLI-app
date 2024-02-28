@@ -5,8 +5,11 @@ import dataContext from "../context/dataContext";
 import ClientCard from "../components/cards/client/clientCard";
 import ClientDetailCard from "../components/cards/client/clientDetailCard";
 
+import searchLogo from "../assets/searchLogo.png";
+
 function ClientsList() {
   const isLoading = IsDataFetched();
+  const [showInput, setShowInput] = useState(false);
   const { clientList } = useContext(dataContext);
   const [ClientSelected, setClientSelected] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -67,7 +70,7 @@ function ClientsList() {
         )}
       </div>
 
-        {/* ---------------------------------------------------------- Carrousel client ----------------------------------------------------------*/}
+      {/* ---------------------------------------------------------- Carrousel client ----------------------------------------------------------*/}
       <div className="h-4/10 bg-red-500">
         <div className="flex gap-8 overflow-x-auto pb-4 h-6/10">
           {currentItems.map((client) => (
@@ -90,30 +93,35 @@ function ClientsList() {
         </div>
 
         {/*---------------------------------------------------------- Pagination ----------------------------------------------------------*/}
-        <div className="pagination flex justify-center space-x-2 ">
-          {pageNumbers.map((number) => (
-            <button
-              key={number}
-              onClick={() => paginate(number)}
-              className={`page-item ${
-                currentPage === number
-                  ? "bg-blue-500 text-white"
-                  : "bg-white text-black"
-              } rounded-full w-7 h-7`}
-            >
-              {number}
-            </button>
-          ))}
+        <div className="flex flex-row items-center justify-center">
+          <div className="pagination flex justify-center space-x-2 ">
+            {pageNumbers.map((number) => (
+              <button
+                key={number}
+                onClick={() => paginate(number)}
+                className={`page-item ${
+                  currentPage === number
+                    ? "bg-blue-500 text-white"
+                    : "bg-white text-black"
+                } rounded-full w-7 h-7`}
+              >
+                {number}
+              </button>
+            ))}
+          </div>
+          <img src={searchLogo} alt="search" className="h-8 ml-6" />
         </div>
 
         {/*---------------------------------------------------------- Recherche ----------------------------------------------------------*/}
-        <input
-          type="text"
-          placeholder="Rechercher..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="mt-4 p-2 border rounded"
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="Rechercher..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="mt-4 p-2 border rounded"
+          />
+        </div>
       </div>
     </div>
   );
