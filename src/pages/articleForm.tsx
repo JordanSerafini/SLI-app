@@ -37,12 +37,11 @@ const ArticleForm = () => {
         // Réinitialiser le formulaire après la soumission
         setFormData({
             caption: "",
-            salepriceVatExcluded: "",
+            salepricevatexcluded: "",
             salepricevatincluded: "",
-            realStock: "",
+            realstock: "",
             descomclear: "",
             image_url: "",
-            realstock: "",
             uniqueid: "",
             familyid: "",
             notesclear: "",
