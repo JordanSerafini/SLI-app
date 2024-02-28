@@ -69,7 +69,7 @@ function ClientsList() {
   return (
     <div className="h-10/10 w-9/10 flex flex-col item self-center ">
       {/* ---------------------------------------------------------- Detail Client ----------------------------------------------------------*/}
-      <div className="bg-blue-300 h-6/10">
+      <div className=" h-6/10">
         {/* ---------------------------------------------------------- Detail Client ----------------------------------------------------------*/}
         {selectedClient ? (
           <ClientDetailCard selectedClient={selectedClient} />
@@ -81,7 +81,7 @@ function ClientsList() {
       </div>
 
       {/* ---------------------------------------------------------- Carrousel client ----------------------------------------------------------*/}
-      <div className="h-4/10 bg-red-500 flex flex-col justify-start">
+      <div className="h-4/10 flex flex-col justify-start">
         <div className="flex gap-8 overflow-x-auto pb-4 h-6/10">
           {currentItems.map((client) => (
             <ClientCard
