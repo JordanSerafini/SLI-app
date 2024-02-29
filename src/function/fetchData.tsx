@@ -1,37 +1,39 @@
 import axios from "axios";
 import url from "../axios/url";
-import { Article, Client, appEvent } from '../context/dataContext';
 import { Dispatch, SetStateAction } from "react";
+import { Article, Client, appEvent } from '../context/dataContext';
 
 export type FetchDataContextParams = {
-  setItemList: Dispatch<SetStateAction<Article[]>>;
-  setClientList: Dispatch<SetStateAction<Client[]>>;
-  setEventList: Dispatch<SetStateAction<appEvent[]>>;
+  setItemList?: Dispatch<SetStateAction<Article[]>>;
+  setClientList?: Dispatch<SetStateAction<Client[]>>;
+  setEventList?: Dispatch<SetStateAction<appEvent[]>>;
 };
 
-async function fetchData({ setItemList, setClientList, setEventList }: FetchDataContextParams) {
+export async function fetchItems(setItemList: Dispatch<SetStateAction<Article[]>>) {
   try {
-    const itemResponse = await axios.get(`${url.heroku}/articlePG`);
-    setItemList(itemResponse.data.rows);
+    const response = await axios.get(`${url.heroku}/articlePG`);
+    setItemList(response.data.rows);
   } catch (error) {
-    console.error(error);
-  }
-
-  try {
-    const clientResponse = await fetch(`${url.heroku}/customerPG`);
-    const data = await clientResponse.json();
-    setClientList(data.rows);
-  } catch (error) {
-    console.error(error);
-  }
-
-  try {
-    const eventResponse = await fetch(`${url.heroku}/event`);
-    const data = await eventResponse.json();
-    setEventList(data.rows);
-  } catch (error) {
-    console.error(error);
+    console.error('Error fetching items: ', error);
   }
 }
 
-export default fetchData;
+export async function fetchClients(setClientList: Dispatch<SetStateAction<Client[]>>) {
+  try {
+    const response = await fetch(`${url.heroku}/customerPG`);
+    const data = await response.json();
+    setClientList(data.rows);
+  } catch (error) {
+    console.error('Error fetching clients: ', error);
+  }
+}
+
+export async function fetchEvents(setEventList: Dispatch<SetStateAction<appEvent[]>>) {
+  try {
+    const response = await fetch(`${url.heroku}/event`);
+    const data = await response.json();
+    setEventList(data.rows);
+  } catch (error) {
+    console.error('Error fetching events: ', error);
+  }
+}

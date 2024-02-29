@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DataContext from '../context/dataContext';
-import fetchData from '../function/fetchData';
-
-
+import { fetchItems, fetchClients, fetchEvents } from '../function/fetchData';
 
 export function IsDataFetched() {
   const navigate = useNavigate();
@@ -11,30 +9,22 @@ export function IsDataFetched() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Cette fonction vérifie si les données ont déjà été chargées
-    const dataIsLoaded = itemList.length > 0 && clientList.length > 0 && eventList.length > 0;
-
-    // Si les données sont déjà chargées, nous n'avons pas besoin de les recharger
-    if (dataIsLoaded) {
-      setLoading(false);
-      return;
-    }
-
- 
-
-    async function loadInitialData() {
+    async function loadNeededData() {
+      setLoading(true);
       try {
-        await fetchData({ setClientList, setEventList, setItemList });
+        if (itemList.length === 0) await fetchItems(setItemList);
+        if (clientList.length === 0) await fetchClients(setClientList);
+        if (eventList.length === 0) await fetchEvents(setEventList);
       } catch (error) {
-        console.error('Error fetching data: ', error);
+        console.error('Error loading data: ', error);
         navigate('/error');
       } finally {
         setLoading(false);
       }
     }
 
-    loadInitialData();
-  }, [navigate, setClientList, setEventList, setItemList, itemList.length, clientList.length, eventList.length]); 
+    loadNeededData();
+  }, [navigate, setClientList, setEventList, setItemList, itemList.length, clientList.length, eventList.length]);
 
   return isLoading;
 }
