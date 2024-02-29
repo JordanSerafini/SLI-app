@@ -59,6 +59,7 @@ export default {
         'text': '#050315',
         'bgMain': '#FBFBFE',
         "secondary-light": "#eeedff",
+        "primary-new": "#a9a8c1",
         "secondary-light-2": "#ebeaff",
         "secondary-dark": "#c7c6e5",
         "bg-lightgray": "#EAEEEF",

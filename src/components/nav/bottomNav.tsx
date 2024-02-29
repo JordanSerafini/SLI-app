@@ -23,7 +23,7 @@ function BottomNav() {
       <div className="btm-nav">
 
 
-        <button className={`border-r-1 bg-blue-2 text-black ${activePath === "/" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`} onClick={() => handleNavigation("/")}>
+        <button className={`border-r-1 bg-primary-new text-black ${activePath === "/" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`} onClick={() => handleNavigation("/")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -42,7 +42,7 @@ function BottomNav() {
         </button>
 
 
-        <button className={`border-r-1 bg-blue-2 text-black ${activePath === "/planing" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/planing")}>
+        <button className={`border-r-1 bg-primary-new text-black ${activePath === "/planing" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/planing")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -61,7 +61,7 @@ function BottomNav() {
         </button>
 
 
-        <button className={`border-r-1 bg-blue-2 text-black  ${activePath === "/clients" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/clients")}>
+        <button className={`border-r-1 bg-primary-new text-black  ${activePath === "/clients" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/clients")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -79,7 +79,7 @@ function BottomNav() {
           <span className="btm-nav-label">Clients</span>
         </button>
         
-        <button className={`border-r-1 bg-blue-2 text-black ${activePath === "/articles" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/articles")}>
+        <button className={`border-r-1 bg-primary-new text-black ${activePath === "/articles" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/articles")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

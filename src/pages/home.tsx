@@ -1,9 +1,8 @@
 import {  useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
 import { IsDataFetched } from "../hooks/isDataFetched"; 
 
+import ThemeBtn from "../components/buttons/themeBtn";
 import TopToast from "../components/toast/toastTop"; 
 import CircleLoader from "../components/loader/circleLoader";
 
@@ -72,6 +71,8 @@ const handleChartsClick = () => {
       <div onClick={handleChartsClick}>
         Accéder Charts page
       </div>
+
+      <ThemeBtn />
 
       {showToast && <TopToast message={toastMessage} css="" />}
     </div>

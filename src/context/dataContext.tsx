@@ -53,9 +53,6 @@ export interface Devis {
   articles: Article[];
 }
 
-
-
-// Définis un type pour le contexte qui utilisera les interfaces Article et Client.
 export type DataContextType = {
   itemList: Article[];
   setItemList: Dispatch<SetStateAction<Article[]>>;
@@ -68,6 +65,11 @@ export type DataContextType = {
   devisList: Devis[];
   setDevisList: Dispatch<SetStateAction<Devis[]>>;
 };
+
+export interface ThemeContextType {
+  theme: string;
+  toggleTheme: () => void;
+}
 
 
 
