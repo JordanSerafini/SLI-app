@@ -16,7 +16,7 @@ function Charts() {
         datasets: [
           {
             label: 'Ventes 2024',
-            data: [65, 59, 80, 81, 56, 55],
+            data: [26, 59, 80, 88, 56, 55],
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
           },
         ],
@@ -136,8 +136,6 @@ function Charts() {
       // ... d'autres datasets si nécessaire
     ],
   };
-  
-
 
   const bubbleData = {
     datasets: [
