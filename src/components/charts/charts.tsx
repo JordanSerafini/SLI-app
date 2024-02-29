@@ -9,6 +9,11 @@ import StackedAreaChart from "./stackedAreaChart";
 import StackedBarChart from "./stackedBarChart";
 import StepChart from "./stepChart";
 import PolarChart from "./polarChart";
+import ScatterChart from "./scatterChart";
+import StripChart from "./stripChart";
+
+
+
 
 function Charts() {
 
@@ -212,6 +217,47 @@ function Charts() {
     ]
   };
 
+  const scatterChartData = {
+    datasets: [
+      {
+        label: 'Groupe A',
+        data: [
+          { x: -10, y: 0 },
+          { x: 0, y: 10 },
+          { x: 10, y: 5 },
+          { x: 0.5, y: 5.5 },
+        ],
+        backgroundColor: 'rgba(255, 99, 132, 1)',
+      },
+      {
+        label: 'Groupe B',
+        data: [
+          { x: -5, y: 5 },
+          { x: -2, y: -3 },
+          { x: 1, y: -7 },
+          { x: 5, y: -3 },
+        ],
+        backgroundColor: 'rgba(54, 162, 235, 1)',
+      }
+    ],
+  };
+
+
+  const stripChartData = {
+    datasets: [
+      {
+        label: 'Distribution des Valeurs',
+        data: Array.from({ length: 100 }, () => ({
+          x: Math.random() * 100, 
+          y: 0.5 + (Math.random() - 0.5) * 0.1 
+        })),
+        backgroundColor: 'rgba(255, 99, 132, 1)',
+      }
+    ],
+  };
+
+
+
 
 
   return (
@@ -227,6 +273,8 @@ function Charts() {
         < StepChart data={stepData} />
         < StackedBarChart data={stackedData} options={options}/>
         < PolarChart data={polarData} />
+        < ScatterChart data={scatterChartData} />
+        < StripChart data={stripChartData} />
 
         < BubbleChart data={bubbleData} />
     </div>
