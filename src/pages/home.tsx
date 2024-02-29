@@ -28,6 +28,10 @@ const handleArticleClick = () => {
   navigate('/addArticle');
 }
 
+const handleChartsClick = () => {
+  navigate('/charts');
+}
+
   // ----------------------------------------------- TOAST ----------------------------------------------- //
   useEffect(() => {
     let toastTimeout: number | undefined;
@@ -63,6 +67,10 @@ const handleArticleClick = () => {
       
       <div onClick={handleArticleClick}>
         Accéder Article form page
+      </div>
+
+      <div onClick={handleChartsClick}>
+        Accéder Charts page
       </div>
 
       {showToast && <TopToast message={toastMessage} css="" />}
