@@ -82,12 +82,12 @@ function Charts() {
     labels: ['Rouge', 'Bleu', 'Jaune', 'Vert'],
     datasets: [
       {
-        data: [170, 50, 100, 75], // Ajout de la valeur 75 pour la nouvelle donnée
+        data: [170, 50, 100, 75], 
         backgroundColor: [
           'rgba(255, 99, 132, 0.6)',
           'rgba(54, 162, 235, 0.6)',
           'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)' // Ajout d'une nouvelle couleur pour la quatrième donnée
+          'rgba(75, 192, 192, 0.6)' 
         ],
       },
     ],
@@ -156,7 +156,7 @@ function Charts() {
     datasets: [
       {
         label: 'Première série de données',
-        data: [0, 20, 20, 60, 60],
+        data: [0, 20, 17, 60, 60],
         borderColor: 'rgba(75,192,192,1)',
         fill: false,
         tension: 0.1,
