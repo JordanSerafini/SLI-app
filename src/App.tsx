@@ -11,7 +11,7 @@ import ClientsList from "./pages/clientsList";
 import Error from "./pages/error";
 import DevisPage from "./pages/devisPage";
 import ArticleForm from "./pages/articleForm";
-import Charts from "./components/charts/charts";
+import Charts from "./pages/charts";
 
 function App() {
   return (

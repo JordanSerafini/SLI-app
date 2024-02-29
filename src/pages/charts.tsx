@@ -1,16 +1,16 @@
-import BarChart from "./barChart"
-import DonutChart from "./donutChart";
-import LineChart from "./lineChart";
-import RadarChart from "./radarChart";
-import PieChart from "./pieChart";
-import BubbleChart from "./bubbleChart";
-import MixedChart from "./mixedChart";
-import StackedAreaChart from "./stackedAreaChart";
-import StackedBarChart from "./stackedBarChart";
-import StepChart from "./stepChart";
-import PolarChart from "./polarChart";
-import ScatterChart from "./scatterChart";
-import StripChart from "./stripChart";
+import BarChart from "../components/charts/barChart"
+import DonutChart from "../components/charts/donutChart";
+import LineChart from "../components/charts/lineChart";
+import RadarChart from "../components/charts/radarChart";
+import PieChart from "../components/charts/pieChart";
+import BubbleChart from "../components/charts/bubbleChart";
+import MixedChart from "../components/charts/mixedChart";
+import StackedAreaChart from "../components/charts/stackedAreaChart";
+import StackedBarChart from "../components/charts/stackedBarChart";
+import StepChart from "../components/charts/stepChart";
+import PolarChart from "../components/charts/polarChart";
+import ScatterChart from "../components/charts/scatterChart";
+import StripChart from "../components/charts/stripChart";
 
 
 
@@ -257,11 +257,8 @@ function Charts() {
   };
 
 
-
-
-
   return (
-    <div className="flex flex-col gap-20 bg-secondary-light p-2">
+    <div className="flex flex-col gap-20 bg-secondary-light">
         < BarChart data={data} />
         < DonutChart data={donutData} />
         < LineChart data={lineData} />
@@ -275,8 +272,7 @@ function Charts() {
         < PolarChart data={polarData} />
         < ScatterChart data={scatterChartData} />
         < StripChart data={stripChartData} />
-
-        < BubbleChart data={bubbleData} />
+        <p>...</p>
     </div>
   )
 }
