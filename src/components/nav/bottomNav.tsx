@@ -22,20 +22,20 @@ function BottomNav() {
     setActivePath(path); 
   };
 
-  let themeCSS: string;
+  let bgThemeCSS: string;
 
 switch (theme) {
     case "main":
-        themeCSS = "bg-secondary-dark";
+        bgThemeCSS = "bg-secondary-dark";
         break;
     case "second":
-        themeCSS = "bg-primary-new";
+        bgThemeCSS = "bg-primary-new";
         break;
     case "third":
-        themeCSS = "bg-blue-500";
+        bgThemeCSS = "bg-blue-300";
         break;
     default:
-        themeCSS = ""; 
+        bgThemeCSS = ""; 
         break;
 }
 
@@ -45,7 +45,7 @@ switch (theme) {
       <div className="btm-nav">
 
 
-        <button className={`border-r-1 ${themeCSS} text-black ${activePath === "/" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`} onClick={() => handleNavigation("/")}>
+        <button className={`border-r-1 ${bgThemeCSS} text-black ${activePath === "/" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`} onClick={() => handleNavigation("/")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -64,7 +64,7 @@ switch (theme) {
         </button>
 
 
-        <button className={`border-r-1 ${themeCSS} text-black ${activePath === "/planing" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/planing")}>
+        <button className={`border-r-1 ${bgThemeCSS} text-black ${activePath === "/planing" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/planing")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -83,7 +83,7 @@ switch (theme) {
         </button>
 
 
-        <button className={`border-r-1 ${themeCSS} text-black  ${activePath === "/clients" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/clients")}>
+        <button className={`border-r-1 ${bgThemeCSS} text-black  ${activePath === "/clients" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/clients")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -101,7 +101,7 @@ switch (theme) {
           <span className="btm-nav-label">Clients</span>
         </button>
         
-        <button className={`border-r-1 ${themeCSS} text-black ${activePath === "/articles" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/articles")}>
+        <button className={`border-r-1 ${bgThemeCSS} text-black ${activePath === "/articles" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/articles")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

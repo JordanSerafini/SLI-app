@@ -7,9 +7,11 @@ import {
 } from "react";
 import { IsDataFetched } from "../hooks/isDataFetched";
 
+import { ThemeContext } from "../context/theme/themeContext";
 import dataContext from "../context/dataContext";
 import Card from "../components/cards/article/articleCard";
 import DetailCard from "../components/cards/article/detailCard";
+import ThemeBtn from "../components/buttons/themeBtn";
 
 import debounce from "../services/debounce";
 import CircleLoader from "../components/loader/circleLoader";
@@ -17,6 +19,7 @@ import TopToast from "../components/toast/toastTop";
 
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
+  const { theme } = useContext(ThemeContext);
   const [cardSelected, setCardSelected] = useState({});
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -24,6 +27,35 @@ function ArticlesList() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const isLoading = IsDataFetched();
+
+
+  let ThemeCss: string;
+  let bgColor: string;
+  let inputColor: string;
+
+  switch (theme) {
+      case "main":
+          ThemeCss = "shadow-effect  w-8/10 ";
+          bgColor = "bg-secondary-dark";
+          inputColor = "border-secondary-dark";
+          break;
+      case "second":
+          ThemeCss = "shadow-effect-primaryNew border-1 border-primary-new w-10/10 ";
+          bgColor = "bg-primary-new";
+          inputColor = "border-primary-new ";
+          break;
+      case "third":
+          ThemeCss = "border-1 border-blue-200 shadow-effect-blue w-4.5/10 text-xs";
+          bgColor = "bg-blue-300";
+          inputColor = "border-blue-300 ";
+          break;
+      default:
+          ThemeCss = ""; 
+          bgColor = "";
+          inputColor = "";
+          break;
+  }
+
 
   // -------------------------------------------------------------------------------- Pagination -----------------------------------------------------------------------------------
   const [currentPage, setCurrentPage] = useState(1);
@@ -153,7 +185,7 @@ function ArticlesList() {
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
-              css="carousel-item w-8/10 md:w-4.5/10 bg-bgMain text-text shadow-effect "
+              css={`carousel-item md:w-4.5/10 bg-bgMain text- ${ThemeCss}`}
               key={`${index}_${card.id}`}
               caption={card.caption}
               img={card.image_url}
@@ -172,7 +204,7 @@ function ArticlesList() {
               onClick={() => paginate(number)}
               className={`page-item ${
                 currentPage === number
-                  ? "bg-blue-500 text-white"
+                  ? bgColor + ' text-white'
                   : "bg-bgMain text-accent"
               } rounded-full w-10 h-10 border-1 border-secondary-dark text-primary `}
             >
@@ -185,9 +217,10 @@ function ArticlesList() {
           placeholder="Rechercher..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="self-center mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus:"
+          className={`self-center mt-4 input w-full max-w-xs bg-bgMain border-1 ${inputColor} focus:border-secondary focus:`}
         />
       </div>
+      <ThemeBtn />
       </div>
       {showToast && (
         <TopToast

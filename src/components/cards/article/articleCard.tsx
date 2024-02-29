@@ -1,4 +1,8 @@
-function card({
+import { useContext } from "react";
+
+import { ThemeContext } from "../../../context/theme/themeContext";
+
+function Card({
   id,
   caption,
   img,
@@ -13,6 +17,9 @@ function card({
   css: string;
   onDetailClick: (id: string) => void;
 }) {
+
+
+
   let familyBadge;
 
   switch (familyid) {
@@ -41,7 +48,7 @@ function card({
   }
 
   return (
-    <div className={`card ${css} w-10/10 h-10/10`} onClick={() => onDetailClick(id)}>
+    <div className={`card ${css} w-10/10 h-10/10 `} onClick={() => onDetailClick(id)} >
       {img && (
         <figure className="h-4/10 flex justify-center">
           <img
@@ -52,7 +59,7 @@ function card({
         </figure>
       )}
       <div className="card-body overflow-auto">
-        <h2 className="card-title text-sm">{caption}</h2>
+        <h2 className="card-title text-xs">{caption}</h2>
         <div className="card-actions justify-end"></div>
         <div className="flex justify-end">{familyBadge}</div>
       </div>
@@ -60,4 +67,4 @@ function card({
   );
 }
 
-export default card;
+export default Card;

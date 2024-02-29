@@ -37,6 +37,18 @@
   box-shadow: 6px 4px 15px rgba(47, 39, 206, 0.2);
 }
 
+.shadow-effect-primaryNew {
+  /* Décalage horizontal, décalage vertical, flou, étalement, couleur */
+  box-shadow: -16px 24px 5px rgba(169, 168, 193, 0.2);
+}
+
+
+.shadow-effect-blue {
+  /* Décalage horizontal, décalage vertical, flou, étalement, couleur */
+  box-shadow: 3px 0px 15px rgba(83, 109, 254, 0.5);
+}
+
+
 
 
 .shadow-effect {

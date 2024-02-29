@@ -1,3 +1,7 @@
+import { useContext } from "react";
+
+import { ThemeContext } from "../../../context/theme/themeContext";
+
 import descriptionLogo from "../../../assets/descriptionLogo.png";
 import warningBlueLogo from "../../../assets/warningBlueLogo.png";
 import euroLogo from "../../../assets/euroLogo.png";
@@ -12,15 +16,36 @@ interface DetailCardProps {
 
 const DetailCard: React.FC<DetailCardProps> = ({ selectedCard }) => {
 
- 
-  
+  const { theme } = useContext(ThemeContext);
+
+  let textColor: string;
+  let borderCss
+
+  switch (theme) {
+      case "main":
+          textColor = "text-secondary-dark";
+          borderCss="";
+          break;
+      case "second":
+          textColor = "text-primary-new";
+          borderCss="";
+          break;
+      case "third":
+          textColor = "text-blue-400";
+          borderCss = "border-2 border-blue-200";
+
+          break;
+      default:
+          textColor = ""; 
+          break;
+  }
 
     return (
     <>
-          <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-">
+          <div className={` ${borderCss} h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-`}>
             {/* Affiche les détails de la carte ici */}
             {selectedCard.caption && (
-              <h2 className="text-center bold border-b-1 border-secondary h-3/10 libre-baskerville-regular text-primary tracking-wider">
+              <h2 className={` text-center bold border-b-1 border-secondary h-3/10 libre-baskerville-regular ${textColor} tracking-wider`}>
                 {selectedCard.caption} 
               </h2>
             )}
