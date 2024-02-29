@@ -118,7 +118,7 @@ function Charts() {
     labels: ['Janvier', 'Février', 'Mars', 'Avril'],
     datasets: [
       {
-        type: 'line',
+        type: 'line' as const, // Utilisez 'as const' pour assurer que le type est 'line'
         label: 'Dataset 1',
         borderColor: 'rgb(54, 162, 235)',
         borderWidth: 2,
@@ -126,15 +126,17 @@ function Charts() {
         data: [50, 25, 50, 75],
       },
       {
-        type: 'bar',
+        type: 'bar' as const, // Utilisez 'as const' pour assurer que le type est 'bar'
         label: 'Dataset 2',
         backgroundColor: 'rgb(255, 99, 132)',
         data: [75, 50, 75, 50],
         borderColor: 'white',
         borderWidth: 2,
-      }
+      },
+      // ... d'autres datasets si nécessaire
     ],
   };
+  
 
 
   const bubbleData = {
