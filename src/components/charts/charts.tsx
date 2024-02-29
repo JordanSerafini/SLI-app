@@ -8,6 +8,7 @@ import MixedChart from "./mixedChart";
 import StackedAreaChart from "./stackedAreaChart";
 import StackedBarChart from "./stackedBarChart";
 import StepChart from "./stepChart";
+import PolarChart from "./polarChart";
 
 function Charts() {
 
@@ -192,6 +193,25 @@ function Charts() {
     },
   };
 
+  const polarData = {
+    labels: ['Rouge', 'Vert', 'Bleu', 'Jaune', 'Violet', 'Orange'],
+    datasets: [
+      {
+        label: '# of Votes',
+        data: [11, 16, 7, 3, 14, 6],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.5)',
+          'rgba(75, 192, 192, 0.5)',
+          'rgba(54, 162, 235, 0.5)',
+          'rgba(255, 206, 86, 0.5)',
+          'rgba(153, 102, 255, 0.5)',
+          'rgba(255, 159, 64, 0.5)'
+        ],
+        borderWidth: 1
+      }
+    ]
+  };
+
 
 
   return (
@@ -206,7 +226,8 @@ function Charts() {
         < StackedAreaChart data={stackedAreaData} />
         < StepChart data={stepData} />
         < StackedBarChart data={stackedData} options={options}/>
-        
+        < PolarChart data={polarData} />
+
         < BubbleChart data={bubbleData} />
     </div>
   )
