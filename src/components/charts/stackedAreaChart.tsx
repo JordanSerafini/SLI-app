@@ -19,6 +19,7 @@ interface StackedAreaChartProps {
 
 const StackedAreaChart: React.FC<StackedAreaChartProps> = ({ data }) => {
   return (
+    <div className="bg-white border-secondary border-2">
     <Line 
       data={data} 
       options={{
@@ -32,6 +33,7 @@ const StackedAreaChart: React.FC<StackedAreaChartProps> = ({ data }) => {
         }
       }} 
     />
+    </div>
   );
 };
 

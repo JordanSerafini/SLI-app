@@ -18,7 +18,11 @@ interface LineChartProps {
 }
 
 const LineChart: React.FC<LineChartProps> = ({ data }) => {
-  return <Line data={data} />;
+  return (
+    <div className="bg-white border-secondary border-2">
+      <Line data={data} />;
+    </div>
+  );
 };
 
 export default LineChart;
