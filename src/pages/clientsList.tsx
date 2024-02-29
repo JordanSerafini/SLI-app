@@ -34,6 +34,8 @@ function ClientsList() {
   });
   
 
+
+
   // ---------------------------------------------------------- Pagination ----------------------------------------------------------
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -94,7 +96,7 @@ function ClientsList() {
               key={client.id + "-" + index}
               id={client.id}
               name={client.name}
-              css="carousel-item w-7/10 md:w-4.5/10 bg-bgMain text-text shadow-effect"
+              css="carousel-item w-7/10 md:w-4.5/10 bg-bgMain text-text shadow-effect border-1 border-secondary-dark"
               maininvoicingcontact_name={client.maininvoicingcontact_name}
               maininvoicingcontact_firstname={
                 client.maininvoicingcontact_firstname

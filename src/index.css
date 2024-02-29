@@ -32,11 +32,11 @@
     font-weight: 800;
 }
   
-
 .shadow-effect {
   /* Décalage horizontal, décalage vertical, flou, étalement, couleur */
-  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 8px 6px 10px rgba(47, 39, 206, 0.2);
 }
+
 
 .libre-baskerville-regular {
     font-family: "Libre Baskerville", serif;
