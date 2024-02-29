@@ -38,7 +38,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data }) => {
     <h3 className="libre-baskerville-bold tracking-widest border-b-2 text-secondary-dark border-secondary pb-4 w-8.5/10">
       Radar Chart
     </h3>      {" "}
-      <Radar data={data} />;
+      <Radar data={data} />
     </div>
   );
 };

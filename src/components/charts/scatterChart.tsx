@@ -48,7 +48,7 @@ const ScatterChart: React.FC<ScatterChartProps> = ({ data }) => {
           },
         }}
       />
-      ;
+      
     </div>
   );
 };

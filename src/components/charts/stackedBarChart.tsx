@@ -37,7 +37,7 @@ const StackedBarChart: React.FC<StackedBarChartProps> = ({ data, options }) => {
     <h3 className="libre-baskerville-bold tracking-widest border-b-2 text-secondary-dark border-secondary pb-4 w-8.5/10">
       Stacked Bar Chart
     </h3>      {" "}
-      <Bar data={data} options={options} />;
+      <Bar data={data} options={options} />
     </div>
   );
 };

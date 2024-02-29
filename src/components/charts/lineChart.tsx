@@ -40,7 +40,7 @@ const LineChart: React.FC<LineChartProps> = ({ data }) => {
       <h3 className="libre-baskerville-bold tracking-widest border-b-2 text-secondary-dark border-secondary pb-4 w-8.5/10">
         Line Chart
       </h3>{" "}
-      <Line data={data} />;
+      <Line data={data} />
     </div>
   );
 };

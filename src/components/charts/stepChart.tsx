@@ -45,7 +45,7 @@ const StepChart: React.FC<StepChartProps> = ({ data }) => {
         data={data}
         options={{ elements: { line: { tension: 0, stepped: true } } }}
       />
-      ;
+      
     </div>
   );
 };

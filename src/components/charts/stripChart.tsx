@@ -43,7 +43,7 @@ const StripChart: React.FC<StripChartProps> = ({ data }) => {
           },
         }}
       />
-      ;
+      
     </div>
   );
 };
