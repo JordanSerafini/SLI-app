@@ -258,7 +258,7 @@ function Charts() {
 
 
   return (
-    <div className="flex flex-col gap-20 bg-secondary-light">
+    <div className="flex flex-col gap-20 bg-secondary-light p-2">
         < BarChart data={data} />
         < DonutChart data={donutData} />
         < LineChart data={lineData} />

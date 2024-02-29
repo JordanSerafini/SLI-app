@@ -24,7 +24,7 @@ const DonutChart: React.FC<DonutChartProps> = ({ data }) => {
       <h3 className="libre-baskerville-bold tracking-widest border-b-2 text-secondary-dark border-secondary pb-4 w-8.5/10">
         Donut Chart
       </h3>{" "}
-      <div className="bg-white border-secondary border-2">
+      <div className="bg-white">
         {" "}
         <Doughnut data={data} />
       </div>

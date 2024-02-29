@@ -41,7 +41,7 @@ function card({
   }
 
   return (
-    <div className={`card ${css} w-10/10`} onClick={() => onDetailClick(id)}>
+    <div className={`card ${css} w-10/10 h-10/10`} onClick={() => onDetailClick(id)}>
       {img && (
         <figure className="h-4/10 flex justify-center">
           <img

@@ -137,7 +137,7 @@ function ArticlesList() {
 
   return (
     <>
-      <div className="h-full w-9/10 flex flex-col self-center ">
+      <div className="h-10/10 w-9/10 flex flex-col self-center item-center justify-start">
         {/*  ---------------------------------------------------------------------- Zone pour afficher des détails de l'article sélectionné  ----------------------------------------------------------------------*/}
 
         {selectedCard ? (
@@ -149,7 +149,7 @@ function ArticlesList() {
         )}
 
         {/*  ---------------------------------------------------------------------- Carousel de CARDS  ---------------------------------------------------------------------- */}
-        <div className="gap-8 carousel rounded-box pb-4 regular tracking-wider">
+        <div className="h-3/10 gap-8 carousel rounded-box pb-4 regular tracking-wider">
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
@@ -164,7 +164,8 @@ function ArticlesList() {
         </div>
 
         {/* ----------------------------------------------------------------------  Pagination  ---------------------------------------------------------------------- */}
-        <div className="pagination flex justify-center space-x-2 mt-4">
+        <div className="h-2/10 mb-14">
+        <div className="pagination flex justify-center space-x-2">
           {pageNumbers.map((number) => (
             <button
               key={number}
@@ -184,8 +185,9 @@ function ArticlesList() {
           placeholder="Rechercher..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="self-center mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus: mb-24"
+          className="self-center mt-4 input w-full max-w-xs bg-bgMain border-1 border-primary focus:border-secondary focus:"
         />
+      </div>
       </div>
       {showToast && (
         <TopToast
