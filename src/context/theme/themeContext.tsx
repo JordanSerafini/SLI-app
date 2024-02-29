@@ -5,7 +5,12 @@ type ThemeContextType = {
   setTheme: Dispatch<SetStateAction<string>>;
 };
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const defaultThemeContextValue: ThemeContextType = {
+  theme: 'main',
+  setTheme: () => {}, // Cette fonction est juste une fonction vide par défaut, elle sera remplacée par useState
+};
+
+const ThemeContext = createContext<ThemeContextType>(defaultThemeContextValue);
 
 interface ThemeProviderProps {
   children: React.ReactNode;

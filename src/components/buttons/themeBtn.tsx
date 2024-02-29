@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../context/theme/themeContext";
 
+const availableThemes = ['main', 'second', 'third']; // Liste des thèmes disponibles
+
 function ThemeBtn() {
     const themeContext = useContext(ThemeContext);
 
@@ -11,16 +13,15 @@ function ThemeBtn() {
     const { theme, setTheme } = themeContext;
 
     const handleTheme = () => {
-        if (theme === 'main') {
-            setTheme('second');
-        } else {
-            setTheme('main');
-        }
-        console.log(theme);
+        const currentIndex = availableThemes.indexOf(theme);
+        const nextIndex = (currentIndex + 1) % availableThemes.length;
+        const nextTheme = availableThemes[nextIndex];
+        setTheme(nextTheme);
+        console.log(nextTheme);
     }
 
     return (
-        <div onClick={handleTheme}>themeBtn</div>
+        <div onClick={handleTheme} className="border-1 border-primary p-2 w-fit">themeBtn</div>
     );
 }
 

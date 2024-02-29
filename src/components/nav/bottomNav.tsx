@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ThemeContext } from "../../context/theme/themeContext";
 
 
 function BottomNav() {
+  const themeContext = useContext(ThemeContext);
+
+  const { theme } = themeContext;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,12 +22,30 @@ function BottomNav() {
     setActivePath(path); 
   };
 
+  let themeCSS: string;
+
+switch (theme) {
+    case "main":
+        themeCSS = "bg-secondary-dark";
+        break;
+    case "second":
+        themeCSS = "bg-primary-new";
+        break;
+    case "third":
+        themeCSS = "bg-blue-500";
+        break;
+    default:
+        themeCSS = ""; 
+        break;
+}
+
+
   return (
     <>
       <div className="btm-nav">
 
 
-        <button className={`border-r-1 bg-primary-new text-black ${activePath === "/" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`} onClick={() => handleNavigation("/")}>
+        <button className={`border-r-1 ${themeCSS} text-black ${activePath === "/" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`} onClick={() => handleNavigation("/")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -42,7 +64,7 @@ function BottomNav() {
         </button>
 
 
-        <button className={`border-r-1 bg-primary-new text-black ${activePath === "/planing" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/planing")}>
+        <button className={`border-r-1 ${themeCSS} text-black ${activePath === "/planing" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/planing")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -61,7 +83,7 @@ function BottomNav() {
         </button>
 
 
-        <button className={`border-r-1 bg-primary-new text-black  ${activePath === "/clients" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/clients")}>
+        <button className={`border-r-1 ${themeCSS} text-black  ${activePath === "/clients" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/clients")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -79,7 +101,7 @@ function BottomNav() {
           <span className="btm-nav-label">Clients</span>
         </button>
         
-        <button className={`border-r-1 bg-primary-new text-black ${activePath === "/articles" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/articles")}>
+        <button className={`border-r-1 ${themeCSS} text-black ${activePath === "/articles" ? "active bg-accent text-white border-t-2 border-gray-1" : ""}`}  onClick={() => handleNavigation("/articles")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
