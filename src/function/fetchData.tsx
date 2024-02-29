@@ -23,6 +23,7 @@ export async function fetchClients(setClientList: Dispatch<SetStateAction<Client
     const response = await fetch(`${url.heroku}/customerPG`);
     const data = await response.json();
     setClientList(data.rows);
+
   } catch (error) {
     console.error('Error fetching clients: ', error);
   }
@@ -33,6 +34,7 @@ export async function fetchEvents(setEventList: Dispatch<SetStateAction<appEvent
     const response = await fetch(`${url.heroku}/event`);
     const data = await response.json();
     setEventList(data.rows);
+
   } catch (error) {
     console.error('Error fetching events: ', error);
   }

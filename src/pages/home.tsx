@@ -11,6 +11,7 @@ function Home() {
 
   const isLoading = IsDataFetched();
 
+
   // ----------------------------------------------- NAVIGATION ----------------------------------------------- //
 
   const navigate = useNavigate();

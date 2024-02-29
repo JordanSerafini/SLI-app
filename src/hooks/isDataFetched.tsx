@@ -10,6 +10,7 @@ export function IsDataFetched() {
 
   useEffect(() => {
     async function loadNeededData() {
+      
       setLoading(true);
       try {
         if (itemList.length === 0) await fetchItems(setItemList);
@@ -19,6 +20,8 @@ export function IsDataFetched() {
         console.error('Error loading data: ', error);
         navigate('/error');
       } finally {
+          console.log("Home");
+
         setLoading(false);
       }
     }
