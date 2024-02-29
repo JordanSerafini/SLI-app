@@ -18,13 +18,19 @@ function ClientsList() {
 
   // ---------------------------------------------------------- fitre client ----------------------------------------------------------
   const searchTermCleaned = searchTerm.toLowerCase().trim();
-  const searchTermRegex = new RegExp([...searchTermCleaned].join('.*'), 'i');
+  const searchWords = searchTermCleaned.split(' '); // Diviser le terme de recherche en mots individuels
   
   const filteredClients = clientList.filter(client => {
-    const name = (client.maininvoicingcontact_name || "").toLowerCase();
-    const firstName = (client.maininvoicingcontact_firstname || "").toLowerCase();
+      const name = (client.maininvoicingcontact_name || "").toLowerCase();
+      const firstName = (client.maininvoicingcontact_firstname || "").toLowerCase();
   
-    return searchTermRegex.test(name) || searchTermRegex.test(firstName);
+      // Vérifier si tous les mots de recherche sont présents dans le nom ou le prénom du client, dans n'importe quel ordre
+      const isMatch = searchWords.every(word => {
+          // Vérifier si le mot de recherche est présent dans le nom ou prénom du client
+          return name.includes(word) || firstName.includes(word);
+      });
+  
+      return isMatch;
   });
   
 
