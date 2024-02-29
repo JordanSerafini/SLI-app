@@ -20,7 +20,7 @@ const DetailCard: React.FC<DetailCardProps> = ({ selectedCard }) => {
           <div className="h-5/10 w-10/10 bg-white self-center m-4 mb-6 rounded-2xl p-2 flex flex-col justify-evenly gap-">
             {/* Affiche les détails de la carte ici */}
             {selectedCard.caption && (
-              <h2 className="text-center bold border-b-1 border-secondary h-3/10 libre-baskerville-italic tracking-wider">
+              <h2 className="text-center bold border-b-1 border-secondary h-3/10 libre-baskerville-regular text-primary tracking-wider">
                 {selectedCard.caption} 
               </h2>
             )}
@@ -34,13 +34,13 @@ const DetailCard: React.FC<DetailCardProps> = ({ selectedCard }) => {
                     alt="description"
                     className="h-7"
                   />
-                  <p className="max-h-16 overflow-auto text-sm">
+                  <p className="max-h-16 overflow-auto text-xs">
                     {selectedCard.descomclear}
                   </p>
                 </div>
               )}
               {selectedCard.notesclear !== null && (
-                <div className="flex flex-row gap-4 items-center text-sm">
+                <div className="flex flex-row gap-4 items-center text-xs">
                   <img src={warningBlueLogo} alt="!" className="h-7" />
                   <div className="max-h-16 overflow-auto">
                     {selectedCard.notesclear}
