@@ -2,6 +2,12 @@ import BarChart from "./barChart"
 import DonutChart from "./donutChart";
 import LineChart from "./lineChart";
 import RadarChart from "./radarChart";
+import PieChart from "./pieChart";
+import BubbleChart from "./bubbleChart";
+import MixedChart from "./mixedChart";
+import StackedAreaChart from "./stackedAreaChart";
+import StackedBarChart from "./stackedBarChart";
+import StepChart from "./stepChart";
 
 function Charts() {
 
@@ -72,12 +78,136 @@ function Charts() {
     ]
   };
 
+  const pieData = {
+    labels: ['Rouge', 'Bleu', 'Jaune', 'Vert'],
+    datasets: [
+      {
+        data: [170, 50, 100, 75], // Ajout de la valeur 75 pour la nouvelle donnée
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)' // Ajout d'une nouvelle couleur pour la quatrième donnée
+        ],
+      },
+    ],
+  };
+  
+
+  const stackedAreaData = {
+    labels: ['Janvier', 'Février', 'Mars', 'Avril'],
+    datasets: [
+      {
+        label: 'Dataset 1',
+        data: [50, 100, 150, 200],
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        fill: true,
+      },
+      {
+        label: 'Dataset 2',
+        data: [28, 48, 40, 19],
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        fill: true,
+      }
+    ],
+  };
+
+  const mixedChartData = {
+    labels: ['Janvier', 'Février', 'Mars', 'Avril'],
+    datasets: [
+      {
+        type: 'line',
+        label: 'Dataset 1',
+        borderColor: 'rgb(54, 162, 235)',
+        borderWidth: 2,
+        fill: false,
+        data: [50, 25, 50, 75],
+      },
+      {
+        type: 'bar',
+        label: 'Dataset 2',
+        backgroundColor: 'rgb(255, 99, 132)',
+        data: [75, 50, 75, 50],
+        borderColor: 'white',
+        borderWidth: 2,
+      }
+    ],
+  };
+
+
+  const bubbleData = {
+    datasets: [
+      {
+        label: 'Premier ensemble de données',
+        data: [
+          { x: 5, y: 15, r: 10 },
+          { x: 12, y: 20, r: 10 },
+        ],
+        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+      },
+    ],
+  };
+
+  // Données pour le graphique en escalier
+  const stepData = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+    datasets: [
+      {
+        label: 'Première série de données',
+        data: [0, 20, 20, 60, 60],
+        borderColor: 'rgba(75,192,192,1)',
+        fill: false,
+        tension: 0.1,
+        stepped: true,
+      },
+    ],
+  };
+
+  // Données pour le graphique à barres empilées
+  const stackedData = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+    datasets: [
+      {
+        label: 'Série A',
+        data: [50, 60, 70, 180, 190],
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+      {
+        label: 'Série B',
+        data: [28, 48, 40, 19, 86],
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+      },
+    ],
+  };
+  const options = {
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
+      },
+    },
+  };
+
+
+
   return (
     <div className="flex flex-col gap-20 bg-secondary-light p-2">
         < BarChart data={data} />
         < DonutChart data={donutData} />
         < LineChart data={lineData} />
         < RadarChart data={radarData} />
+        < PieChart data={pieData} />
+        < BubbleChart data={bubbleData} />
+        < MixedChart data={mixedChartData} />
+        < StackedAreaChart data={stackedAreaData} />
+        < StepChart data={stepData} />
+        < StackedBarChart data={stackedData} options={options}/>
+        
+        < BubbleChart data={bubbleData} />
     </div>
   )
 }
