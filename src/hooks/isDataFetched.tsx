@@ -20,7 +20,6 @@ export function IsDataFetched() {
         console.error('Error loading data: ', error);
         navigate('/error');
       } finally {
-          console.log("Home");
 
         setLoading(false);
       }
