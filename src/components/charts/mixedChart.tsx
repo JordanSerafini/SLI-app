@@ -1,14 +1,14 @@
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend, ChartType } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend, ChartTypeRegistry } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 
-// Enregistrez tous les éléments nécessaires à Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 interface MixedChartProps {
   data: {
     labels: string[];
     datasets: {
-      type: ChartType; 
+      // s'assurer que type est un type de graphique valide.
+      type: keyof ChartTypeRegistry;
       label: string;
       data: number[];
       borderColor?: string;
