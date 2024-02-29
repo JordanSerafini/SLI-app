@@ -8,7 +8,7 @@ import {
 import { IsDataFetched } from "../hooks/isDataFetched";
 
 import dataContext from "../context/dataContext";
-import Card from "../components/cards/article/card";
+import Card from "../components/cards/article/articleCard";
 import DetailCard from "../components/cards/article/detailCard";
 
 import debounce from "../services/debounce";
@@ -153,7 +153,7 @@ function ArticlesList() {
           {currentItems.map((card, index) => (
             <Card
               id={card.id}
-              css="carousel-item w-8/10 md:w-3/10 bg-bgMain text-text shadow-effect "
+              css="carousel-item w-8/10 md:w-4.5/10 bg-bgMain text-text shadow-effect "
               key={`${index}_${card.id}`}
               caption={card.caption}
               img={card.image_url}
