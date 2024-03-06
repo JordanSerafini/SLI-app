@@ -27,6 +27,14 @@ function Home() {
     navigate("/charts");
   };
 
+  const handleTestClick = () => {
+    navigate("/test");
+  };
+
+  const handleFormClick = () => {
+    navigate("/form");
+  };
+
   // ----------------------------------------------- TOAST ----------------------------------------------- //
   useEffect(() => {
     let toastTimeout: number | undefined;
@@ -56,6 +64,10 @@ function Home() {
       <div onClick={handleArticleClick}>Accéder Article form page</div>
 
       <div onClick={handleChartsClick}>Accéder Charts page</div>
+
+      <div onClick={handleTestClick}>Accéder Test page</div>
+
+      <div onClick={handleFormClick}>Accéder Form page</div>
 
 
       {showToast && <TopToast message={toastMessage} css="" />}

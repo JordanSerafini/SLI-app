@@ -9,8 +9,6 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [devisList, setDevisList] = useState<DataContextType['devisList']>([]);
 
 
-  
-
   const contextValue = {
     itemList,
     setItemList,

@@ -72,6 +72,8 @@ export default {
         "gray": "#e7e7e7",
         "blue-2": '#7395AE',
         "blue-1": '#557A95',
+        'grayblue':"#2d3748",
+        'greyBG': '#F0F0F0',
       },
 
       fontFamily: {

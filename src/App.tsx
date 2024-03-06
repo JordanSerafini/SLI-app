@@ -11,6 +11,7 @@ import Error from "./pages/error";
 import DevisPage from "./pages/devisPage";
 import ArticleForm from "./pages/articleForm";
 import Charts from "./pages/charts";
+import FormPage from "./pages/formPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/devis" element={<DevisPage />} />
                 <Route path="/addArticle" element={<ArticleForm />} />
                 <Route path="/charts" element={<Charts />} />
+                <Route path="/form" element={<FormPage />} />
               </Routes>
               <BottomNav />
             </Router>
