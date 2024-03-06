@@ -1,18 +1,15 @@
-import {  useState } from 'react';
+
 
 function Rating({ title, onChange }) {
 
-  const handleRatingChange = (value:number) => {
-    setSelectedRating(value);
+  const handleRatingChange = (value) => {
+    onChange(value); 
   };
 
-
-
-
   return (
-    <div>
+    <div className='w-10/10 flex flex-col items-center'>
         <h3>{title}</h3>
-    <div className="rating rating-lg">
+    <div className="rating rating-md">
       <input type="radio" name="rating-8" className="mask mask-star-2 bg-orange-400" onClick={() => handleRatingChange(1)} />
       <input type="radio" name="rating-8" className="mask mask-star-2 bg-orange-400" onClick={() => handleRatingChange(2)} />
       <input type="radio" name="rating-8" className="mask mask-star-2 bg-orange-400" onClick={() => handleRatingChange(3)} />
