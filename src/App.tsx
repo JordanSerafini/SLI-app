@@ -30,7 +30,7 @@ function App() {
                 <Route path="/devis" element={<DevisPage />} />
                 <Route path="/addArticle" element={<ArticleForm />} />
                 <Route path="/charts" element={<Charts />} />
-                <Route path="/form" element={<FormPage />} />
+                <Route path="/form-satisfaction" element={<FormPage />} />
               </Routes>
               <BottomNav />
             </Router>

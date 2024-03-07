@@ -32,7 +32,7 @@ function Home() {
   };
 
   const handleFormClick = () => {
-    navigate("/form");
+    navigate("/form-satisfaction");
   };
 
   // ----------------------------------------------- TOAST ----------------------------------------------- //
