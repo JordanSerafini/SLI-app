@@ -12,7 +12,7 @@ function Question({ title }: QuestionProps) {
         <div className="flex flex-row gap-2">
           <h3>{title}</h3>
         </div>
-        <input type="text" placeholder="Répondre ici ..." className="border-1 border-black p-2 rounded-3xl w-9/10" />
+        <input type="text" placeholder="Répondre ici ..." className="border-1 border-blue-2 p-2 rounded-3xl w-9/10 " />
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ function App() {
     <>
       <DataProvider>
         <ThemeProvider>
-          <div className="h-screen w-screen bg-gray-1 flex flex-col regular ">
+          <div className="h-screen w-screen bg-gray-1 flex flex-col ">
             <Router>
               <Routes>
                 <Route path="/" element={<Home />} />
