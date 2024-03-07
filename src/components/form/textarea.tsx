@@ -14,15 +14,16 @@ function Textarea({ id, title, partieID, onTextareaChange }: TextareaProps) {
 const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
   setText(event.target.value);
   onTextareaChange(id, partieID, event.target.value); 
-  
+
 };
+if (!title)
+  {title = "Remarques supplémentaires"}
 
 
   return (
     <div className="flex flex-col gap-2 text-xs text-center">
-      {title?  <h3>{title}</h3>
-    : <p>Remarques supplémentaires</p>  
-    } 
+      {title}
+    
       <textarea
         value={text}
         onChange={handleTextChange}
