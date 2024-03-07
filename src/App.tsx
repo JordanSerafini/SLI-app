@@ -32,7 +32,7 @@ function App() {
                 <Route path="/charts" element={<Charts />} />
                 <Route path="/form-satisfaction" element={<FormPage />} />
               </Routes>
-              <BottomNav />
+              {window.location.pathname !== "/form-satisfaction" && <BottomNav />}
             </Router>
           </div>
         </ThemeProvider>
