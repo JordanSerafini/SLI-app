@@ -17,8 +17,7 @@ function FormPage() {
         .then(data => {
           setIsValidToken(data.isValid);
           if (data.isValid) {
-            setTokenData(data.data); // Met à jour tokenData
-            // Au lieu d'imprimer ici, nous allons laisser un autre useEffect s'occuper de l'impression.
+            setTokenData(data.data); 
           } else {
             console.error('Token invalide:', data.error);
           }

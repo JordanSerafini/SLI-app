@@ -6,7 +6,6 @@ import Textarea from "./textarea";
 import url from "../../axios/url";
 import { useNavigate } from "react-router-dom";
 
-
 const PartieContainer: React.FC = () => {
   const navigate = useNavigate();
   const [rateList, setRateList] = useState<
@@ -24,7 +23,7 @@ const PartieContainer: React.FC = () => {
   }>({});
   // État pour les réponses aux zones de texte
   const [textareaResponses, setTextareaResponses] = useState<{
-    [textareaId: number]: { text: string; partieID: number, title?: string};
+    [textareaId: number]: { text: string; partieID: number; title?: string };
   }>({});
 
   // Gestionnaire pour les changements de questions
@@ -45,7 +44,7 @@ const PartieContainer: React.FC = () => {
     textareaId: number,
     partieID: number,
     text: string,
-    title?: string,
+    title?: string
   ) => {
     setTextareaResponses((prev) => ({
       ...prev,
@@ -78,34 +77,37 @@ const PartieContainer: React.FC = () => {
     const dateDuJour = new Date().toISOString();
 
     console.log("questionResponses:", questionResponses);
-console.log("textareaResponses:", textareaResponses);
-console.log("rateList:", rateList);
+    console.log("textareaResponses:", textareaResponses);
+    console.log("rateList:", rateList);
 
-const formData = {
-  nom_client: "Client 1",
-  date_creation: dateDuJour,
-  commercial_id: 1,
-  data: [
-    {
-      questions: Object.entries(questionResponses).map(([key, { response, title }]) => ({
-        id: parseInt(key.split("_")[0]),
-        title,
-        response: response,
-      })),
-      textareas: Object.entries(textareaResponses).map(([id, { title, text }]) => ({
-        id: parseInt(id),
-        title,
-        response: text,
-      })),
-      rates: rateList.map((rate) => ({
-        id: rate.id,
-        title: rate.title,
-        note: rate.value,
-      })),
-    },
-  ],
-};
-
+    const formData = {
+      nom_client: "Client 1",
+      date_creation: dateDuJour,
+      commercial_id: 1,
+      data: [
+        {
+          questions: Object.entries(questionResponses).map(
+            ([key, { response, title }]) => ({
+              id: parseInt(key.split("_")[0]),
+              title,
+              response: response,
+            })
+          ),
+          textareas: Object.entries(textareaResponses).map(
+            ([id, { title, text }]) => ({
+              id: parseInt(id),
+              title,
+              response: text,
+            })
+          ),
+          rates: rateList.map((rate) => ({
+            id: rate.id,
+            title: rate.title,
+            note: rate.value,
+          })),
+        },
+      ],
+    };
 
     try {
       const response = await fetch(`${url.heroku}/createFormulaire`, {
@@ -117,18 +119,24 @@ const formData = {
       });
 
       if (response.ok) {
-        console.log("Formulaire envoyé avec succès");
+        alert("Formulaire envoyé avec succès");
+        await fetch(`${url.heroku}/invalidateToken`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: localStorage.getItem("token") }),
+        });
+        localStorage.removeItem("token");
         navigate("/login");
-
-        
       } else {
-        console.error(
-          "Erreur lors de la création du formulaire:",
-          response.statusText
-        );
+        console.error("Erreur lors de la création du formulaire:");
+
+        alert("Erreur lors de la création du formulaire:");
       }
     } catch (error) {
       console.error("Erreur lors de la requête:", error);
+      alert("Erreur lors de la requête:");
     }
   };
 
@@ -301,7 +309,12 @@ const formData = {
       <p className="text-sm">
         Total Moyen des Ratings: {averageRating.toFixed(1)}
       </p>{" "}
-      <button onClick={handleSubmit} className="bg-blue-1 p-2 rounded-3xl px-8 text-white text-base tracking-widest">Valider</button>
+      <button
+        onClick={handleSubmit}
+        className="bg-blue-1 p-2 rounded-3xl px-8 text-white text-base tracking-widest"
+      >
+        Valider
+      </button>
     </div>
   );
 };
