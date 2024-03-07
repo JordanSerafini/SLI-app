@@ -9,7 +9,7 @@ function FormPage() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
-    const validateTokenUrl = `${url.heroku}/validateToken?token=${token}`;
+    const validateTokenUrl = `${url.heroku}/verifyToken?token=${token}`;
 
     if (token) {
       fetch(validateTokenUrl)
