@@ -18,7 +18,7 @@ function Home() {
     setIsLoading(true);
 
     try {
-      await axios.post(`${url.local}/sendForm`, { email });
+      await axios.post(`${url.heroku}/sendForm`, { email });
       console.log('E-mail envoyé avec succès !');
       setToastMessage('E-mail envoyé avec succès !');
       setShowToast(true);
@@ -81,7 +81,7 @@ function Home() {
         <p>Chargement...</p>
       </div>
     )}
-    
+
 
     </div>
   );
