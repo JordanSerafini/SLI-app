@@ -11,6 +11,7 @@ function FormPage() {
     const token = urlParams.get('token');
     const validateTokenUrl = `${url.heroku}/verifyToken?token=${token}`;
 
+
     if (token) {
       fetch(validateTokenUrl)
         .then(response => response.json())
