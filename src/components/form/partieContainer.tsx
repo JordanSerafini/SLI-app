@@ -120,13 +120,14 @@ const PartieContainer: React.FC = () => {
 
       if (response.ok) {
         alert("Formulaire envoyé avec succès");
+  
         await fetch(`${url.heroku}/invalidateToken`, {
           method: "GET",
           headers: {
-            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
           },
-          body: JSON.stringify({ token: localStorage.getItem("token") }),
         });
+  
         localStorage.removeItem("token");
         navigate("/login");
       } else {
