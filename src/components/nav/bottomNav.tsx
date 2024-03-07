@@ -4,6 +4,7 @@ import { ThemeContext } from "../../context/theme/themeContext";
 
 
 function BottomNav() {
+  
   const themeContext = useContext(ThemeContext);
 
   const { theme } = themeContext;

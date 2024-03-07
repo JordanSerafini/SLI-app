@@ -35,7 +35,7 @@ function FormPage() {
       console.error('Token manquant dans l\'URL');
       setIsValidToken(false);
     }
-  }, []);
+  }, [tokenData]);
 
   return (
     <div className="bg-bg-lightgray mb-20 h-screen w-screen flex flex-col items-center overflow-auto">
