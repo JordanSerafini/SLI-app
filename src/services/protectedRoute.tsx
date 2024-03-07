@@ -23,7 +23,6 @@ const ProtectedRoute = () => {
         if (!response.ok) {
           throw new Error('Token verification failed');
         }
-        // Si la vérification réussit, ne faites rien et laissez l'utilisateur accéder à la page.
       } catch (error) {
         console.error('Erreur lors de la vérification du token :', error);
         navigate('/login');
@@ -33,7 +32,7 @@ const ProtectedRoute = () => {
     verifyToken();
   }, []);
 
-  return <Outlet />; // Rend les composants enfants si le token est vérifié
+  return <Outlet />; // 
 };
 
 export default ProtectedRoute;
