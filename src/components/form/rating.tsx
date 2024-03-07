@@ -1,8 +1,17 @@
-function Rating({ id, title, onChange, partieID }: { id: number, title: string, partieID:number, onChange: (value: number) => void }) {
+interface RatingProps {
+  id: number;
+  title: string;
+  partieID: number;
+  onChange: (id: number, title: string, partieID: number, value: number) => void;
+}
+
+function Rating({ id, title, onChange, partieID }: RatingProps) {
 
   const handleRatingChange = (value: number) => {
-    onChange(value); 
+    // Passez maintenant tous les paramètres nécessaires
+    onChange(id, title, partieID, value);
   };
+  
 
   return (
     <div className='w-10/10 flex flex-col gap-4 items-center text-xs text-center'>

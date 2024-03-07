@@ -4,20 +4,96 @@ import Rating from "./rating";
 import Textarea from "./textarea";
 
 const PartieContainer: React.FC = () => {
+  
   const [rateList, setRateList] = useState<
-    Array<{ id: number; value: number }>
+    Array<{
+      partieID: number;
+      title: string; id: number; value: number 
+}>
   >([]);
 
-  const handleRatingChange = (id: number, value: number) => {
-    const index = rateList.findIndex((rate) => rate.id === id);
-    if (index > -1) {
-      const newRateList = [...rateList];
-      newRateList[index].value = value;
-      setRateList(newRateList);
-    } else {
-      setRateList([...rateList, { id, value }]);
-    }
+// État pour les réponses aux questions
+const [questionResponses, setQuestionResponses] = useState<{
+  [key: string]: { response: string; title: string; partieID: number }
+}>({});
+// État pour les réponses aux zones de texte
+const [textareaResponses, setTextareaResponses] = useState<{
+  [textareaId: number]: { text: string; partieID: number }
+}>({});
+
+// Gestionnaire pour les changements de questions
+const handleQuestionChange = (id: number, title: string, partieID: number, response: string) => {
+  setQuestionResponses(prev => ({
+    ...prev, 
+    [`${id}_${partieID}`]: { response, title, partieID }
+  }));
+};
+
+
+// Gestionnaire pour les changements de zones de texte
+const handleTextareaChange = (textareaId: number, partieID: number, text: string) => {
+  setTextareaResponses(prev => ({
+    ...prev,
+    [textareaId]: { text, partieID }
+  }));
+};
+
+const handleRatingChange = (id: number, title: string, partieID: number, value: number) => {
+  // Trouver l'index de la note dans rateList
+  const index = rateList.findIndex((rate) => rate.id === id);
+
+  // Si la note est déjà présente, la mettre à jour
+  if (index > -1) {
+    const newRateList = [...rateList];
+    newRateList[index] = { ...newRateList[index], value, title, partieID };
+    setRateList(newRateList);
+  } else {
+    // Sinon, ajouter la nouvelle note à rateList
+    setRateList([...rateList, { id, title, partieID, value }]);
+  }
+};
+
+
+const handleSubmit = async () => {
+  // Date du jour
+  const dateDuJour = new Date().toISOString();
+
+  // Préparation de formData
+  const formData = {
+    formulaire: {
+      nom_formulaire: "Formulaire 1",
+      nom_client: "Client 1",
+      date_creation: dateDuJour,
+      commercial_id: 1,
+    },
+    data: [
+      {
+        questions: Object.entries(questionResponses).map(([key, { response, title}]) => ({
+          id: parseInt(key.split('_')[0]),
+          title,
+          reponse: response,
+        })),
+        textareas: Object.entries(textareaResponses).map(([id, { text}]) => ({
+          id: parseInt(id),
+          title: "Titre du Textarea", // Ajustez selon vos besoins
+          response: text,
+        })),
+        rates: rateList.map(rate => ({
+          id: rate.id,
+          title: rate.title,
+          note: rate.value,
+        })),
+      },
+      // Ajoutez ici les configurations pour les parties 2, 3, et 4
+    ]
   };
+
+  // Ici, vous enverriez formData à votre backend
+  console.log(formData);
+};
+
+
+
 
   const averageRating =
     rateList.reduce((acc, curr) => acc + curr.value, 0) /
@@ -48,25 +124,29 @@ const PartieContainer: React.FC = () => {
             id={uniqueIdQuestionGenerator()}
             title="Compréhension de vos besoins par notre service commercial"
             partieID={1}
+            onQuestionChange={handleQuestionChange}
+
           />
           <Question
             id={uniqueIdQuestionGenerator()}
             title="Seconde question du questionnaire de satisfaction ?"
             partieID={1}
+            onQuestionChange={handleQuestionChange}
+
           />
           <Rating
             id={uniqueIdRatingGenerator()}
             title="Quel est votre avis concernant le suivi de validation?"
             partieID={1}
-            onChange={(value: number) => handleRatingChange(1, value)}
-          />
+            onChange={handleRatingChange}
+            />
           <Rating
             id={uniqueIdRatingGenerator()}
             title="Quel est votre avis sur la deuxième question?"
             partieID={1}
-            onChange={(value: number) => handleRatingChange(2, value)}
-          />
-          <Textarea id={uniqueIdTextAreaGenerator()} partieID={1} />
+            onChange={handleRatingChange}
+            />
+          <Textarea id={uniqueIdTextAreaGenerator()} partieID={1} onTextareaChange={handleTextareaChange} />
         </div>
       </div>
       {/*--------------------------- 2eme Partie ----------------------------------------*/}
@@ -79,11 +159,15 @@ const PartieContainer: React.FC = () => {
             id={uniqueIdQuestionGenerator()}
             title="Délai du traitement de votre commande par notre service commercial"
             partieID={2}
+            onQuestionChange={handleQuestionChange}
+
           />
           <Question
             id={uniqueIdQuestionGenerator()}
             title="Qualité des renseignements communiqués lors de la prise de rendez-vous"
             partieID={2}
+            onQuestionChange={handleQuestionChange}
+
           />
           {/*
         <Rating
@@ -99,7 +183,7 @@ const PartieContainer: React.FC = () => {
           onChange={(value: number) => handleRatingChange(4, value)}
         />
         */}
-          <Textarea id={uniqueIdTextAreaGenerator()} partieID={2} />
+          <Textarea id={uniqueIdTextAreaGenerator()} partieID={2} onTextareaChange={handleTextareaChange} />
         </div>
       </div>
       {/*--------------------------- 3eme Partie ----------------------------------------*/}
@@ -112,19 +196,24 @@ const PartieContainer: React.FC = () => {
             id={uniqueIdQuestionGenerator()}
             title="Satisfaction sur le délai de livraison"
             partieID={3}
+            onQuestionChange={handleQuestionChange}
+
           />
           <Question
             id={uniqueIdQuestionGenerator()}
             title="Installation terminée?"
             partieID={3}
+            onQuestionChange={handleQuestionChange}
+
           />
           <Rating
             id={uniqueIdRatingGenerator()}
             title="Satisfaction sur la qualité de l'installation"
             partieID={3}
-            onChange={(value: number) => handleRatingChange(3, value)}
+            onChange={handleRatingChange}
+
           />
-          <Textarea id={uniqueIdTextAreaGenerator()} partieID={3} />
+          <Textarea id={uniqueIdTextAreaGenerator()} partieID={3} onTextareaChange={handleTextareaChange}/>
         </div>
       </div>
       {/*--------------------------- 4eme Partie ----------------------------------------*/}
@@ -136,36 +225,44 @@ const PartieContainer: React.FC = () => {
           <Rating
             id={uniqueIdQuestionGenerator()}
             title="Satisfaction sur le délai de livraison"
-            onChange={(value: number) => handleRatingChange(4, value)}
+            onChange={handleRatingChange}
             partieID={4}
           />
-          <Question
-            id={uniqueIdQuestionGenerator()}
-            title="Note finale de 'Soluton logique'"
-            partieID={4}
-          />
+         
+                    <Question
+                      id={uniqueIdQuestionGenerator()}
+                      title="Note finale de 'Soluton logique'"
+                      partieID={4}
+                      onQuestionChange={handleQuestionChange}
+
+                    />
           <Rating
             id={uniqueIdRatingGenerator()}
             title="D'une manière générale, solution logique a-t-elle répondu à vos attentes?"
             partieID={4}
-            onChange={(value: number) => handleRatingChange(5, value)}
-          />
+            onChange={handleRatingChange}
+            />
 
           <Question
             id={uniqueIdQuestionGenerator()}
             title="Recommanderiez vous solution logique à votre entourage?"
             partieID={4}
+            onQuestionChange={handleQuestionChange}
+
           />
           <Textarea
             id={uniqueIdQuestionGenerator()}
             title="Quelles sont vos suggestions pour améliorer nos services?"
             partieID={4}
+            onTextareaChange={handleTextareaChange}
           />
         </div>
       </div>
       <p className="text-sm">
         Total Moyen des Ratings: {averageRating.toFixed(1)}
       </p>{" "}
+
+      <button onClick={handleSubmit} >O</button>
     </div>
   );
 };
