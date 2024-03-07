@@ -37,7 +37,6 @@ function App() {
               </Route>
             </Route>
           </Routes>
-        {window.location.pathname !== "/form-satisfaction" && window.location.pathname !== "/login" && <BottomNav />}
         </Router>
       </ThemeProvider>
     </DataProvider>
