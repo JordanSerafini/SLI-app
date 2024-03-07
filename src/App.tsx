@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes, Outlet } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Outlet,
+} from "react-router-dom";
 import { DataProvider } from "./context/dataProvider";
 import { ThemeProvider } from "./context/theme/themeContext";
 
@@ -7,7 +12,7 @@ import Home from "./pages/home";
 import Planing from "./pages/planing";
 import ArticlesList from "./pages/articlesList";
 import ClientsList from "./pages/clientsList";
-import ErrorPage from "./pages/error"; 
+import ErrorPage from "./pages/error";
 import DevisPage from "./pages/devisPage";
 import ArticleForm from "./pages/articleForm";
 import Charts from "./pages/charts";
@@ -19,9 +24,10 @@ function App() {
     <DataProvider>
       <ThemeProvider>
         <Router>
+        <div className="h-screen w-screen">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-                <Route path="form-satisfaction" element={<FormPage />} />
+            <Route path="form-satisfaction" element={<FormPage />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<Outlet />}>
                 <Route index element={<Home />} />
@@ -36,6 +42,7 @@ function App() {
               </Route>
             </Route>
           </Routes>
+          </div>
         </Router>
       </ThemeProvider>
     </DataProvider>

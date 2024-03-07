@@ -4,8 +4,11 @@ import Rating from "./rating";
 import Textarea from "./textarea";
 
 import url from "../../axios/url";
+import { useNavigate } from "react-router-dom";
+
 
 const PartieContainer: React.FC = () => {
+  const navigate = useNavigate();
   const [rateList, setRateList] = useState<
     Array<{
       partieID: number;
@@ -79,7 +82,6 @@ console.log("textareaResponses:", textareaResponses);
 console.log("rateList:", rateList);
 
 const formData = {
-  nom_formulaire: "Formulaire 1",
   nom_client: "Client 1",
   date_creation: dateDuJour,
   commercial_id: 1,
@@ -106,7 +108,7 @@ const formData = {
 
 
     try {
-      const response = await fetch(`${url.local}/createFormulaire`, {
+      const response = await fetch(`${url.heroku}/createFormulaire`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -115,7 +117,10 @@ const formData = {
       });
 
       if (response.ok) {
-        console.log("Formulaire créé avec succès");
+        console.log("Formulaire envoyé avec succès");
+        navigate("/login");
+
+        
       } else {
         console.error(
           "Erreur lors de la création du formulaire:",
@@ -145,7 +150,7 @@ const formData = {
   const uniqueIdTextAreaGenerator = createIdGenerator();
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-6 pb-4 ">
       {/*--------------------------- 1ere Partie ----------------------------------------*/}
       <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg">
@@ -296,7 +301,7 @@ const formData = {
       <p className="text-sm">
         Total Moyen des Ratings: {averageRating.toFixed(1)}
       </p>{" "}
-      <button onClick={handleSubmit}>O</button>
+      <button onClick={handleSubmit} className="bg-blue-1 p-2 rounded-3xl px-8 text-white text-base tracking-widest">Valider</button>
     </div>
   );
 };
