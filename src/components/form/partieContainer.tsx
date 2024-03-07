@@ -3,34 +3,99 @@ import Question from "./question";
 import Rating from "./rating";
 
 const PartieContainer: React.FC = () => {
-  const [ratingValue, setRatingValue] = useState(0);
+  const [rateList, setRateList] = useState<
+    Array<{ id: number; value: number }>
+  >([]);
 
-  const handleRatingChange = (value: number) => {
-    setRatingValue(value); // Mettre à jour la valeur d'évaluation dans l'état
-    // Vous pouvez également effectuer d'autres actions ici, comme envoyer la valeur à un serveur
+  const handleRatingChange = (id: number, value: number) => {
+    const index = rateList.findIndex((rate) => rate.id === id);
+    if (index > -1) {
+      const newRateList = [...rateList];
+      newRateList[index].value = value;
+      setRateList(newRateList);
+    } else {
+      setRateList([...rateList, { id, value }]);
+    }
   };
+
+  const averageRating =
+    rateList.reduce((acc, curr) => acc + curr.value, 0) /
+    (rateList.length || 1);
+
+  const createIdGenerator = () => {
+    let currentId = 1;
+    return () => {
+      currentId += 1;
+      return currentId;
+    };
+  };
+
+  // Utilisation de la fonction
+  const uniqueIdQuestionGenerator = createIdGenerator();
+  const uniqueIdRatingGenerator = createIdGenerator();
 
   return (
     <div>
-      {/*--------------------------- 1ere Partie --- nom - numero - date  ------------------------*/}
       {/*--------------------------- 2eme Partie ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-6 p-2 h-fit">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 p-3 h-fit mt-4">
+        <div className="bold text-blue-1">
+          1ère phase: Qualification de vos besoins et proposition d'une solution
+        </div>
         <Question
-          title="Quel est votre avis concernatn le suivi de validation?"
-          numero="1"
+          id={uniqueIdQuestionGenerator()}
+          title="Compréhension de vos besoins par notre service commercial"
           partieID={1}
         />
         <Question
-          title="Seconde question du questionnaire de satifsaction ?"
-          numero="1"
+          id={uniqueIdQuestionGenerator()}
+          title="Seconde question du questionnaire de satisfaction ?"
           partieID={1}
         />
         <Rating
-          title="Quel est votre avis concernatn le suivi de validation?"
-          onChange={handleRatingChange}
+          id={uniqueIdRatingGenerator()}
+          title="Quel est votre avis concernant le suivi de validation?"
+          onChange={(value: number) => handleRatingChange(1, value)}
         />
-        <p>valeur: {ratingValue}</p>
+        <Rating
+          id={uniqueIdRatingGenerator()}
+          title="Quel est votre avis sur la deuxième question?"
+          onChange={(value: number) => handleRatingChange(2, value)}
+        />
       </div>
+
+      {/*--------------------------- 2eme Partie ----------------------------------------*/}
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 p-3 h-fit mt-4">
+        <div className="bold text-blue-1">
+          1ère phase: Qualification de vos besoins et proposition d'une solution
+        </div>
+        <Question
+          id={uniqueIdQuestionGenerator()}
+          title="Compréhension de vos besoins par notre service commercial"
+          partieID={1}
+        />
+        <Question
+          id={uniqueIdQuestionGenerator()}
+          title="Seconde question du questionnaire de satisfaction ?"
+          partieID={1}
+        />
+        <Rating
+          id={uniqueIdRatingGenerator()}
+          title="Quel est votre avis concernant le suivi de validation?"
+          onChange={(value: number) => handleRatingChange(3, value)}
+        />
+        <Rating
+          id={uniqueIdRatingGenerator()}
+          title="Quel est votre avis sur la deuxième question?"
+          onChange={(value: number) => handleRatingChange(4, value)}
+        />
+      </div>
+
+
+
+
+      <p className="text-sm">
+        Total Moyen des Ratings: {averageRating.toFixed(1)}
+      </p>{" "}
     </div>
   );
 };

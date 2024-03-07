@@ -7,6 +7,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [eventList, setEventList] = useState<DataContextType['eventList']>([]);
   const [devis, setDevis] = useState<Devis>({ id: '', name: '', articles: [] });
   const [devisList, setDevisList] = useState<DataContextType['devisList']>([]);
+  const [rateList, setRateList] = useState<DataContextType['rate']>([]);
 
 
   const contextValue = {
@@ -20,7 +21,10 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     setDevis,
     devisList,
     setDevisList,
-  };
+    rateList,
+    setRateList,
+    rate: [] 
+    };
 
   return (
     <dataContext.Provider value={contextValue}>

@@ -2,7 +2,7 @@ import PartieContainer from "../components/form/partieContainer"
 
 function formPage() {
   return (
-    <div className="bg-greyBG h-screen flex flex-row justify-center ">
+    <div className="bg-red-200 h-screen w-screen flex flex-col items-center ">
         <PartieContainer />
     </div>
   )

@@ -53,6 +53,11 @@ export interface Devis {
   articles: Article[];
 }
 
+export interface Rate {
+  id: string;
+  rate: number;
+}
+
 export type DataContextType = {
   itemList: Article[];
   setItemList: Dispatch<SetStateAction<Article[]>>;
@@ -64,6 +69,7 @@ export type DataContextType = {
   setDevis: Dispatch<SetStateAction<Devis>>; 
   devisList: Devis[];
   setDevisList: Dispatch<SetStateAction<Devis[]>>;
+  rate: Rate[];
 };
 
 export interface ThemeContextType {
@@ -86,6 +92,7 @@ const dataContext = createContext<DataContextType>({
   setDevis: () => {},
   devisList: [],
   setDevisList: () => {},
+  rate: [],
 });
 
 export default dataContext;

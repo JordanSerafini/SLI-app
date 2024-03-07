@@ -1,6 +1,6 @@
 interface QuestionProps {
+  id: number;
   title: string;
-  numero: string;
   response?: string;
   partieID: number;
 }
