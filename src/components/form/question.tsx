@@ -33,7 +33,7 @@ function Question({
           placeholder="Répondre ici ..."
           value={response}
           onChange={handleResponseChange}
-          className="border-1 border-blue-2 p-2 rounded-3xl w-9/10"
+          className="border-1 border-blue-2 p-2 rounded-3xl w-9/10 focus:border-blue-2 custom-input"
         />
       </div>
     </div>

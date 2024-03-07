@@ -38,7 +38,7 @@ function FormPage() {
   }, []);
 
   return (
-    <div className="bg-greyBG-2 mb-20 h-screen w-screen flex flex-col items-center overflow-auto">
+    <div className="bg-bg-lightgray mb-20 h-screen w-screen flex flex-col items-center overflow-auto">
       {isValidToken === null ? (
         <p>Vérification du token en cours...</p>
       ) : isValidToken ? (
