@@ -1,4 +1,4 @@
-function Rating({ id, title, onChange }: { id: number, title: string, onChange: (value: number) => void }) {
+function Rating({ id, title, onChange, partieID }: { id: number, title: string, partieID:number, onChange: (value: number) => void }) {
 
   const handleRatingChange = (value: number) => {
     onChange(value); 
