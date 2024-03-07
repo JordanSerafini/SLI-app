@@ -22,6 +22,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+                <Route path="form-satisfaction" element={<FormPage />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<Outlet />}>
                 <Route index element={<Home />} />
@@ -33,7 +34,6 @@ function App() {
                 <Route path="devis" element={<DevisPage />} />
                 <Route path="addArticle" element={<ArticleForm />} />
                 <Route path="charts" element={<Charts />} />
-                <Route path="form-satisfaction" element={<FormPage />} />
               </Route>
             </Route>
           </Routes>
