@@ -4,7 +4,6 @@ import { ThemeProvider } from "./context/theme/themeContext";
 
 import ProtectedRoute from "./services/protectedRoute";
 import Home from "./pages/home";
-import BottomNav from "./components/nav/bottomNav";
 import Planing from "./pages/planing";
 import ArticlesList from "./pages/articlesList";
 import ClientsList from "./pages/clientsList";
