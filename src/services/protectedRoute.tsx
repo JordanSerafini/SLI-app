@@ -1,36 +1,39 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 import url from '../axios/url';
 
-
-
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+const ProtectedRoute = () => {
   const navigate = useNavigate();
 
-  const verifyToken = async () => {
-    try {
-      const response = await fetch(`${url.heroku}/verifyToken`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      if (!response.ok) {
-        throw new Error('Unauthorized');
-      }
-    } catch (error) {
-      console.error('Erreur lors de la vérification du token :', error);
-      localStorage.removeItem('token');
-      navigate('/login');
-    }
-  }
-
   useEffect(() => {
-    verifyToken();
-  }, [navigate]); 
+    const verifyToken = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('Token not found');
+        }
+        const response = await fetch(`${url.heroku}/verifyToken`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        });
 
-  return children;
-}
+        if (!response.ok) {
+          throw new Error('Token verification failed');
+        }
+        // Si la vérification réussit, ne faites rien et laissez l'utilisateur accéder à la page.
+      } catch (error) {
+        console.error('Erreur lors de la vérification du token :', error);
+        navigate('/login');
+      }
+    };
+  
+    verifyToken();
+  }, [navigate]);
+
+  return <Outlet />; // Rend les composants enfants si le token est vérifié
+};
 
 export default ProtectedRoute;
