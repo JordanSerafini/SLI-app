@@ -21,7 +21,8 @@ function FormPage() {
         .then(data => {
           setIsValidToken(data.isValid);
           if (data.isValid) {
-            setTokenData(data.data); // Sauvegarde les données décodées du token si nécessaire
+            setTokenData(data.data);
+            console.log('Token valide:',tokenData);
           } else {
             console.error('Token invalide:', data.error);
           }
