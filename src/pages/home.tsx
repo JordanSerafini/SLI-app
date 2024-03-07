@@ -4,6 +4,7 @@ import { IsDataFetched } from "../hooks/isDataFetched";
 
 import TopToast from "../components/toast/toastTop";
 import CircleLoader from "../components/loader/circleLoader";
+import DisconnectButton from "../components/buttons/disconnectBtn";
 
 function Home() {
   const [showToast, setShowToast] = useState(false);
@@ -68,6 +69,8 @@ function Home() {
       <div onClick={handleTestClick}>Accéder Test page</div>
 
       <div onClick={handleFormClick}>Accéder Form page</div>
+
+      <DisconnectButton />
 
 
       {showToast && <TopToast message={toastMessage} css="" />}

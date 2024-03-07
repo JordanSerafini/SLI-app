@@ -1,15 +1,16 @@
 interface ToastProps {
-    message: string;
-  }
-  
-  function MiddleToast({ message }: ToastProps) {
-    return (
-      <div className="toast toast-middle toast-center z-50 text-sm ">
-        <div className="alert alert-info bg-secondary text-accent ">
-          <span>{message}</span>
-        </div>
+  message: string;
+  show: boolean; 
+}
+
+function MiddleToast({ message, show }: ToastProps) {
+  return (
+    <div className={show ? "toast toast-middle toast-center z-50 text-sm" : "hidden"}>
+      <div className="alert alert-info bg-secondary text-accent">
+        <span>{message}</span>
       </div>
-    );
-  }
-  
-  export default MiddleToast;
+    </div>
+  );
+}
+
+export default MiddleToast;

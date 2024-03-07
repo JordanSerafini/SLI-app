@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import url from "../axios/url";
 import sliLogo from "../assets/logoSLI.png";
+import MiddleToast from "../components/toast/middleToast";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -9,9 +10,9 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    const loginUrl = `${url.heroku}`;
+    const loginUrl = `${url.heroku}/login`;
     const requestData = {
       email: email,
       password: password,
@@ -70,7 +71,7 @@ const LoginPage = () => {
           />
           <button type="submit">Login</button>
         </form>
-        {error && <p>{error}</p>}
+        <MiddleToast message={error} show={!!error} />
       </div>
     </div>
   );
