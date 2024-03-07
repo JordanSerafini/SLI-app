@@ -8,7 +8,7 @@ interface QuestionProps {
 function Question({ title }: QuestionProps) {
   return (
     <div>
-      <div className="text-xs sm:text-base flex flex-col gap-2 justify-center items-center w-10/10">
+      <div className="text-xs sm:text-base flex flex-col gap-2 justify-center items-center w-10/10 text-center">
         <div className="flex flex-row gap-2">
           <h3>{title}</h3>
         </div>

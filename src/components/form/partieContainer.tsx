@@ -150,15 +150,15 @@ const PartieContainer: React.FC = () => {
             partieID={4}
             onChange={(value: number) => handleRatingChange(5, value)}
           />
-          <Question
-            id={uniqueIdQuestionGenerator()}
-            title="Quelles sont vos suggestions pour améliorer nos services?"
-            partieID={4}
-          />
 
           <Question
             id={uniqueIdQuestionGenerator()}
             title="Recommanderiez vous solution logique à votre entourage?"
+            partieID={4}
+          />
+          <Textarea
+            id={uniqueIdQuestionGenerator()}
+            title="Quelles sont vos suggestions pour améliorer nos services?"
             partieID={4}
           />
         </div>
