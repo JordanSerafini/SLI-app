@@ -76,9 +76,7 @@ const PartieContainer: React.FC = () => {
     // Date du jour
     const dateDuJour = new Date().toISOString();
 
-    console.log("questionResponses:", questionResponses);
-    console.log("textareaResponses:", textareaResponses);
-    console.log("rateList:", rateList);
+ 
 
     const formData = {
       nom_client: "Client 1",
