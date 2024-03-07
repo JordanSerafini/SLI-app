@@ -31,7 +31,7 @@ const ProtectedRoute = () => {
     };
   
     verifyToken();
-  }, [navigate]);
+  }, []);
 
   return <Outlet />; // Rend les composants enfants si le token est vérifié
 };
