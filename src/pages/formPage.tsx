@@ -13,7 +13,7 @@ function FormPage() {
     const token = urlParams.get('token');
 
     // Définit l'URL de votre API de backend pour la validation du token
-    const validateTokenUrl = `${url.local}/validateToken?token=${token}`;
+    const validateTokenUrl = `${url.heroku}/validateToken?token=${token}`;
 
     if (token) {
       fetch(validateTokenUrl)
