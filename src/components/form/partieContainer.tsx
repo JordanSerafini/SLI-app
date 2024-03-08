@@ -163,7 +163,7 @@ const PartieContainer: React.FC = () => {
   return (
     <div className="flex flex-col items-center gap-6 pb-4 w-full lg:tracking-widest">
       {/*--------------------------- Présentation ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10 mb-10">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10 mb-4">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg  flex flex-row items-center justify-center gap-8">
           <h2>Étude de satisfaction client</h2>
           <img src={sliLogo} alt=" " className="h-12 sm:h-20 rounded-full" />
