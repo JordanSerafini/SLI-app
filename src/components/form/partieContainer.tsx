@@ -128,7 +128,7 @@ const PartieContainer: React.FC = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-
+        console.log("Token invalidé");
         localStorage.removeItem("token");
         navigate("/login");
       } else {
