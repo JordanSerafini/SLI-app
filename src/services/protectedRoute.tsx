@@ -12,7 +12,7 @@ const ProtectedRoute = () => {
         if (!token) {
           throw new Error('Token non trouvé');
         }
-        const response = await fetch(`${url.local}/verifyToken`, {
+        const response = await fetch(`${url.local}/validateTokenHeader`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
