@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PartieContainer from "../components/form/partieContainer";
 import url from "../axios/url";
 
 function FormPage() {
   const [isValidToken, setIsValidToken] = useState<boolean | null>(null);
-  const [tokenDta, setTokenData] = useState<{
+  const [tokenData, setTokenData] = useState<{
     email: string;
     exp: number;
     iat: number;
@@ -27,7 +27,6 @@ function FormPage() {
         .then((data) => {
           setIsValidToken(true);
           setTokenData(data.decoded);
-          console.log("Token valide :", data.decoded);
         })
         .catch((error) => {
           console.error("Erreur lors de la validation du token :", error);
@@ -38,6 +37,8 @@ function FormPage() {
       setIsValidToken(false);
     }
   }, []);
+  console.log("Token data :", tokenData);
+
 
   return (
     <div className="bg-bg-lightgray mb-20 h-screen w-screen flex flex-col items-center overflow-auto">
