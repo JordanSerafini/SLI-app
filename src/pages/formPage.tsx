@@ -9,7 +9,7 @@ function FormPage() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
-    console.log("Token trouvé :", token);
+    console.log(token);
     const validateTokenUrl = `${url.main}/verifyToken?token=${token}`;
 
     if (token) {
@@ -53,7 +53,7 @@ function FormPage() {
     }
   }, [isValidToken, tokenData]);
 
-  
+
   return (
     <div className="bg-bg-lightgray mb-20 h-screen w-screen flex flex-col items-center overflow-auto">
       {isValidToken === null ? (
