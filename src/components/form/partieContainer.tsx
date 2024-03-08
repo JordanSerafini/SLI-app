@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const PartieContainer: React.FC = () => {
   const navigate = useNavigate();
+
+  // ------------------------------------------------------------------------------------- État pour les notes ----------------------------------------------------------------------- 
   const [rateList, setRateList] = useState<
     Array<{
       partieID: number;
@@ -17,16 +19,16 @@ const PartieContainer: React.FC = () => {
     }>
   >([]);
 
-  // État pour les réponses aux questions
+  // --------------------------------------------------------------------------  État pour les réponses aux questions ----------------------------------------------------------------------- 
   const [questionResponses, setQuestionResponses] = useState<{
     [key: string]: { response: string; title: string; partieID: number };
   }>({});
-  // État pour les réponses aux zones de texte
+  // -----------------------------------------------------------------------  État pour les réponses aux zones de texte
   const [textareaResponses, setTextareaResponses] = useState<{
     [textareaId: number]: { text: string; partieID: number; title?: string };
   }>({});
 
-  // Gestionnaire pour les changements de questions
+  // -----------------------------------------------------------------------  Gestionnaire pour les changements de questions
   const handleQuestionChange = (
     id: number,
     title: string,
@@ -39,7 +41,7 @@ const PartieContainer: React.FC = () => {
     }));
   };
 
-  // Gestionnaire pour les changements de zones de texte
+  // ----------------------------------------------------------------------- Gestionnaire pour les changements de zones de texte
   const handleTextareaChange = (
     textareaId: number,
     partieID: number,
@@ -52,6 +54,7 @@ const PartieContainer: React.FC = () => {
     }));
   };
 
+  // ----------------------------------------------------------------------- Gestionnaire pour les changements de notes
   const handleRatingChange = (
     id: number,
     title: string,
@@ -72,12 +75,10 @@ const PartieContainer: React.FC = () => {
     }
   };
 
+  // ----------------------------------------------------------------------- Gestionnaire pour la soumission du formulaire
   const handleSubmit = async () => {
     // Date du jour
     const dateDuJour = new Date().toISOString();
-
- 
-
     const formData = {
       nom_client: "Client 1",
       date_creation: dateDuJour,
@@ -139,12 +140,12 @@ const PartieContainer: React.FC = () => {
     }
   };
 
-
-
+  // ----------------------------------------------------------------------- Calcul de la note moyenne
   const averageRating =
     rateList.reduce((acc, curr) => acc + curr.value, 0) /
     (rateList.length || 1);
 
+    // ----------------------------------------------------------------------- Générateur d'identifiants uniques
   const createIdGenerator = () => {
     let currentId = 1;
     return () => {
@@ -153,15 +154,16 @@ const PartieContainer: React.FC = () => {
     };
   };
 
-  // Utilisation de la fonction
   const uniqueIdQuestionGenerator = createIdGenerator();
   const uniqueIdRatingGenerator = createIdGenerator();
   const uniqueIdTextAreaGenerator = createIdGenerator();
 
+
+  
   return (
-    <div className="flex flex-col items-center gap-6 pb-4 ">
+    <div className="flex flex-col items-center gap-6 pb-4 w-full sm:w-8/10">
       {/*--------------------------- 1ere Partie ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 ">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg">
           1ère phase: Qualification de vos besoins et proposition d'une solution
         </div>

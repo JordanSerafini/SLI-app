@@ -47,12 +47,17 @@ function Home() {
     navigate("/test");
   };
 
+  const handleFormPageClick = () => {
+    navigate("/form-satisfaction");
+  };
+
   return (
     <div className="h-screen w-screen flex flex-col items-center gap-4">
       <div onClick={handleDevisClick}>Accéder Devis page</div>
       <div onClick={handleArticleClick}>Accéder Article form page</div>
       <div onClick={handleChartsClick}>Accéder Charts page</div>
       <div onClick={handleTestClick}>Accéder Test page</div>
+      <div onClick={handleFormPageClick}>Accéder Form page</div>
 
      
 
