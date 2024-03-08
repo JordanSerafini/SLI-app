@@ -12,32 +12,41 @@ function FormPage() {
     const validateTokenUrl = `${url.main}/validateTokenHeader?token=${token}`;
 
     if (token) {
-      console.log("Token trouvé, envoi de la requête de validation...", token);
-      fetch(validateTokenUrl)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Réponse serveur invalide");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Réponse serveur:", data);
-          setIsValidToken(data.isValid);
-          if (data.isValid) {
-            setTokenData(data.data);
-          } else {
-            console.error("Token invalide:", data.error);
-          }
-        })
-        .catch((error) => {
-          console.error("Erreur lors de la validation du token:", error);
-          setIsValidToken(false);
-        });
+        console.log("Token trouvé :", token);
+        console.log("Envoi de la requête de validation :", validateTokenUrl);
+
+        fetch(validateTokenUrl)
+            .then((response) => {
+                console.log('Statut de la réponse du serveur :', response.status);
+
+                if (!response.ok) {
+                    throw new Error("Réponse serveur invalide");
+                }
+
+                return response.json();
+            })
+            .then((data) => {
+                console.log("Réponse serveur :", data);
+
+                if (data.isValid) {
+                    console.log("Token valide :", data.data);
+                    setIsValidToken(true);
+                    setTokenData(data.data);
+                } else {
+                    console.error("Token invalide :", data.error);
+                    setIsValidToken(false);
+                }
+            })
+            .catch((error) => {
+                console.error("Erreur lors de la validation du token :", error);
+                setIsValidToken(false);
+            });
     } else {
-      console.error("Token manquant dans l'URL");
-      setIsValidToken(false);
+        console.error("Token manquant dans l'URL");
+        setIsValidToken(false);
     }
-  }, []);
+}, []);
+
 
   useEffect(() => {
     if (isValidToken) {
