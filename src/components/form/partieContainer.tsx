@@ -108,7 +108,7 @@ const PartieContainer: React.FC = () => {
     };
 
     try {
-      const response = await fetch(`${url.heroku}/createFormulaire`, {
+      const response = await fetch(`${url.main}/createFormulaire`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
