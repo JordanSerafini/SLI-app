@@ -139,9 +139,7 @@ const PartieContainer: React.FC = () => {
     }
   };
 
-  const test= localStorage.getItem("token");
 
-  console.log("Token:", test);
 
   const averageRating =
     rateList.reduce((acc, curr) => acc + curr.value, 0) /

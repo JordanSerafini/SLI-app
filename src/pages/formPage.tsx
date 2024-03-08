@@ -15,6 +15,8 @@ function FormPage() {
     const token = urlParams.get("token");
 
     if (token) {
+      localStorage.setItem('token', token);
+
       const validateTokenUrl = `${url.main}/verifyToken?token=${token}`;
 
       fetch(validateTokenUrl)
@@ -27,6 +29,7 @@ function FormPage() {
         .then((data) => {
           setIsValidToken(true);
           setTokenData(data.decoded);
+          console.log("Token valide :", tokenData);
         })
         .catch((error) => {
           console.error("Erreur lors de la validation du token :", error);
@@ -37,8 +40,6 @@ function FormPage() {
       setIsValidToken(false);
     }
   }, []);
-  console.log("Token data :", tokenData);
-
 
   return (
     <div className="bg-bg-lightgray mb-20 h-screen w-screen flex flex-col items-center overflow-auto">
