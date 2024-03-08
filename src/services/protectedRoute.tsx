@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
-import { useNavigate, Outlet } from 'react-router-dom';
-import url from '../axios/url';
+//import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+//import url from '../axios/url';
 
 const ProtectedRoute = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
+ /* 
   useEffect(() => {
     const verifyToken = async () => {
       try {
@@ -34,7 +35,7 @@ const ProtectedRoute = () => {
   
     verifyToken();
   }, [navigate]);
-
+*/
   return <Outlet />;
 };
 
