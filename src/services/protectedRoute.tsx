@@ -9,11 +9,11 @@ const ProtectedRoute = () => {
     const verifyToken = async () => {
       try {
         const token = localStorage.getItem('token');
-        console.log('Token :', token);
+        //console.log('Token :', token);
         if (!token) {
           throw new Error('Token non trouvé');
         }
-        const response = await fetch(`${url.local}/validateTokenHeader`, {
+        const response = await fetch(`${url.main}/validateTokenHeader`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
