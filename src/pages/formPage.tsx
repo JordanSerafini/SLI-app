@@ -6,35 +6,40 @@ function FormPage() {
   const [isValidToken, setIsValidToken] = useState<boolean | null>(null);
   const [tokenData, setTokenData] = useState({});
 
-  console.log('isValidToken', isValidToken);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
-    console.log('token', token);
     const validateTokenUrl = `${url.main}/validateTokenHeader?token=${token}`;
 
 
     if (token) {
+      console.log('Token trouvé, envoi de la requête de validation...');
       fetch(validateTokenUrl)
-        .then(response => response.json())
-        .then(data => {
-          setIsValidToken(data.isValid);
-          if (data.isValid) {
-            setTokenData(data.data); 
-          } else {
-            console.error('Token invalide:', data.error);
-          }
-        })
-        .catch(error => {
-          console.error('Erreur lors de la validation du token:', error);
-          setIsValidToken(false);
-        });
-    } else {
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Réponse serveur invalide');
+              }
+              return response.json();
+          })
+          .then(data => {
+              console.log('Réponse serveur:', data);
+              setIsValidToken(data.isValid);
+              if (data.isValid) {
+                  setTokenData(data.data);
+              } else {
+                  console.error('Token invalide:', data.error);
+              }
+          })
+          .catch(error => {
+              console.error('Erreur lors de la validation du token:', error);
+              setIsValidToken(false);
+          });
+  } else {
       console.error('Token manquant dans l\'URL');
       setIsValidToken(false);
-    }
-  }, []);
+  }
+}, []);
 
 
   useEffect(() => {
