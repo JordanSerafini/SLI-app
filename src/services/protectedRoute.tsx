@@ -1,20 +1,18 @@
-//import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-//import url from '../axios/url';
+import { useEffect } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import url from '../axios/url';
 
 const ProtectedRoute = () => {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
- /* 
   useEffect(() => {
     const verifyToken = async () => {
       try {
         const token = localStorage.getItem('token');
-        //console.log('token', token);
         if (!token) {
           throw new Error('Token non trouvé');
         }
-        const response = await fetch(`${url.main}/validateTokenHeader`, {
+        const response = await fetch(`${url.local}/verifyToken`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -35,7 +33,7 @@ const ProtectedRoute = () => {
   
     verifyToken();
   }, [navigate]);
-*/
+
   return <Outlet />;
 };
 

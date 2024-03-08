@@ -47,12 +47,13 @@ function FormPage() {
     }
 }, []);
 
-
   useEffect(() => {
     if (isValidToken) {
       console.log("Token valide:", tokenData);
     }
   }, [isValidToken, tokenData]);
+
+  
   return (
     <div className="bg-bg-lightgray mb-20 h-screen w-screen flex flex-col items-center overflow-auto">
       {isValidToken === null ? (
