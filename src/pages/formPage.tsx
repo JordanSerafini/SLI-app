@@ -6,10 +6,13 @@ function FormPage() {
   const [isValidToken, setIsValidToken] = useState<boolean | null>(null);
   const [tokenData, setTokenData] = useState({});
 
+  console.log('isValidToken', isValidToken);
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
-    const validateTokenUrl = `${url.main}/verifyToken?token=${token}`;
+    console.log('token', token);
+    const validateTokenUrl = `${url.main}/validateTokenHeader?token=${token}`;
 
 
     if (token) {

@@ -18,7 +18,7 @@ function Home() {
     setIsLoading(true);
 
     try {
-      await axios.post(`${url.heroku}/sendForm`, { email });
+      await axios.post(`${url.main}/sendForm`, { email });
       console.log('E-mail envoyé avec succès a', email);
       setToastMessage('E-mail envoyé avec succès !');
       setShowToast(true);
