@@ -7,6 +7,7 @@ import url from "../../axios/url";
 import { useNavigate } from "react-router-dom";
 
 import sliLogo from "../../assets/logoSLI.png";
+import avatarBoy from "../../assets/avatarBoy.png";
 
 const PartieContainer: React.FC = () => {
   const navigate = useNavigate();
@@ -179,6 +180,21 @@ const PartieContainer: React.FC = () => {
           </p>
         </div>
       </div>
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10 mb-4">
+        <div className="flex flex-row gap-2 items-center">
+          <img src={avatarBoy} className="h-12 w-12" alt="" />
+          <p>Commercial:</p>
+          <p>Christophe</p>
+        </div>
+        <div className="flex flex-row w-full justify-between">
+        <input
+          type="text"
+          placeholder="Veuillez indiquez votre nom ..."
+          className="border-1 border-blue-2 p-2 rounded-3xl w-4/10 focus:border-blue-2 custom-input"
+        />
+        <div>date du jour: 22/22/22</div>
+        </div>
+      </div>
       {/*--------------------------- 1ere Partie ----------------------------------------*/}
       <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg  ">
@@ -291,12 +307,12 @@ const PartieContainer: React.FC = () => {
             partieID={4}
             onChange={handleRatingChange}
           />
-            <Question
-              id={uniqueIdQuestionGenerator()}
-              title="Recommanderiez vous solution logique à votre entourage?"
-              partieID={4}
-              onQuestionChange={handleQuestionChange}
-            />
+          <Question
+            id={uniqueIdQuestionGenerator()}
+            title="Recommanderiez vous solution logique à votre entourage?"
+            partieID={4}
+            onQuestionChange={handleQuestionChange}
+          />
           <Rating
             id={uniqueIdRatingGenerator()}
             title="D'une manière générale, solution logique a-t-elle répondu à vos attentes?"
