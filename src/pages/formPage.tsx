@@ -10,7 +10,7 @@ function FormPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
     console.log("Token trouvé :", token);
-    const validateTokenUrl = `${url.main}/validateTokenHeader?token=${token}`;
+    const validateTokenUrl = `${url.main}/verifyToken?token=${token}`;
 
     if (token) {
         console.log("Envoi de la requête de validation :", validateTokenUrl);
