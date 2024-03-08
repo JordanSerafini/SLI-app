@@ -12,7 +12,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    const loginUrl = `${url.heroku}/login`;
+    const loginUrl = `${url.local}/login`;
     const requestData = {
       email: email,
       password: password,

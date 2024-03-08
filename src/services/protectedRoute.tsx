@@ -9,10 +9,11 @@ const ProtectedRoute = () => {
     const verifyToken = async () => {
       try {
         const token = localStorage.getItem('token');
+        //console.log('token', token);
         if (!token) {
-          throw new Error('Token not found');
+          throw new Error('Token non trouvé');
         }
-        const response = await fetch(`${url.heroku}/verifyToken`, {
+        const response = await fetch(`${url.local}/validateToken`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -21,8 +22,10 @@ const ProtectedRoute = () => {
         });
 
         if (!response.ok) {
-          throw new Error('Token verification failed');
+          throw new Error('Échec de la vérification du token');
         }
+
+
       } catch (error) {
         console.error('Erreur lors de la vérification du token :', error);
         navigate('/login');
@@ -30,9 +33,9 @@ const ProtectedRoute = () => {
     };
   
     verifyToken();
-  }, []);
+  }, [navigate]);
 
-  return <Outlet />; // 
+  return <Outlet />;
 };
 
 export default ProtectedRoute;
