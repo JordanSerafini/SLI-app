@@ -4,6 +4,7 @@ import { IsDataFetched } from "../hooks/isDataFetched";
 import dataContext from "../context/dataContext";
 import ClientCard from "../components/cards/client/clientCard";
 import ClientDetailCard from "../components/cards/client/clientDetailCard";
+import BottomNav from "../components/nav/bottomNav";
 
 import searchLogo from "../assets/searchLogo.png";
 
@@ -154,6 +155,7 @@ function ClientsList() {
           </div>
         )}
       </div>
+      <BottomNav />
     </div>
   );
 }

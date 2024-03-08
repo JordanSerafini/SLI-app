@@ -16,6 +16,7 @@ import ThemeBtn from "../components/buttons/themeBtn";
 import debounce from "../services/debounce";
 import CircleLoader from "../components/loader/circleLoader";
 import TopToast from "../components/toast/toastTop";
+import BottomNav from "../components/nav/bottomNav";
 
 function ArticlesList() {
   const { itemList } = useContext(dataContext);
@@ -196,7 +197,7 @@ function ArticlesList() {
         </div>
 
         {/* ----------------------------------------------------------------------  Pagination  ---------------------------------------------------------------------- */}
-        <div className="h-2/10 mb-14">
+        <div className="h-2/10 mb-14 flex flex-col">
         <div className="pagination flex justify-center space-x-2">
           {pageNumbers.map((number) => (
             <button
@@ -217,10 +218,11 @@ function ArticlesList() {
           placeholder="Rechercher..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className={`self-center mt-4 input w-full max-w-xs bg-bgMain border-1 ${inputColor} focus:border-secondary focus:`}
+          className={` self-center mt-4 input w-full max-w-xs bg-bgMain border-1 ${inputColor} focus:border-secondary focus:`}
         />
       </div>
       <ThemeBtn />
+      <BottomNav />
       </div>
       {showToast && (
         <TopToast

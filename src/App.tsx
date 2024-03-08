@@ -24,7 +24,7 @@ function App() {
     <DataProvider>
       <ThemeProvider>
         <Router>
-        <div className="h-screen w-screen">
+        <div className="h-screen w-screen bg-gray-1 flex flex-col" >
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="form-satisfaction" element={<FormPage />} />
