@@ -6,18 +6,18 @@ const ProtectedRoute = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const verifyToken = async () => {
+    const validateTokenHeader = async () => { // ----------------------------- dans le storage et dans le header >>> vérification si token valide, expiré ou non
       try {
-        const token = localStorage.getItem('token');
+        const storageToken = localStorage.getItem('token');
         //console.log('Token :', token);
-        if (!token) {
+        if (!storageToken) {
           throw new Error('Token non trouvé');
         }
         const response = await fetch(`${url.main}/validateTokenHeader`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${storageToken}`
           },
         });
 
@@ -30,9 +30,42 @@ const ProtectedRoute = () => {
         console.error('Erreur lors de la vérification du token :', error);
         navigate('/login');
       }
+
+
     };
-  
-    verifyToken();
+
+    const verifyTokenStorage = async () => {    // vérification si token dans le storage est BLACKLISTED
+      try {
+        const storageToken = localStorage.getItem('token');
+    
+        if (!storageToken) {
+          throw new Error('Token non trouvé');
+        }
+    
+        const response = await fetch(`${url.main}/verifyTokenHeader`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${storageToken}`
+          },
+        });
+    
+        if (!response.ok) {
+          throw new Error('Échec de la vérification du token');
+        }
+    
+        
+    
+      } catch (error) {
+        console.error('Erreur lors de la vérification du token :', error);
+        navigate('/login');
+      }
+    }
+    
+
+    validateTokenHeader();
+    verifyTokenStorage();
+
   }, [navigate]);
 
   return <Outlet />;
