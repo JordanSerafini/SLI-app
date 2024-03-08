@@ -6,10 +6,12 @@ import Textarea from "./textarea";
 import url from "../../axios/url";
 import { useNavigate } from "react-router-dom";
 
+import sliLogo from "../../assets/logoSLI.png";
+
 const PartieContainer: React.FC = () => {
   const navigate = useNavigate();
 
-  // ------------------------------------------------------------------------------------- État pour les notes ----------------------------------------------------------------------- 
+  // ------------------------------------------------------------------------------------- État pour les notes -----------------------------------------------------------------------
   const [rateList, setRateList] = useState<
     Array<{
       partieID: number;
@@ -19,7 +21,7 @@ const PartieContainer: React.FC = () => {
     }>
   >([]);
 
-  // --------------------------------------------------------------------------  État pour les réponses aux questions ----------------------------------------------------------------------- 
+  // --------------------------------------------------------------------------  État pour les réponses aux questions -----------------------------------------------------------------------
   const [questionResponses, setQuestionResponses] = useState<{
     [key: string]: { response: string; title: string; partieID: number };
   }>({});
@@ -119,14 +121,14 @@ const PartieContainer: React.FC = () => {
 
       if (response.ok) {
         alert("Formulaire envoyé avec succès");
-  
+
         await fetch(`${url.main}/invalidateToken`, {
           method: "GET",
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-  
+
         localStorage.removeItem("token");
         navigate("/login");
       } else {
@@ -145,7 +147,7 @@ const PartieContainer: React.FC = () => {
     rateList.reduce((acc, curr) => acc + curr.value, 0) /
     (rateList.length || 1);
 
-    // ----------------------------------------------------------------------- Générateur d'identifiants uniques
+  // ----------------------------------------------------------------------- Générateur d'identifiants uniques
   const createIdGenerator = () => {
     let currentId = 1;
     return () => {
@@ -158,13 +160,28 @@ const PartieContainer: React.FC = () => {
   const uniqueIdRatingGenerator = createIdGenerator();
   const uniqueIdTextAreaGenerator = createIdGenerator();
 
-
-  
   return (
-    <div className="flex flex-col items-center gap-6 pb-4 w-full sm:w-8/10">
+    <div className="flex flex-col items-center gap-6 pb-4 w-full lg:tracking-widest">
+      {/*--------------------------- Présentation ----------------------------------------*/}
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10 mb-10">
+        <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg  flex flex-row items-center justify-center gap-8">
+          <h2>Étude de satisfaction client</h2>
+          <img src={sliLogo} alt=" " className="h-12 sm:h-20 rounded-full" />
+        </div>
+        <div className="flex flex-col gap-8 p-4 text-xs sm:text-base">
+          <p>Bonjour Madame, Monsieur,</p>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis
+            vitae, quod ratione fugiat quam, iusto repellat voluptatem autem
+            possimus ut sed. Vero rem, vitae facere inventore temporibus eius
+            consequatur officia.Vero rem, vitae facere inventore temporibus eius
+            consequatur officia.
+          </p>
+        </div>
+      </div>
       {/*--------------------------- 1ere Partie ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 ">
-        <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10">
+        <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg  ">
           1ère phase: Qualification de vos besoins et proposition d'une solution
         </div>
         <div className="p-2 flex flex-col gap-4 text-blue-1">
@@ -200,7 +217,7 @@ const PartieContainer: React.FC = () => {
         </div>
       </div>
       {/*--------------------------- 2eme Partie ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit lg:w-8.5/10">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg">
           2ème phase: Informations sur le suivi de la livraison
         </div>
@@ -217,20 +234,6 @@ const PartieContainer: React.FC = () => {
             partieID={2}
             onQuestionChange={handleQuestionChange}
           />
-          {/*
-        <Rating
-          id={uniqueIdRatingGenerator()}
-          title="Quel est votre avis concernant le suivi de validation?"
-          partieID={2}
-          onChange={(value: number) => handleRatingChange(3, value)}
-        />
-        <Rating
-          id={uniqueIdRatingGenerator()}
-          title="Quel est votre avis sur la deuxième question?"
-          partieID={2}
-          onChange={(value: number) => handleRatingChange(4, value)}
-        />
-        */}
           <Textarea
             id={uniqueIdTextAreaGenerator()}
             partieID={2}
@@ -239,7 +242,7 @@ const PartieContainer: React.FC = () => {
         </div>
       </div>
       {/*--------------------------- 3eme Partie ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit lg:w-8.5/10">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg">
           3ème phase:Installation de la solution
         </div>
@@ -270,24 +273,30 @@ const PartieContainer: React.FC = () => {
         </div>
       </div>
       {/*--------------------------- 4eme Partie ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit lg:w-8.5/10">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg">
           4ème phase: Finalité du projet
         </div>
         <div className="p-2 flex flex-col gap-4 text-blue-1">
-          <Rating
+          <Question
             id={uniqueIdQuestionGenerator()}
             title="Satisfaction sur le délai de livraison"
-            onChange={handleRatingChange}
+            onQuestionChange={handleQuestionChange}
             partieID={4}
           />
 
-          <Question
+          <Rating
             id={uniqueIdQuestionGenerator()}
             title="Note finale de 'Soluton logique'"
             partieID={4}
-            onQuestionChange={handleQuestionChange}
+            onChange={handleRatingChange}
           />
+            <Question
+              id={uniqueIdQuestionGenerator()}
+              title="Recommanderiez vous solution logique à votre entourage?"
+              partieID={4}
+              onQuestionChange={handleQuestionChange}
+            />
           <Rating
             id={uniqueIdRatingGenerator()}
             title="D'une manière générale, solution logique a-t-elle répondu à vos attentes?"
@@ -295,12 +304,6 @@ const PartieContainer: React.FC = () => {
             onChange={handleRatingChange}
           />
 
-          <Question
-            id={uniqueIdQuestionGenerator()}
-            title="Recommanderiez vous solution logique à votre entourage?"
-            partieID={4}
-            onQuestionChange={handleQuestionChange}
-          />
           <Textarea
             id={uniqueIdQuestionGenerator()}
             title="Quelles sont vos suggestions pour améliorer nos services?"
@@ -314,7 +317,7 @@ const PartieContainer: React.FC = () => {
       </p>{" "}
       <button
         onClick={handleSubmit}
-        className="bg-blue-1 p-2 rounded-3xl px-8 text-white text-base tracking-widest"
+        className="bg-blue-1 p-2 rounded-3xl px-8 text-white text-base tracking-widest border-2 border-white w-3/10"
       >
         Valider
       </button>

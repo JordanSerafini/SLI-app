@@ -1,11 +1,11 @@
 import { useState } from "react";
+
 interface QuestionProps {
   id: number;
   title: string;
   partieID: number;
   onQuestionChange: (id: number, title: string, partieID: number, response: string) => void;
 }
-
 
 function Question({
   id,

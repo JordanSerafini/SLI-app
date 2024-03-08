@@ -21,7 +21,7 @@ if (!title)
 
 
   return (
-    <div className="flex flex-col gap-2 text-xs text-center">
+    <div className="flex flex-col gap-2 text-xs sm:text-base text-center">
       {title}
     
       <textarea
