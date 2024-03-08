@@ -13,7 +13,7 @@ const ProtectedRoute = () => {
         if (!token) {
           throw new Error('Token non trouvé');
         }
-        const response = await fetch(`${url.local}/validateToken`, {
+        const response = await fetch(`${url.heroku}/validateToken`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
