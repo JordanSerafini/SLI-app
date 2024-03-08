@@ -180,7 +180,7 @@ const PartieContainer: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10 mb-4">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10 mb-4 p-4">
         <div className="flex flex-row gap-2 items-center">
           <img src={avatarBoy} className="h-12 w-12" alt="" />
           <p>Commercial:</p>
