@@ -119,7 +119,7 @@ const PartieContainer: React.FC = () => {
       if (response.ok) {
         alert("Formulaire envoyé avec succès");
   
-        await fetch(`${url.heroku}/invalidateToken`, {
+        await fetch(`${url.main}/invalidateToken`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -138,6 +138,10 @@ const PartieContainer: React.FC = () => {
       alert("Erreur lors de la requête:");
     }
   };
+
+  const test= localStorage.getItem("token");
+
+  console.log("Token:", test);
 
   const averageRating =
     rateList.reduce((acc, curr) => acc + curr.value, 0) /
