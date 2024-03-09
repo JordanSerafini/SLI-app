@@ -12,7 +12,7 @@ import avatarBoy from "../../assets/avatarBoy.png";
 const PartieContainer: React.FC = () => {
   const navigate = useNavigate();
 
-  // ------------------------------------------------------------------------------------- État pour les notes -----------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------------------------------------------------------------État pour les notes -----------------------------------------------------------------------
   const [rateList, setRateList] = useState<
     Array<{
       partieID: number;
@@ -22,16 +22,16 @@ const PartieContainer: React.FC = () => {
     }>
   >([]);
 
-  // --------------------------------------------------------------------------  État pour les réponses aux questions -----------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------------------------------------------------------------État pour les réponses aux questions -----------------------------------------------------------------------
   const [questionResponses, setQuestionResponses] = useState<{
     [key: string]: { response: string; title: string; partieID: number };
   }>({});
-  // -----------------------------------------------------------------------  État pour les réponses aux zones de texte
+  // -----------------------------------------------------------------------------------------------------------------------------------------État pour les réponses aux zones de texte
   const [textareaResponses, setTextareaResponses] = useState<{
     [textareaId: number]: { text: string; partieID: number; title?: string };
   }>({});
 
-  // -----------------------------------------------------------------------  Gestionnaire pour les changements de questions
+  // -----------------------------------------------------------------------------------------------------------------------------------------Gestionnaire pour les questions
   const handleQuestionChange = (
     id: number,
     title: string,
@@ -44,7 +44,7 @@ const PartieContainer: React.FC = () => {
     }));
   };
 
-  // ----------------------------------------------------------------------- Gestionnaire pour les changements de zones de texte
+  //----------------------------------------------------------------------------------------------------------------------------------------- Gestionnaire pour les changements de zones de texte
   const handleTextareaChange = (
     textareaId: number,
     partieID: number,
@@ -57,7 +57,7 @@ const PartieContainer: React.FC = () => {
     }));
   };
 
-  // ----------------------------------------------------------------------- Gestionnaire pour les changements de notes
+  //----------------------------------------------------------------------------------------------------------------------------------------- Gestionnaire pour les changements de notes
   const handleRatingChange = (
     id: number,
     title: string,
@@ -78,7 +78,7 @@ const PartieContainer: React.FC = () => {
     }
   };
 
-  // ----------------------------------------------------------------------- Gestionnaire pour la soumission du formulaire
+  //----------------------------------------------------------------------------------------------------------------------------------------- Gestionnaire pour la soumission du formulaire
   const handleSubmit = async () => {
     // Date du jour
     const dateDuJour = new Date().toISOString();
@@ -143,12 +143,12 @@ const PartieContainer: React.FC = () => {
     }
   };
 
-  // ----------------------------------------------------------------------- Calcul de la note moyenne
+  //----------------------------------------------------------------------------------------------------------------------------------------- Calcul de la note moyenne
   const averageRating =
     rateList.reduce((acc, curr) => acc + curr.value, 0) /
     (rateList.length || 1);
 
-  // ----------------------------------------------------------------------- Générateur d'identifiants uniques
+  //----------------------------------------------------------------------------------------------------------------------------------------- Générateur d'identifiants uniques
   const createIdGenerator = () => {
     let currentId = 1;
     return () => {
@@ -163,15 +163,18 @@ const PartieContainer: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center gap-6 pb-4 w-full lg:tracking-widest">
-      {/*--------------------------- Présentation ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10 mb-4">
+      {/*--------------------------------------------------------------------------------------------------------------------------------------- Présentation ----------------------------------------*/}
+      <div className="flex flex-col items-center md:flex-row md:justify-evenly bg-red-200 w-9.5/10 ">
+              {/*------------------------------------------------------------------------------------------------------------------------------- Introduction ----------------------------------------*/}
+
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 md:h-9/10 md:w-4/10 ">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg  flex flex-row items-center justify-center gap-8">
           <h2>Étude de satisfaction client</h2>
           <img src={sliLogo} alt=" " className="h-12 sm:h-20 rounded-full" />
         </div>
         <div className="flex flex-col gap-8 p-4 text-xs sm:text-base">
           <p>Bonjour Madame, Monsieur,</p>
-          <p>
+          <p className="">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis
             vitae, quod ratione fugiat quam, iusto repellat voluptatem autem
             possimus ut sed. Vero rem, vitae facere inventore temporibus eius
@@ -180,7 +183,8 @@ const PartieContainer: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10 mb-4 p-4">
+            {/*------------------------------------------------------------------------------------------------------------------------------------ Détails ----------------------------------------*/}
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 p-4 md:h-9/10 md:w-4/10">
         <div className="flex flex-row gap-2 items-center">
           <img src={avatarBoy} className="h-12 w-12" alt="" />
           <p>Commercial:</p>
@@ -195,7 +199,9 @@ const PartieContainer: React.FC = () => {
         <div>date du jour: 22/22/22</div>
         </div>
       </div>
-      {/*--------------------------- 1ere Partie ----------------------------------------*/}
+
+      </div>
+      {/*--------------------------------------------------------------------------------------------------------------------------------------------- 1ere Partie ----------------------------------------*/}
       <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg  ">
           1ère phase: Qualification de vos besoins et proposition d'une solution
@@ -232,7 +238,7 @@ const PartieContainer: React.FC = () => {
           />
         </div>
       </div>
-      {/*--------------------------- 2eme Partie ----------------------------------------*/}
+      {/*----------------------------------------------------------------------------------------------------------------------------------------- 2eme Partie ----------------------------------------*/}
       <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit lg:w-8.5/10">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg">
           2ème phase: Informations sur le suivi de la livraison
@@ -257,7 +263,7 @@ const PartieContainer: React.FC = () => {
           />
         </div>
       </div>
-      {/*--------------------------- 3eme Partie ----------------------------------------*/}
+      {/*----------------------------------------------------------------------------------------------------------------------------------------- 3eme Partie ----------------------------------------*/}
       <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit lg:w-8.5/10">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg">
           3ème phase:Installation de la solution
@@ -288,7 +294,7 @@ const PartieContainer: React.FC = () => {
           />
         </div>
       </div>
-      {/*--------------------------- 4eme Partie ----------------------------------------*/}
+      {/*----------------------------------------------------------------------------------------------------------------------------------------- 4eme Partie ----------------------------------------*/}
       <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit lg:w-8.5/10">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg">
           4ème phase: Finalité du projet
