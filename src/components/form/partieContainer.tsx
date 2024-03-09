@@ -185,32 +185,35 @@ const PartieContainer: React.FC = () => {
       </div>
             {/*------------------------------------------------------------------------------------------------------------------------------------ Détails ----------------------------------------*/}
       <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 p-4 md:h-9/10 md:w-4.5/10 md:justify-evenly">
-        <div className="flex flex-row gap-2 items-center">
-          <img src={avatarBoy} className="h-12 w-12" alt="" />
-          <p>Commercial:</p>
-          <p>Christophe</p>
-        </div>
+        
         <div className="flex flex-row w-full justify-between flex-wrap">
         <input
           type="text"
           placeholder="Veuillez indiquez votre nom ..."
           className="border-1 border-blue-2 p-2 rounded-3xl w-4/10 focus:border-blue-2 custom-input"
         />
-        <div>date du jour: 01/12/22</div>
+            <p className="text-blue-1 bold">06 25 41 88 93</p>
         <p className="mt-3 hidden md:flex">12 chemin de loverchy, 74000 annecy</p>
         </div>
-        <div className="hidden md:flex flex-col gap-2 md:border-1 md:p-3 md:rounded-lg md:bg-blue-2-light">
+                    {/*------------------------------- Encart date-devis  ----------------------------------------*/}
+        <div className="hidden md:flex flex-col gap-2 md:border-1 md:p-3 md:rounded-lg md:bg-blue-2-light text-stone-70000">
           <div className="flex flex-row justify-between w-full text-sm lg:text-base">
-            <div className="md:flex flex-row hidden items-center justify-between w-full border-b-1 border-blue-1 pb-2">
-            <p className="text-blue-1 bold">06 25 41 88 93</p>
-            <p className="text-sm">Numéro de devis: <span className="bold">#005615</span></p>
+            <div className="md:flex flex-row hidden items-center justify-between w-full border-b-1 border-blue-1 pb-2 ">
+            <div>date du jour: <span className="bold">01/12/22</span></div>
+
+            <p className="text-sm ">devis n°<span className="bold">005615</span></p>
             </div>
             </div>
-            <p>Infos diverses: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit magnam iste maiores, numquam quas minus maxime molestiae nihil veniam</p>
+            <p className="">Infos diverses: <span className="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit magnam iste maiores, numquam quas minus maxime molestiae nihil veniam</span></p>
 
         </div>
+        <div className="flex flex-row gap-2 items-center">
+          <img src={avatarBoy} className="h-12 w-12" alt="" />
+          <p>Commercial:</p>
+          <p>Christophe</p>
+        </div>
       </div>
-
+    
       </div>
       {/*--------------------------------------------------------------------------------------------------------------------------------------------- 1ere Partie ----------------------------------------*/}
       <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10">
