@@ -199,9 +199,9 @@ const PartieContainer: React.FC = () => {
         <div className="hidden md:flex flex-col gap-2 md:border-1 md:p-3 md:rounded-lg md:bg-blue-2-light text-stone-70000">
           <div className="flex flex-row justify-between w-full text-sm lg:text-base">
             <div className="md:flex flex-row hidden items-center justify-between w-full border-b-1 border-blue-1 pb-2 ">
-            <div>date du jour: <span className="bold">01/12/22</span></div>
+            <div>date du jour: <span className="bold text-blue-1">01/12/22</span></div>
 
-            <p className="text-sm ">devis n°<span className="bold">005615</span></p>
+            <p className="text-sm ">devis n°<span className="bold text-blue-1">005615</span></p>
             </div>
             </div>
             <p className="">Infos diverses: <span className="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit magnam iste maiores, numquam quas minus maxime molestiae nihil veniam</span></p>
