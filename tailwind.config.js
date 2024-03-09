@@ -71,6 +71,7 @@ export default {
         "gray-1": "#f2f2f2",
         "gray": "#e7e7e7",
         "blue-2": '#7395AE',
+        "blue-2-light":'#E4F2F9',
         "blue-1": '#557A95',
         'grayblue':"#2d3748",
         'greyBG': '#F0F0F0',
