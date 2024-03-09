@@ -165,55 +165,70 @@ const PartieContainer: React.FC = () => {
     <div className="flex flex-col items-center gap-6 pb-4 w-full lg:tracking-widest">
       {/*--------------------------------------------------------------------------------------------------------------------------------------- Présentation ----------------------------------------*/}
       <div className="flex flex-col items-center md:flex-row w-10/10 md:justify-between  md:w-9.5/10 lg:w-8.5/10">
-              {/*------------------------------------------------------------------------------------------------------------------------------- Introduction ----------------------------------------*/}
+        {/*------------------------------------------------------------------------------------------------------------------------------- Introduction ----------------------------------------*/}
 
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 md:h-9/10 md:w-4.5/10 ">
-        <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg  flex flex-row items-center justify-center gap-8">
-          <h2>Étude de satisfaction client</h2>
-          <img src={sliLogo} alt=" " className="h-12 sm:h-20 rounded-full" />
+        <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 md:h-9/10 md:w-4.5/10 ">
+          <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg  flex flex-row items-center justify-center gap-8">
+            <h2>Étude de satisfaction client</h2>
+            <img src={sliLogo} alt=" " className="h-12 sm:h-20 rounded-full" />
+          </div>
+          <div className="flex flex-col gap-8 p-4 text-xs sm:text-base">
+            <p>Bonjour Madame, Monsieur,</p>
+            <p className="">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis
+              vitae, quod ratione fugiat quam, iusto repellat voluptatem autem
+              possimus ut sed. Vero rem, vitae facere inventore temporibus eius
+              consequatur officia.Vero rem, vitae facere inventore temporibus
+              eius consequatur officia.
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col gap-8 p-4 text-xs sm:text-base">
-          <p>Bonjour Madame, Monsieur,</p>
-          <p className="">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis
-            vitae, quod ratione fugiat quam, iusto repellat voluptatem autem
-            possimus ut sed. Vero rem, vitae facere inventore temporibus eius
-            consequatur officia.Vero rem, vitae facere inventore temporibus eius
-            consequatur officia.
-          </p>
-        </div>
-      </div>
-            {/*------------------------------------------------------------------------------------------------------------------------------------ Détails ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 p-4 md:h-9/10 md:w-4.5/10 md:justify-evenly">
-        
-        <div className="flex flex-row w-full justify-between flex-wrap">
-        <input
-          type="text"
-          placeholder="Veuillez indiquez votre nom ..."
-          className="border-1 border-blue-2 p-2 rounded-3xl w-4/10 focus:border-blue-2 custom-input"
-        />
+        {/*------------------------------------------------------------------------------------------------------------------------------------ Détails ----------------------------------------*/}
+        <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 p-4 md:h-9/10 md:w-4.5/10 md:justify-evenly">
+          <div className="flex flex-row w-full justify-between flex-wrap">
+            <input
+              type="text"
+              placeholder="Veuillez indiquez votre nom ..."
+              className="border-1 border-blue-2 p-2 rounded-3xl w-4/10 focus:border-blue-2 custom-input"
+            />
             <p className="text-blue-1 bold">06 25 41 88 93</p>
-        <p className="mt-3 hidden md:flex">12 chemin de loverchy, 74000 annecy</p>
-        </div>
-                    {/*------------------------------- Encart date-devis  ----------------------------------------*/}
-        <div className="hidden md:flex flex-col gap-2 md:border-1 md:p-3 md:rounded-lg md:bg-blue-2-light text-stone-70000">
-          <div className="flex flex-row justify-between w-full text-sm lg:text-base">
-            <div className="md:flex flex-row hidden items-center justify-between w-full border-b-1 border-blue-1 pb-2 ">
-            <div>date du jour: <span className="bold text-blue-1">01/12/22</span></div>
+            <p className="mt-3 hidden md:flex">
+              12 chemin de loverchy, 74000 annecy
+            </p>
+          </div>
+          {/*------------------------------- Encart date-devis  ----------------------------------------*/}
+          <div className="hidden md:flex flex-col gap-2 md:border-1 md:p-3 md:rounded-lg p-2 text-stone-700">
+            <div className="flex flex-row justify-between w-full text-sm lg:text-base">
+              <div className="md:flex flex-row hidden items-center justify-between w-full border-b-1">
+                <div>
+                  date du jour:{" "}
+                  <span className="bold text-blue-1">01/12/22</span>
+                </div>
 
-            <p className="text-sm ">devis n°<span className="bold text-blue-1">005615</span></p>
+                <p className="text-sm ">
+                  devis n°<span className="bold text-blue-1">005615</span>
+                </p>
+              </div>
             </div>
-            </div>
-            <p className="">Infos diverses: <span className="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit magnam iste maiores, numquam quas minus maxime molestiae nihil veniam</span></p>
-
+            <p className="">
+              Infos diverses:{" "}
+              <span className="">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit
+                magnam iste maiores, numquam quas minus maxime molestiae nihil
+                veniam
+              </span>
+            </p>
+          </div>
+          <div className="flex flex-row gap-2 items-center">
+            <img src={avatarBoy} className="h-12 w-12" alt="" />
+            <p>Commercial:</p>
+            <select name="prenoms" id="prenoms" className="border-1 bg-blue-2 p-2 rounded-3xl text-white text-center">
+              <option value="Christophe">Christophe</option>
+              <option value="Alexandre">Alexandre</option>
+              <option value="Julie">Julie</option>
+            </select>
+          </div>
         </div>
-        <div className="flex flex-row gap-2 items-center">
-          <img src={avatarBoy} className="h-12 w-12" alt="" />
-          <p>Commercial:</p>
-          <p>Christophe</p>
-        </div>
-      </div>
-    
       </div>
       {/*--------------------------------------------------------------------------------------------------------------------------------------------- 1ere Partie ----------------------------------------*/}
       <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 lg:w-8.5/10">
