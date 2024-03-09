@@ -164,10 +164,10 @@ const PartieContainer: React.FC = () => {
   return (
     <div className="flex flex-col items-center gap-6 pb-4 w-full lg:tracking-widest">
       {/*--------------------------------------------------------------------------------------------------------------------------------------- Présentation ----------------------------------------*/}
-      <div className="flex flex-col items-center md:flex-row md:justify-evenly bg-red-200 w-9.5/10 ">
+      <div className="flex flex-col items-center md:flex-row w-10/10 md:justify-between  md:w-9.5/10 lg:w-8.5/10">
               {/*------------------------------------------------------------------------------------------------------------------------------- Introduction ----------------------------------------*/}
 
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 md:h-9/10 md:w-4/10 ">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 md:h-9/10 md:w-4.5/10 ">
         <div className="bold text-white  text-center bg-blue-1 w-full p-4 rounded-t-lg  flex flex-row items-center justify-center gap-8">
           <h2>Étude de satisfaction client</h2>
           <img src={sliLogo} alt=" " className="h-12 sm:h-20 rounded-full" />
@@ -184,7 +184,7 @@ const PartieContainer: React.FC = () => {
         </div>
       </div>
             {/*------------------------------------------------------------------------------------------------------------------------------------ Détails ----------------------------------------*/}
-      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 p-4 md:h-9/10 md:w-4/10">
+      <div className="w-9.5/10 bg-white rounded-xl flex flex-col gap-4 h-fit mt-4 mb-4 p-4 md:h-9/10 md:w-4.5/10">
         <div className="flex flex-row gap-2 items-center">
           <img src={avatarBoy} className="h-12 w-12" alt="" />
           <p>Commercial:</p>
@@ -198,6 +198,7 @@ const PartieContainer: React.FC = () => {
         />
         <div>date du jour: 22/22/22</div>
         </div>
+        <div className="disabled:"></div>
       </div>
 
       </div>
