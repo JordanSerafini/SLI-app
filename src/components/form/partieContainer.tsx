@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Question from "./question";
 import Rating from "./rating";
 import Textarea from "./textarea";
@@ -8,9 +8,26 @@ import { useNavigate } from "react-router-dom";
 
 import sliLogo from "../../assets/logoSLI.png";
 import avatarBoy from "../../assets/avatarBoy.png";
+import avatarGirl from "../../assets/avatarGirl.png";
 
 const PartieContainer: React.FC = () => {
   const navigate = useNavigate();
+  const [selectedName, setSelectedName] = useState<string>("Christophe");
+  const [imageUrl, setImageUrl] = useState<string>("");
+
+  useEffect(() => {
+    switch (selectedName) {
+      case "Christophe":
+      case "Alexandre":
+        setImageUrl(avatarBoy);
+        break;
+      case "Julie":
+        setImageUrl(avatarGirl);
+        break;
+      default:
+        setImageUrl("/path/to/default/image.jpg"); // Une image par défaut si besoin
+    }
+  }, [selectedName]);
 
   // -----------------------------------------------------------------------------------------------------------------------------------------État pour les notes -----------------------------------------------------------------------
   const [rateList, setRateList] = useState<
@@ -220,9 +237,16 @@ const PartieContainer: React.FC = () => {
             </p>
           </div>
           <div className="flex flex-row gap-2 items-center">
-            <img src={avatarBoy} className="h-12 w-12" alt="" />
             <p>Commercial:</p>
-            <select name="prenoms" id="prenoms" className="border-1 bg-blue-2 p-2 rounded-3xl text-white text-center">
+
+            <img src={imageUrl} className="h-12 w-12" alt="" />
+            <select
+              name="prenoms"
+              id="prenoms"
+              className="border-1 bg-blue-2 p-2 rounded-3xl text-white text-center"
+              value={selectedName}
+              onChange={(e) => setSelectedName(e.target.value)}
+            >
               <option value="Christophe">Christophe</option>
               <option value="Alexandre">Alexandre</option>
               <option value="Julie">Julie</option>
